@@ -1,0 +1,13 @@
+/* large screen */
+
+/* meduim screen*/
+.hwidth{
+    width: 97%;
+}
+/* smallscreem */
+span.ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left{
+background-color: #FFFFFF;
+margin-top: 20px;
+position: absolute;
+z-index: 200;
+}
