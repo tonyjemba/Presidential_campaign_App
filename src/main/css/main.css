@@ -1,5 +1,22 @@
 /* large screen */
+.bg{
+    position: relative;
+    background-color: white;
+}
+.wh{
+    background-color: #FFFFFF;
+}
+.top{
+    position: relative;
+    z-index: 3;
+    background-color: #FFFFFF;
 
+}
+.top1{
+    position: relative;
+    background-color: #FFFFFF;
+    z-index: 1000;
+}
 /* meduim screen*/
 .hwidth{
     width: 97%;
