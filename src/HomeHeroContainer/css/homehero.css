@@ -12,7 +12,7 @@
 position: relative;
 z-index: 3;
 position: absolute;
-top: 20%;
+top: 10%;
 
 }
 .redbg{
@@ -26,4 +26,25 @@ top: 20%;
 }
 .innercontwidth{
   width: 95%;
+}
+/*small screen*/
+.height{
+  height: 60vh;
+}
+
+.small{
+  height: 60vh;
+  width: 100%;
+  object-fit: cover;
+}
+.phone{
+  height:45vh;
+  width: 100%;
+  object-fit: cover;
+}
+.phonetop{
+  top:40%
+}
+.pos{
+  top: 20%;
 }

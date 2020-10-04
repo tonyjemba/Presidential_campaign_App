@@ -115,14 +115,15 @@ const LargeScreen = () =>{
                       {" "}
                       HOME
                     </div>
-                    <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      ISSUES
-                    </div>
+
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       EVENTS
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       NEWS
+                    </div>
+                    <div className="pointer fw7" style={{ color: "#311B92" }}>
+                      VIDEOS
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       ABOUT

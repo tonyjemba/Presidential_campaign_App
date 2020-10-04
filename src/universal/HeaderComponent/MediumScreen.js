@@ -116,14 +116,15 @@ const MediumScreen = () =>{
                       {" "}
                       HOME
                     </div>
-                    <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
-                      ISSUES
-                    </div>
+
                     <div className="pointer fw7" style={{ color: "#311B92" ,fontSize:"1.5vw"}}>
                       EVENTS
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
                       NEWS
+                    </div>
+                    <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
+                      VIDEOS
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
                       ABOUT

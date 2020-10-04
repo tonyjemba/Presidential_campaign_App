@@ -19,3 +19,6 @@ z-index: 1000;
 .innercontwidth{
     width: 95%;
 }
+.betop{
+    z-index: 999
+}
