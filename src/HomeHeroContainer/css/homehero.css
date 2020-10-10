@@ -1,27 +1,23 @@
 .bacground {
   background-color: white;
- position: relative;
- z-index: 1;
   
 }
-.hero{
-  position: relative;
-  z-index: 2;
-}
-.cont{
-position: relative;
-z-index: 3;
-position: absolute;
-top: 10%;
 
+.cont{
+
+position: absolute;
+top: 4%;
+}
+.contm{
+  position: absolute;
+  top:2%;
 }
 .redbg{
   background-color: red;
 }
 
 .image {
-  z-index: 1;
-  position: relative;
+  
   object-fit: cover;
 }
 .innercontwidth{

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./css/headercomponent.css";
 import { Space, Badge } from "antd";
 import Sticky from "react-sticky-el";
-import { MdPhone, MdEmail } from "react-icons/md";
+import {  MdEmail } from "react-icons/md";
+import { Link} from "react-router-dom";
 import { GrMapLocation, GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
 import { IoMdCart } from "react-icons/io";
@@ -42,7 +43,7 @@ const MediumScreen = () =>{
                         </div>
                       </IconContext.Provider>
                     </div>
-                    <div>kyagulanyi2021@gmail.com</div>
+                    <div>info@nupuganda.org</div>
                   </Space>
                 </div>
                 <div>
@@ -58,7 +59,7 @@ const MediumScreen = () =>{
                         </div>
                       </IconContext.Provider>
                     </div>
-                    <div>PLot 1622/ 1623 Kira Road K'la</div>
+                    <div>Plot 1622/ 1623 Kira Road K'la</div>
                   </Space>
                 </div>
               </Space>
@@ -114,11 +115,11 @@ const MediumScreen = () =>{
                   <Space size="large">
                     <div className="pointer fw7" style={{ color: "#311B92" ,fontSize:"1.5vw"}}>
                       {" "}
-                      HOME
+                      <Link to="/">HOME</Link>
                     </div>
 
                     <div className="pointer fw7" style={{ color: "#311B92" ,fontSize:"1.5vw"}}>
-                      EVENTS
+                      <Link to="/events">EVENTS</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
                       NEWS

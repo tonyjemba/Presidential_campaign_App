@@ -8,8 +8,9 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             modifyVars: { 
-              '@primary-color': '#1DA57A',
-              '@badge-height' : '14px'
+              '@primary-color': '#0C0474',
+              '@badge-height' : '14px',
+              '@badge-color' : '#ff0000'
           },
             javascriptEnabled: true,
           },

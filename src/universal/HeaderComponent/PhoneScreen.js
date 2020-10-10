@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {  Space, Badge, Drawer } from "antd";
 import Sticky from "react-sticky-el";
+import {Link} from "react-router-dom";
 import vote from "../../lotties/vote.png";
-import {  GrFacebook, GrTwitter,GrMapLocation } from "react-icons/gr";
+import {  GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
 import { MdMyLocation } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
@@ -113,8 +114,8 @@ const PhoneScreen = () => {
           }>
           <div className="flex justify-center flex-column mt4 items-center">
             <Space direction="vertical" size="large">
-              <div className="pointer  tc white">HOME</div>
-              <div className="pointer  tc white">EVENTS</div>
+              <div className="pointer  tc white" onClick={() => setDrawer(false)}><Link to="/"><div className="white">HOME</div></Link></div>
+              <div className="pointer  tc white" onClick={() => setDrawer(false)}><Link to="/events"><div className="white">EVENTS</div></Link></div>
               <div className="pointer  tc white">NEWS</div>
              <div className="pointer  tc white">VIDEOS</div>
               <div className="pointer  tc white">ABOUT</div>
@@ -141,7 +142,7 @@ const PhoneScreen = () => {
           <div className="w-25 flex    justify-end">
                   <Space size="large">
                     <div>
-                      <Badge color="#ff0000" showZero={true} offset={[4, 3]} count={0}>
+                      <Badge  showZero={true} offset={[4, 3]} count={0}>
                         <div className=" mt1 items-center flex justify-center">
                           <IconContext.Provider
                             value={{

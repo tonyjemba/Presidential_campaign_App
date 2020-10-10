@@ -1,30 +1,52 @@
 /* large screen */
 .bg{
-    position: relative;
     background-color: white;
 }
 .wh{
-    background-color: #FFFFFF;
+    background-color:white;
 }
+.mc{
+    color: rgba(228, 224, 224, 0.329);
+}
+.wid{
+    width:35%
+}
+.Image{
+   background-image: url("../../lotties/post.jpg");
+    object-fit: cover;
+    object-position: center;
+}
+.Image2{
+    background-image: url("../../lotties/post.jpg");
+     object-fit: cover;
+     object-position: center;
+ }
 .top{
-    position: relative;
-    z-index: 3;
-    background-color: #FFFFFF;
+   background-color: #FFFFFF;
 
 }
 .top1{
-    position: relative;
     background-color: #FFFFFF;
-    z-index: 1000;
 }
 /* meduim screen*/
-.hwidth{
-    width: 97%;
-}
 /* smallscreem */
 span.ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left{
 background-color: #FFFFFF;
 margin-top: 20px;
-position: absolute;
-z-index: 200;
+position: absolute; 
+ z-index: 200;
 }
+div.ant-collapse-header{
+    font-size: 1.4vw;
+    font-weight: bold;
+    color: black;
+    margin-top: 0;
+    padding-top: 0;
+}
+p{
+    color: black;
+    font-size: 1.2vw;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
