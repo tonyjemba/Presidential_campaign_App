@@ -7,7 +7,7 @@ import event from "../../lotties/event.jpg";
 const { Content } = Layout;
 
 const {Paragraph} = Typography;
-const SmallScreen = () => {
+const SmallScreen = (props) => {
   return (
     <div className="flex flex-column w-75">
       <div className="w-100 pointer " >
@@ -32,8 +32,7 @@ const SmallScreen = () => {
                 margin: "0px",
               }}
               className="fw7">
-              Today Our Campaign Is Here Today Our Campaign Is Here Today Our
-              Campaign Is Here Today Our{" "}
+              {props.title}
             </Paragraph>
             <div className="w-100 mt1 flex flex-row justify-between items-center">
               <div className=" flex flex-row  items-center content-start">
@@ -63,7 +62,7 @@ const SmallScreen = () => {
                   </IconContext.Provider>
                 </div>
                 <div className=" pointer" >
-                  Kamwokya
+                  {props.Location}
                 </div>
               </div>
             </div>

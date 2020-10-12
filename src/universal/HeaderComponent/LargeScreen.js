@@ -121,7 +121,7 @@ const LargeScreen = () =>{
                       <Link to="/events">EVENTS</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      NEWS
+                      <Link to="/news">NEWS</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       VIDEOS

@@ -49,4 +49,22 @@ p{
     text-align: justify;
     text-justify: inter-word;
 }
-
+.arrow{
+    animation: pulse 5s linear infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(0, 0);
+      }
+      
+      50% {
+        transform: translate(13%, 0);
+      }
+      
+      80% {
+        transform: translate(-5%, 0);
+      }
+  }
+.fotwid{
+    width: 97.3%;
+}

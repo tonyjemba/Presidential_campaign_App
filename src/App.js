@@ -4,6 +4,7 @@ import './App.less';
 import HeaderComponent from "./universal/HeaderComponent/HeaderComponent";
 import FooterComponent from "./universal/FooterComponent/FooterComponent";
 import EventsComponent from "./Events/EventsComponent";
+import NewsComponent from "./NewsComponent/NewsComponent";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/events">
         <EventsComponent/>
+        </Route >
+        <Route path="/news">
+          <NewsComponent/>
         </Route>
       </Switch>
     </div>

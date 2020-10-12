@@ -2,18 +2,23 @@ import React from "react";
 import "./css/homehero.css";
 import Hero from "../lotties/Hero.jpg";
 
+
+
 const PhoneScreen = () => {
   return (
     <div className=" w-100 height phone relative">
       <img src={Hero} alt="Hero " className="phone" />
       <div className="absolute w-100  phonetop flex justify-center pointer">
         <div className="w-90 flex flex-column" style={{ color: "#311B92" }}>
-          <div className="w-75   fw7">
-            <div className=" w-100 fs-normal " style={{ fontSize: "6vw" }}>
-              CREATE A UGANDA
+          <div className="w-90   fw7">
+            <div className=" w-100  " style={{ fontSize: "9vw" }}>
+              CREATE A 
             </div>
-            <div className=" w-100" style={{ fontSize: "6vw" }}>
-              FOR EVERY CITIZEN
+            <div className=" w-100 " style={{ fontSize: "9vw" }}>
+              UGANDA FOR
+            </div>
+            <div className=" w-100" style={{ fontSize: "9vw" }}>
+             EVERY CITIZEN
             </div>
           </div>
           <div

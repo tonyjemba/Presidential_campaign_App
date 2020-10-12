@@ -7,9 +7,9 @@ import event from "../../lotties/event.jpg";
 const { Content } = Layout;
 
 const {Paragraph} = Typography;
-const PhoneScreen = () => {
+const PhoneScreen = (props) => {
   return (
-    <div className="flex flex-column w-100">
+    <div className="flex flex-column w-90">
       <div className="w-100 pointer " >
         <img src={event} alt="event" className="eimg"/>
       </div>
@@ -18,7 +18,7 @@ const PhoneScreen = () => {
           className="flex flex-row justify-between"
           style={{ backgroundColor: "#ffffff" }}>
           <div className=" mt3 tc white fw7 w-20 pa0">
-            <div style={{ fontSize: "2vw", backgroundColor: "#ff0000",cursor:"default" }}>
+            <div style={{ fontSize: "3vw", backgroundColor: "#ff0000",cursor:"default" }}>
               31 <br /> SEPT
             </div>
           </div>
@@ -31,9 +31,8 @@ const PhoneScreen = () => {
                 textJustify: "inter-word",
                 margin: "0px",
               }}
-              className="fw7">
-              Today Our Campaign Is Here Today Our Campaign Is Here Today Our
-              Campaign Is Here Today Our{" "}
+              className="fw8">
+              {props.Location}
             </Paragraph>
             <div className="w-100 mt1 flex flex-row justify-between items-center">
               <div className=" flex flex-row  items-center content-start">
@@ -63,7 +62,7 @@ const PhoneScreen = () => {
                   </IconContext.Provider>
                 </div>
                 <div className=" pointer" >
-                  Kamwokya
+                  {props.Title}
                 </div>
               </div>
             </div>
@@ -77,6 +76,7 @@ const PhoneScreen = () => {
             textAlign: "justify",
             textJustify: "inter-word",
             margin: "0px",
+            fontSize:"16px"
           }}>
           Today Our Campaign Is Here Today Our Campaign Is Here Today Our
           Campaign Is Here Today Our Our Campaign Is Here Today Our Campaign Is

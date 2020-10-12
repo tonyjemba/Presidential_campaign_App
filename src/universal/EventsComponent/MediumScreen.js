@@ -7,9 +7,9 @@ import event from "../../lotties/event.jpg";
 const { Content } = Layout;
 
 const {Paragraph} = Typography;
-const MediumScreen = () => {
+const MediumScreen = (props) => {
   return (
-    <div className="flex flex-column w-50">
+    <div className="flex flex-column w-90">
       <div className="w-100 pointer ">
         <img src={event} alt="event" className="eimg"/>
       </div>
@@ -32,8 +32,7 @@ const MediumScreen = () => {
                 margin: "0px",
               }}
               className="fw7">
-              Today Our Campaign Is Here Today Our Campaign Is Here Today Our
-              Campaign Is Here Today Our{" "}
+              {props.Title}
             </Paragraph>
             <div className="w-100 mt1 flex flex-row justify-between items-center">
               <div className=" flex flex-row  items-center content-start">
@@ -63,7 +62,7 @@ const MediumScreen = () => {
                   </IconContext.Provider>
                 </div>
                 <div className=" pointer" >
-                  Kamwokya
+                  {props.Location}
                 </div>
               </div>
             </div>
