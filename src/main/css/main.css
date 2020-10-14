@@ -11,6 +11,9 @@
 .wid{
     width:35%
 }
+.wid2{
+    width:55%
+}
 .Image{
    background-image: url("../../lotties/post.jpg");
     object-fit: cover;

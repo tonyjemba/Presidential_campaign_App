@@ -184,7 +184,7 @@ class SmallScreen extends React.Component{
                </Content>
              </Layout>
               <div className="w-100 mt6 flex justify-center items-center">
-                <div className="w-90  flex flex-row justify-between">
+                <div className="w-90  flex flex-row ">
                   <div
                     className="wid fw8 tc mc relative"
                     style={{
@@ -221,12 +221,12 @@ class SmallScreen extends React.Component{
                         onClick={() => previous()}
                         >
                         <CaretLeftOutlined
-                          className="pa2 "
+                          className=" pa1"
                           style={{ color: "#ffffff" }}
                         />
                       </div>
                 </div>
-                <div className=" w-60 " style={{ height: "50vh" }}>
+                <div className=" wid2 " style={{ height: "50vh" }}>
                   <Carousel autoplay {...settings} ref={node => (this.carousel = node)}>
                     {eventsArray.map((data) => <EventsComponent key={data.id} Location = {data.location} Title={data.title} />)}
                   </Carousel>
@@ -241,7 +241,7 @@ class SmallScreen extends React.Component{
                         onClick={() => next()}
                         >
                         <CaretRightOutlined
-                          className="pa2 "
+                          className="pa1 "
                           style={{ color: "#ffffff" }}
                         />
                       </div>

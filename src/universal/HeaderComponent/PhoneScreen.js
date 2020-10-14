@@ -117,7 +117,7 @@ const PhoneScreen = () => {
               <div className="pointer  tc white" onClick={() => setDrawer(false)}><Link to="/"><div className="white">HOME</div></Link></div>
               <div className="pointer  tc white" onClick={() => setDrawer(false)}><Link to="/events"><div className="white">EVENTS</div></Link></div>
               <div className="pointer  tc white" onClick={() => setDrawer(false)}><Link to="/news"><div className="white">NEWS</div></Link></div>
-             <div className="pointer  tc white">VIDEOS</div>
+             <div className="pointer  tc white" onClick={() => setDrawer(false)}><Link to="/videos"><div  className="white">VIDEOS</div></Link></div>
               <div className="pointer  tc white">ABOUT</div>
               <div className="pointer  tc white">CONTACT</div>
               <div className="pointer  tc white">STORE</div>

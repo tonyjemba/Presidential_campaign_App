@@ -22,7 +22,7 @@ const MediumScreen = (props) => {
               31 <br /> SEPT
             </div>
           </div>
-          <div className="flex flex-column mt3 w-75 pointer">
+          <div className="flex flex-column mt3 w-90 pointer">
           <Paragraph
               ellipsis={{ rows: 2, expandable: false }}
               style={{

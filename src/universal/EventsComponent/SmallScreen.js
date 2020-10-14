@@ -9,7 +9,7 @@ const { Content } = Layout;
 const {Paragraph} = Typography;
 const SmallScreen = (props) => {
   return (
-    <div className="flex flex-column w-75">
+    <div className="flex flex-column w-90">
       <div className="w-100 pointer " >
         <img src={event} alt="event" className="eimg"/>
       </div>
