@@ -29,7 +29,7 @@ const PhoneScreen = () => {
                       volunteer Today.
                       <br /> Lets do this together!
                     </div>
-                    <div style={{ fontSize: "1.8vw" }}>
+                    <div style={{ fontSize: "11px" }}>
                       Thank you for joining our campaign to elect Kyagulanyi. By
                       providing your mobile phone number you consent to recieve
                       recurring text messages from Kyagulanyi for president
@@ -52,7 +52,7 @@ const PhoneScreen = () => {
               <div className=" w-100 flex justify-center">
                 <div className="w-90 flex flex-row justify-between  white">
                   <div>
-                    <div className="mt3  fw6" style={{ fontSize: "4vw" }}>
+                    <div className="mt3  fw6" style={{ fontSize: "11px" }}>
                       About
                     </div>
                     <div className="mt4 " style={{ fontSize: "3vw" }}>
@@ -306,7 +306,7 @@ const PhoneScreen = () => {
                 <div className="w-90 flex flex-row justify-between white">
                   <div
                     className="fw5 h-100 flex items-center  "
-                    style={{ fontSize: "1.5vw", marginTop: "6%" }}>
+                    style={{ fontSize: "1.6vw", marginTop: "6%" }}>
                     copyright
                     <span className="red mt1">
                       <IconContext.Provider

@@ -280,7 +280,7 @@ class SmallScreen extends React.Component{
         </div>
         <Footer style={{ backgroundColor: "#ffffff" }}>
           <div className="w-100 bg-white pt5 ">
-            <div className="w-100 tc black fw7" style={{ fontSize: "2vw" }}>
+            <div className="w-100 tc black fw7" style={{ fontSize: "15px" }}>
               Latest News
             </div>
             <div className="w-100  flex justify-center">

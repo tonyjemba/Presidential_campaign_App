@@ -23,13 +23,13 @@ const SmallScreen = () => {
 
               <div className=" w-100 tbg flex justify-center">
                 <div className="w-90 flex flex-row justify-between">
-                  <div className=" w-50 mt4 mb4">
-                    <div className="fw7 " style={{ fontSize: "2.5vw" }}>
+                  <div className=" w-50  mb4">
+                    <div className="fw7 " style={{ fontSize: "18px" }}>
                       Kyagulanyi can't win this struggle without you. sign up to
                       volunteer Today.
                       <br /> Lets do this together!
                     </div>
-                    <div style={{ fontSize: "1vw" }}>
+                    <div style={{ fontSize: "12px" }}>
                       Thank you for joining our campaign to elect Kyagulanyi. By
                       providing your mobile phone number you consent to recieve
                       recurring text messages from Kyagulanyi for president
@@ -52,10 +52,10 @@ const SmallScreen = () => {
               <div className=" w-100 flex justify-center">
                 <div className="w-90 flex flex-row justify-between  white">
                   <div>
-                    <div className="mt3  fw6" style={{ fontSize: "2vw" }}>
+                    <div className="mt3  fw6" style={{ fontSize: "14px" }}>
                       About
                     </div>
-                    <div className="mt4 " style={{ fontSize: "1.5vw" }}>
+                    <div className="mt4 " style={{ fontSize: "12px" }}>
                       This website is designed,coded and paid for by{" "}
                       <span className="pointer" style={{ color: "#0C0474" }}>
                         Jemba Tony
@@ -65,19 +65,19 @@ const SmallScreen = () => {
                       <br />
                       Kyagulanyi For President.
                     </div>
-                    <div className="mt3 f5" style={{ fontSize: "1.5vw" }}>
+                    <div className="mt3 f5" style={{ fontSize: "12px" }}>
                       Email Us:{" "}
                       <span
                         className="pointer"
-                        style={{ color: "#0C0474", fontSize: "1.5vw" }}>
+                        style={{ color: "#0C0474", fontSize: "12px" }}>
                         info@nupuganda.org
                       </span>
                     </div>
-                    <div className="mt2 f5" style={{ fontSize: "1.5vw" }}>
+                    <div className="mt2 f5" style={{ fontSize: "12px" }}>
                       Visit Us:{" "}
                       <span
                         className="pointer"
-                        style={{ color: "#0C0474", fontSize: "1.5vw" }}>
+                        style={{ color: "#0C0474", fontSize: "12px" }}>
                         Plot 1622/ 1623 Kira Road K'la
                       </span>
                     </div>
@@ -86,7 +86,7 @@ const SmallScreen = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="mt3  fw6" style={{ fontSize: "2vw" }}>
+                    <div className="mt3  fw6" style={{ fontSize: "14px" }}>
                       Quick Links
                     </div>
                     <div className="flex flex-row justify-between mt4">
@@ -106,7 +106,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1 "
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               Home
                             </div>
                           </div>
@@ -124,7 +124,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               Donate
                             </div>
                           </div>{" "}
@@ -142,7 +142,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               Issues
                             </div>
                           </div>{" "}
@@ -160,7 +160,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               Videos
                             </div>
                           </div>{" "}
@@ -178,7 +178,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1 "
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               join Us
                             </div>
                           </div>{" "}
@@ -198,7 +198,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               News
                             </div>
                           </div>
@@ -216,7 +216,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               Events
                             </div>
                           </div>
@@ -234,7 +234,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               About
                             </div>
                           </div>{" "}
@@ -252,7 +252,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1 "
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               FAQ
                             </div>
                           </div>{" "}
@@ -270,7 +270,7 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "1.5vw" }}>
+                              style={{ fontSize: "12px" }}>
                               Contact
                             </div>
                           </div>
@@ -279,20 +279,20 @@ const SmallScreen = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="mt3  fw6" style={{ fontSize: "2vw" }}>
+                    <div className="mt3  fw6" style={{ fontSize: "14px" }}>
                       Latest Posts
                     </div>
                     <div className="mt4">
-                      <div className=" w-90" style={{ fontSize: "1.5vw" }}>
+                      <div className=" w-90" style={{ fontSize: "12px" }}>
                         We are unvieling a new campaing...
                       </div>
                       <div className="flex flex-row justify-between">
-                        <div className="myc" style={{ fontSize: "1.5vw" }}>
+                        <div className="myc" style={{ fontSize: "12px" }}>
                           05 Nov, 2020
                         </div>
                         <div
                           className="pointer hover-red"
-                          style={{ fontSize: "1.5vw" }}>
+                          style={{ fontSize: "12px" }}>
                           Read More
                         </div>
                       </div>
@@ -305,7 +305,7 @@ const SmallScreen = () => {
                 <div className="w-90 flex flex-row justify-between white">
                   <div
                     className="fw5 h-100 flex items-center  "
-                    style={{ fontSize: "1.5vw", marginTop: "6%" }}>
+                    style={{ fontSize: "9px", marginTop: "6%" }}>
                     copyright
                     <span className="red mt1">
                       <IconContext.Provider

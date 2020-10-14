@@ -94,13 +94,13 @@ const LargeScreen = () => {
             <div
               className="w-100 flex justify-center absolute"
               style={{ top: "22%" }}>
-              <div className="w-90">
+              <div className="w-90 ">
                 <div
-                  className="fw7 "
+                  className="fw7 govlay "
                   style={{
                     width: "38%",
                     color: "#ffffff",
-                    backgroundColor: " rgba(0, 0, 128, 0.082)",
+                    // backgroundColor: " rgba(0, 0, 128, 0.082)",
                     fontSize: "5vw",
                   }}>
                   Events During <br /> the Struggle
