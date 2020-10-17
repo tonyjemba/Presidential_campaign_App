@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Divider, Row, Col, Select, Typography, List, Menu } from "antd";
+import { Layout, Divider, Row, Col, Select, Typography, List } from "antd";
 import "./css/news.css";
 import event from "../lotties/event.jpg";
 

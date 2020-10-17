@@ -57,7 +57,6 @@ const Template = ({ title }) => {
           that we base this book
         </Paragraph>
       </div>
-      {/* <Divider /> */}
     </div>
   );
 };
@@ -100,7 +99,6 @@ const LargeScreen = () => {
                   style={{
                     width: "38%",
                     color: "#ffffff",
-                    // backgroundColor: " rgba(0, 0, 128, 0.082)",
                     fontSize: "5vw",
                   }}>
                   Events During <br /> the Struggle

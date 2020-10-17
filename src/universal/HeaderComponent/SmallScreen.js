@@ -117,9 +117,9 @@ const SmallScreen = () => {
               <div className="pointer tc white" onClick={() => setDrawer(false)}><Link to="/events"><div  className="white">EVENTS</div></Link></div>
               <div className="pointer tc white" onClick={() => setDrawer(false)}><Link to="/news"><div  className="white">NEWS</div></Link></div>
               <div className="pointer tc white" onClick={() => setDrawer(false)}><Link to="/videos"><div  className="white">VIDEOS</div></Link></div>
-              <div className="pointer tc white">ABOUT</div>
-              <div className="pointer tc white">CONTACT</div>
-              <div className="pointer tc white">STORE</div>
+              <div className="pointer tc white" onClick={() => setDrawer(false)}><Link to="/about_Kyagulanyi"><div  className="white">ABOUT</div></Link></div>
+              <div className="pointer tc white" onClick={() => setDrawer(false)}><Link to="/contact"><div  className="white">CONTACT</div></Link></div>
+              <div className="pointer tc white" onClick={() => setDrawer(false)}><Link to="/store"><div  className="white">STORE</div></Link></div>
             </Space>
           </div>
         </Drawer>

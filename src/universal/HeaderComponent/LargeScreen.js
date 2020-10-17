@@ -127,13 +127,13 @@ const LargeScreen = () =>{
                       <Link to="/videos">VIDEOS</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      ABOUT
+                      <Link to="/about_Kyagulanyi">ABOUT</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      CONTACT
+                      <Link to="/contact">CONTACT</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      STORE
+                      <Link to="/store">STORE</Link>
                     </div>
                   </Space>
                 </div>

@@ -2,17 +2,17 @@ import React from "react";
 import product from "../../lotties/product.jpeg";
 import "./css/productcomponent.css";
 
-const LargeScreen = () => {
+const LargeScreen = ({productName}) => {
   return (
     <div>
       <div className="flex flex-column justify-center items-center">
-        <div className=" w-20 pointer" style={{ height: "35vh" }}>
+        <div className=" w-100 pointer" style={{ height: "35vh" }}>
           <img src={product} alt="product" className="productimg" />
         </div>
         <div
           className="fw6 pointer w-100 tc mt1"
           style={{ fontSize: "1.3vw", color: "#000000" }}>
-          product Name
+          {productName}
         </div>
         <div
           className="fw4 pointer w-100 tc mt1"

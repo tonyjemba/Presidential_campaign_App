@@ -1,5 +1,14 @@
 import React from "react";
-import { Layout, Typography, Input, Upload, message,Divider } from "antd";
+import {
+  Layout,
+  Typography,
+  Input,
+  Upload,
+  message,
+  Divider,
+  Select,
+  List,
+} from "antd";
 import {
   UserOutlined,
   EyeInvisibleOutlined,
@@ -9,9 +18,23 @@ import {
 import { MdLocationOn } from "react-icons/md";
 
 const { Content } = Layout;
-const { Title } = Typography;
+const { Title,Paragraph  } = Typography;
 const { Dragger } = Upload;
 const { TextArea } = Input;
+const { Option } = Select;
+
+const VideoTemplate = ({ desc }) => {
+  return (
+    <div>
+      <div className="w-100">
+        <div className="w-100 bg-red" style={{ height: "40vh" }}>
+          video
+        </div>
+        <div className = "fw7"><Paragraph ellipsis={{ rows: 2, expandable:false}} style={{color:"black",fontSize:"16px"}}>{desc}</Paragraph></div>
+      </div>
+    </div>
+  );
+};
 const props = {
   name: "video",
   multiple: true,
@@ -28,6 +51,15 @@ const props = {
     }
   },
 };
+const data = [
+  { desc: "Today in the north there is too much victory of the National Unity Platform as they endorse Kyagulanyi" },
+  { desc: "iam am 3" },
+  { desc: "iam am 4" },
+  { desc: "iam am 5" },
+  { desc: "iam am 6" },
+  { desc: "iam am 7" },
+  { desc: "iam am 8" },
+];
 const LargeScreen = () => {
   return (
     <Layout style={{ backgroundColor: "#ffffff" }}>
@@ -35,18 +67,18 @@ const LargeScreen = () => {
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
-              <Title level={4} style={{ color: "#0C0474" }}>
+              <Title level={4} style={{ color: "#0C0474" ,fontWeight:"700" ,cursor:"default"}}>
                 ARCHIVES: VIDEOS
               </Title>
-              <div style={{ color: "#0C0474", fontSize: "16px" }}>
+              <div style={{ color: "#0C0474", fontSize: "16px",cursor:"default" }}>
                 HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{" "}
               </div>
             </div>
           </div>
         </div>
         <div className="w-100 flex justify-center">
-          <div className="w-70">
-            <div className="flex flex-row justify-between w-100 mt5">
+          <div className="w-90">
+            <div className="flex flex-row justify-between w-80 mt5">
               <div>
                 <Input
                   placeholder="Username or Email"
@@ -84,22 +116,22 @@ const LargeScreen = () => {
                   Click or drag video file to this area to upload
                 </p>
                 <p className="ant-upload-hint tc " style={{ marginBottom: "50px" }}>
-                  Support for short videos only. Strictly prohibit from uploading videos
+                  Support for short videos only. Strictly prohibited from uploading videos
                   out of topic. ProtectYourVote
                 </p>
               </Dragger>
             </div>
-            <div className="mt4 w-100">
+            <div className="mt5 w-100">
               <TextArea rows={5} placeholder="What Really Took Place..." />
             </div>
-            <div className="w-100 flex justify-center mt3">
-              <div className="Hbtn   flex redbg justify-center  hover-bg-dark-red items-center pt2 pb2 pl2 pr2 pointer">
+            <div className="w-100 flex justify-center mt4">
+              <div className="Hbtn   flex redbg justify-center  hover-bg-dark-red items-center pt2 pb2 pl3 pr3 pointer">
                 <div className="fw7" style={{ fontSize: "16px", color: "#ffffff" }}>
                   UPLOAD
                 </div>
               </div>
             </div>
-            <div className="mt4">
+            <div className="mt5">
               <div className="black fw5" style={{ fontSize: "18px", cursor: "default" }}>
                 Have no Account? Create one now to upload videos.Lets expose them!{" "}
                 <span
@@ -108,11 +140,47 @@ const LargeScreen = () => {
                   CREATE ACCOUNT
                 </span>
               </div>
-                      </div>
-                      <div className="w-100 mt5">
-                          <div className="w-40">
-                          <Divider orientation="right"><div className="fw7" style={{ color: "#0C0474", fontSize: "18px", cursor: "default" }}>UPLOADED VIDEOS</div></Divider></div>
-                      </div>
+            </div>
+            <div className="w-100 mt5">
+              <div className="w-40">
+                <Divider orientation="right">
+                  <div
+                    className="fw7"
+                    style={{ color: "#0C0474", fontSize: "18px", cursor: "default" }}>
+                    UPLOADED VIDEOS
+                  </div>
+                </Divider>
+              </div>
+            </div>
+            <div
+              className="w-100 "
+              style={{ display: "flex", justifyContent: "flex-end" }}>
+              <div>
+                <Select defaultValue="date" style={{ width: 200 }}>
+                  <Option value="date">Order by Latest Upload</Option>
+                  <Option value="mostViewed">Order by Most Viewed</Option>
+                  <Option value="video">Order by Location</Option>
+                  <Option value="disabled" disabled>
+                    Order by Duration
+                  </Option>
+                </Select>
+              </div>
+            </div>
+            <div className="w-100 mt4 mb4">
+              <List
+                grid={{ gutter: [15,30], column: 3 }}
+                dataSource={data}
+                pagination={{
+                  showSizeChanger: true,
+                  pageSize: 6,
+                }}
+                renderItem={(item) => (
+                  <List.Item>
+                    <VideoTemplate desc={item.desc} />
+                  </List.Item>
+                )}
+              />
+            </div>
           </div>
         </div>
       </Content>

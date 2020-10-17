@@ -128,13 +128,13 @@ const MediumScreen = () =>{
                       <Link to="/videos">VIDEOS</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
-                      ABOUT
+                      <Link to="/about_Kyagulanyi">ABOUT</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
-                      CONTACT
+                      <Link to="/contact">CONTACT</Link>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92",fontSize:"1.5vw" }}>
-                      STORE
+                      <Link to="/store">STORE</Link>
                     </div>
                   </Space>
                 </div>
