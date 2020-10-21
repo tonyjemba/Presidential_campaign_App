@@ -108,9 +108,11 @@ const LargeScreen = () =>{
             <div className=" flex items-center justify-center w-100">
               <div className="w-90  flex flex-row justify-between mt2 mb3 ">
                 <div className="w-75  flex flex-row  justify-between ">
-                  <div className="mr2 pointer logo ">
+                   <Link to="/">
+                   <div className="mr2 pointer logo ">
                     <img src={real} alt="logo" height={45} />
                   </div>
+                   </Link>
                   <Space size="large">
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       {" "}
@@ -141,15 +143,15 @@ const LargeScreen = () =>{
                   <Space size="large">
                     <div>
                       <Badge showZero={true} offset={[4, 3]} count={0}>
-                        <div className=" mt1 items-center flex justify-center">
+                        <div className=" mt1 items-center flex justify-center" >
                           <IconContext.Provider
                             value={{
                               color: "black",
                               size: "19px",
                             }}>
-                            <div className="pointer  ">
+                            <Link to="/Cart">
                               <IoMdCart />
-                            </div>
+                            </Link>
                           </IconContext.Provider>
                         </div>
                       </Badge>

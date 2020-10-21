@@ -76,7 +76,7 @@ const LargeScreen = () => {
             </div>
           </div>
         </div>
-        <div className="w-100 flex justify-center">
+        <div className="w-100 flex justify-center" >
           <div className="w-90">
             <div className="flex flex-row justify-between w-80 mt5">
               <div>

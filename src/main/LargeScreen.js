@@ -2,6 +2,7 @@ import React from "react";
 import { Layout, Carousel } from "antd";
 import "./css/main.css";
 import { Collapse, Typography, Row } from "antd";
+import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
 import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 import EventsComponent from "../universal/EventsComponent/EventsComponent";
@@ -9,7 +10,14 @@ import NewsCard from "../universal/NewsCard/NewsCard";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
+import { connect } from "react-redux";
+import { getInput } from "../Redux/Home/Actions";
+
+
+
+
 const { Content, Footer } = Layout;
+
 
 const text = `please gt srs this might be a tp in your life so get onto it and do it like iit  no mas bsnss
   A dog is a type of domesticated animal.
@@ -23,6 +31,12 @@ const text = `please gt srs this might be a tp in your life so get onto it and d
 const { Panel } = Collapse;
 const { Title } = Typography;
 
+const mapDispatchToProps = (dispatch) => ({
+  getInput: input => dispatch(getInput(input))
+});
+const mapStateToProps = (state) => ({
+  input: state.Home.input
+});
 class LargeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -94,11 +108,13 @@ class LargeScreen extends React.Component {
                         style={{ fontSize: "2.5vw", cursor: "default" }}>
                         POLITICAL <br /> CHANGE <br /> THROUGH <br /> ACTIVISM
                       </div>
+                      <Link to="/videos">
                       <div
                         className=" Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
                         style={{ backgroundColor: "#FF0000", fontSize: "1vw" }}>
                         Upload Your Video
                       </div>
+                      </Link>
                     </div>
                     <div className="w-60 flex flex-row justify-between">
                       <div
@@ -113,7 +129,7 @@ class LargeScreen extends React.Component {
                           style={{ fontSize: "1.8vw" }}>
                           Sign up to Volunteer.
                         </div>
-                        <VolunteerForm />
+                        <VolunteerForm size="large"/>
                       </div>
                     </div>
                   </div>
@@ -295,6 +311,7 @@ class LargeScreen extends React.Component {
               We Are!
             </div>
             <div className=" flex  justify-center   items-center ">
+           <Link to="/store">
               <div
                 className="fw7 relative Hbtn redbg hover-bg-dark-red  pointer pt2 pb2 pl5 pr5 ml4"
                 style={{ fontSize: "1.35vw", color: "#ffffff" }}>
@@ -313,14 +330,18 @@ class LargeScreen extends React.Component {
                 </div>
                 VISIT STORE
               </div>
+              </Link>
             </div>
           </div>
         </div>
         <Footer style={{ backgroundColor: "#ffffff" }}>
           <div className="w-100 bg-white pt5 ">
-            <div className="w-100 tc black fw7" style={{ fontSize: "2vw" }}>
+            <Link to="/news">
+             <div className="w-100 tc black fw7" style={{ fontSize: "2vw" }}>
               Latest News
             </div>
+            </Link>
+
             <div className="w-100  flex justify-center">
               <div className="fotwid ">
                 <div className="w-100 mt4">
@@ -336,13 +357,15 @@ class LargeScreen extends React.Component {
                   </Row>
                 </div>
                 <div className="w-100 flex justify-center items-center">
-                  <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
+                  <Link to="/news">
+                                   <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
                     <div
                       className="fw7"
                       style={{ fontSize: "1vw", color: "#ffffff" }}>
                       SEE MORE
                     </div>
                   </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -352,4 +375,4 @@ class LargeScreen extends React.Component {
     );
   }
 }
-export default LargeScreen;
+export default connect(mapStateToProps,mapDispatchToProps)(LargeScreen);

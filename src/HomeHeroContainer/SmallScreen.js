@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./css/homehero.css";
 import Hero from "../lotties/Hero.jpg";
 
@@ -16,7 +17,8 @@ const SmallScreen = () => {
               FOR EVERY CITIZEN
             </div>
           </div>
-          <div
+          <Link to="/getInvolved">
+                      <div
             className="Hbtn  mt3 flex redbg justify-center  hover-bg-dark-red items-center pt2 pb2 pointer"
             style={{ width: "20vw" }}>
             <div
@@ -25,6 +27,7 @@ const SmallScreen = () => {
               GET INVOLVED
             </div>
           </div>
+          </Link>
         </div>
       </div>
     </div>

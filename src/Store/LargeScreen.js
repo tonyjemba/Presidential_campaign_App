@@ -1,6 +1,7 @@
 import React from "react";
-import { Layout, Typography, Select, List,Input } from "antd";
+import { Layout, Typography, Select, List,Input,Button } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
+import { Link} from "react-router-dom";
 import product from "../lotties/product.jpeg";
 
 const { Content, Sider } = Layout;
@@ -70,7 +71,7 @@ const LargeScreen = () => {
       <div className="w-100 flex justify-center" style={{ backgroundColor: "#f6f6f6" }}>
         <div className="w-90 mb4 mt4 fw7">
           <Title
-            level={4}
+            level={3}
             style={{ color: "#0C0474", fontWeight: "700", cursor: "default" }}>
             STORE
           </Title>
@@ -135,7 +136,9 @@ const LargeScreen = () => {
                 </div>
                 <div className="mt4 w-100 ml2 pt3 pb3 pl3 pr2" style={{ backgroundColor: "#f6f6f6" }}>
                   <div className="mb3"><Title level={4} style={{ cursor: "default" }}>Not Logged In</Title></div>
-                  
+                  <Link className="mt3" to="/storeAuthentication">
+                    <Button type="primary">Login</Button>
+                  </Link>
 
                 </div>
               </div>

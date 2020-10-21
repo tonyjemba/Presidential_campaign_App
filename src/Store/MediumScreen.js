@@ -70,7 +70,7 @@ const MediumScreen = () => {
       <div className="w-100 flex justify-center" style={{ backgroundColor: "#f6f6f6" }}>
         <div className="w-90 mb4 mt4 fw7">
           <Title
-            level={4}
+            level={3}
             style={{ color: "#0C0474", fontWeight: "700", cursor: "default" }}>
             STORE
           </Title>

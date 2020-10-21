@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./css/homehero.css";
 import Hero from "../lotties/Hero.jpg";
 
@@ -32,7 +33,9 @@ const LargeScreen = () => {
                 FOR EVERY CITIZEN
               </div>
             </div>
-            <div
+            <Link to="/getInvolved">
+                        <div
+              
               className="Hbtn  mt3 flex redbg justify-center  hover-bg-dark-red items-center pt2 pb2 pointer"
               style={{
                 transform: `translateY(${offset * 0.09}px)`,
@@ -45,6 +48,7 @@ const LargeScreen = () => {
                 GET INVOLVED
               </div>
             </div>
+            </Link>
           </div>
         </div>
       </section>

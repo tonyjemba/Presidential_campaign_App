@@ -8,16 +8,7 @@ const { Option } = Select;
 const { Paragraph } = Typography;
 
 const NewsTemplate = ({ span }) => {
-  let data = [
-    { title: "Election Day", index: 0 },
-    { title: "Openning New Offices", index: 1 },
-    { title: "Membership Fee", index: 2 },
-    { title: "charity", index: 3 },
-    { title: "General Cleaning", index: 4 },
-    { title: "Membership Fee", index: 2 },
-    { title: "charity", index: 3 },
-    { title: "General Cleaning", index: 4 },
-  ];
+ 
   return (
     <Col className="gutter-row" span={span}>
       <div className=" w-100  relative" style={{ height: "40vh" }}>

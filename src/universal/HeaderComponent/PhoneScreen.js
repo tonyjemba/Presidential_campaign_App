@@ -34,9 +34,11 @@ const PhoneScreen = () => {
         <Drawer
           title={
             <div className="flex flex-row justify-between">
-                          <div className=" pointer logo ">
+                <Link to="/">
+                  <div className=" pointer logo ">
                     <img src={vote} alt="logo" height={40} />
                   </div>
+                          </Link>
               <div className=" pointer" onClick={() => setDrawer(false)}>
                 <IconContext.Provider
                   value={{

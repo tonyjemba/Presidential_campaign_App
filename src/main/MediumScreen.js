@@ -1,5 +1,6 @@
 import React from "react";
 import { Layout, Collapse, Typography, Carousel, Row } from "antd";
+import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
@@ -84,11 +85,13 @@ class MediumScreen extends React.Component {
                         style={{ fontSize: "2.6vw", cursor: "default" }}>
                         POLITICAL <br /> CHANGE <br /> THROUGH <br /> ACTIVISM
                       </div>
-                      <div
-                        className=" Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
-                        style={{ backgroundColor: "#FF0000", fontSize: "1.3vw" }}>
-                        Upload Your Video
-                      </div>
+                      <Link to="/videos">
+                        <div
+                          className=" Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                          style={{ backgroundColor: "#FF0000", fontSize: "1.3vw" }}>
+                          Upload Your Video
+                        </div>
+                      </Link>
                     </div>
                     <div className="w-60 flex flex-row justify-between">
                       <div
@@ -258,6 +261,7 @@ class MediumScreen extends React.Component {
                 We Are!
               </div>
               <div className=" flex  justify-center   items-center ">
+<Link to="/store">
                 <div
                   className="fw7 relative Hbtn redbg hover-bg-dark-red  pointer pt2 pb2 pl5 pr5 ml4"
                   style={{ fontSize: "1.35vw", color: "#ffffff" }}>
@@ -274,13 +278,16 @@ class MediumScreen extends React.Component {
                   </div>
                   VISIT STORE
                 </div>
+                </Link>
               </div>
             </div>
           </div>
           <div className="w-100 bg-white pt5 ">
-            <div className="w-100 tc black fw7" style={{ fontSize: "2vw" }}>
+               <Link to="/news">
+                   <div className="w-100 tc black fw7" style={{ fontSize: "2vw" }}>
               Latest News
             </div>
+            </Link>
             <div className="w-100  flex justify-center">
               <div className="fotwid ">
                 <div className="w-100 mt4">
@@ -296,11 +303,13 @@ class MediumScreen extends React.Component {
                   </Row>
                 </div>
                 <div className="w-100 flex justify-center items-center">
-                  <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
+                  <Link to="./news">
+                                    <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
                     <div className="fw7" style={{ fontSize: "1.5vw", color: "#ffffff" }}>
                       SEE MORE
                     </div>
                   </div>
+                  </Link>
                 </div>
               </div>
             </div>

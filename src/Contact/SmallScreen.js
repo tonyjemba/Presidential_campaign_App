@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 import {GrTwitter} from "react-icons/gr"
 import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 
-const { Content, Sider } = Layout;
+const { Content} = Layout;
 const { Title } = Typography;
 
 const layout = {

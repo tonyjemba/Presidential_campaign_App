@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 import {GrTwitter} from "react-icons/gr"
 import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 
-const { Content, Sider } = Layout;
+const { Content, } = Layout;
 const { Title } = Typography;
 
 const layout = {
@@ -53,7 +53,7 @@ const PhoneScreen = () => {
             <Content style={{ backgroundColor: "#FFFFFF" }}>
               <div className="w-100">
                 <div className="mt5">
-                  <Title level={5} style={{ cursor: "default" }}>
+                  <Title level={4} style={{ cursor: "default" }}>
                     Contact Information
                   </Title>
                 </div>
@@ -75,7 +75,7 @@ const PhoneScreen = () => {
                   </div>
                 </div>
                 <div className="mt5">
-                  <Title level={5} style={{ cursor: "default" }}>
+                  <Title level={4} style={{ cursor: "default" }}>
                     We Want To Hear From You
                   </Title>
                 </div>

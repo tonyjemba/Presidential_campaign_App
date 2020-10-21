@@ -13,7 +13,7 @@ import { SiStorybook } from "react-icons/si";
 import { IconContext } from "react-icons";
 import about from "../lotties/about.png";
 
-const { Content, Sider } = Layout;
+const { Content } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
 

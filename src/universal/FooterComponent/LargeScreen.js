@@ -7,6 +7,7 @@ import { RiInstagramFill } from "react-icons/ri";
 import { FiChevronsRight } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { Layout } from "antd";
+import { Link } from "react-router-dom";
 import flag from "../../lotties/flag.jpg";
 import peoplepower from "../../lotties/peoplepower.png";
 import nup from "../../lotties/nup.png";
@@ -35,7 +36,7 @@ const LargeScreen = () => {
                   <span className="fw5">Terms and Conditions and Privacy policy</span>
                 </div>
               </div>  
-                  <div className="w-33 mt5">
+                  <div id="getInvolved" className="w-33 mt5">
                     <VolunteerForm/>
                   </div>
             </div>
@@ -47,7 +48,7 @@ const LargeScreen = () => {
                 <div className="w-90 flex flex-row justify-between  white">
                   <div>
                     <div className="mt3  fw6" style={{fontSize:"1.3vw"}}>About</div>
-                    <div className="mt4 " style={{fontSize:"1.1vw"}}>
+                    <div className="mt4 " style={{fontSize:"14px"}}>
                       This website is designed,coded and paid for by{" "}
                       <span className="pointer" style={{ color: "#0C0474" }}>
                         Jemba Tony
@@ -57,15 +58,15 @@ const LargeScreen = () => {
                       <br />
                       Kyagulanyi For President.
                     </div>
-                    <div className="mt3 f5" style={{fontSize:"1.1vw"}}>
+                    <div className="mt3 f5" style={{fontSize:"14px"}}>
                       Email Us:{" "}
-                      <span className="pointer" style={{ color: "#0C0474",fontSize:"1.1vw" }}>
+                      <span className="pointer" style={{ color: "#0C0474",fontSize:"14px" }}>
                         info@nupuganda.org
                       </span>
                     </div>
-                    <div className="mt2 f5" style={{fontSize:"1.1vw"}}>
+                    <div className="mt2 f5" style={{fontSize:"14px"}}>
                       Visit Us:{" "}
-                      <span className="pointer" style={{ color: "#0C0474",fontSize:"1.1vw" }}>
+                      <span className="pointer" style={{ color: "#0C0474",fontSize:"14px" }}>
                         Plot 1622/ 1623 Kira Road K'la
                       </span>
                     </div>
@@ -75,148 +76,165 @@ const LargeScreen = () => {
                     <div className="flex flex-row justify-between mt4">
                       <Space size="large">
                         <div>
-                          <div className="flex flex-row">
+                          <Link to="/">
+                                                    <div className="flex flex-row">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>Home</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Home</div>
                           </div>
+                          </Link>
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>Donate</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Donate</div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                          <Link to="/store">
+                                                      <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>Issues</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Store</div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+</Link>
+                          <Link to="/videos">
+                               <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>Videos</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Videos</div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                       </Link>
+                          <Link to="/getInvolved">
+                                                      <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>join Us</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Get Involved</div>
                           </div>{" "}
+</Link>
                         </div>
                         <div>
-                          <div className="flex flex-row">
+    <Link to="/news">
+                            <div className="flex flex-row">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>News</div>
+                            <div className="pointer " style={{fontSize:"14"}}>News</div>
                           </div>
+    </Link>
+                          <Link to="/events">
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1 ">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>Events</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Events</div>
                           </div>
-                          <div className="flex flex-row mt3">
+                          </Link>
+                          <Link to="/about_Kyagulanyi">
+                              <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>About</div>
+                            <div className="pointer " style={{fontSize:"14"}}>About</div>
                           </div>{" "}
+                          </Link>
+                        
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>FAQ</div>
+                            <div className="pointer " style={{fontSize:"14"}}>FAQ</div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                          <Link to="/contact">
+                                                      <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
                                   color: "#0C0474",
-                                  size: "1.3vw",
+                                  size: "10px",
                                 }}>
                                 <div className="pointer  mr1">
                                   <FiChevronsRight />
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.1vw"}}>Contact</div>
+                            <div className="pointer " style={{fontSize:"14"}}>Contact</div>
                           </div>
+</Link>
                         </div>
                       </Space>
                     </div>
@@ -224,12 +242,12 @@ const LargeScreen = () => {
                   <div>
                     <div className="mt3  fw6" style={{fontSize:"1.3vw"}}>Latest Posts</div>
                     <div className="mt4">
-                      <div className=" w-90" style={{fontSize:"1.1vw"}}>
+                      <div className=" w-90" style={{fontSize:"14px"}}>
                         We are unvieling a new campaing...
                       </div>
                       <div className="flex flex-row justify-between">
-                        <div className="myc" style={{fontSize:"1.1vw"}}>05 Nov, 2020</div>
-                        <div className="pointer hover-red" style={{fontSize:"1.1vw"}}>Read More</div>
+                        <div className="myc" style={{fontSize:"14px"}}>05 Nov, 2020</div>
+                        <div className="pointer hover-red" style={{fontSize:"14px"}}>Read More</div>
                       </div>
                     </div>
                   </div>

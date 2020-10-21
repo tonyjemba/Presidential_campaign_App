@@ -7,6 +7,7 @@ import { RiInstagramFill } from "react-icons/ri";
 import { FiChevronsRight } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { Layout } from "antd";
+import { Link } from "react-router-dom";
 import flag from "../../lotties/flag.jpg";
 import peoplepower from "../../lotties/peoplepower.png";
 import nup from "../../lotties/nup.png";
@@ -47,7 +48,7 @@ const MediumScreen = () => {
                 <div className="w-90 flex flex-row justify-between  white">
                   <div>
                     <div className="mt3  fw6" style={{fontSize:"1.3vw"}}>About</div>
-                    <div className="mt4 " style={{fontSize:"1.2vw"}}>
+                    <div className="mt4 " style={{fontSize:"14px"}}>
                       This website is designed,coded and paid for by{" "}
                       <span className="pointer" style={{ color: "#0C0474" }}>
                         Jemba Tony
@@ -57,25 +58,31 @@ const MediumScreen = () => {
                       <br />
                       Kyagulanyi For President.
                     </div>
-                    <div className="mt3 f5" style={{fontSize:"1.2vw"}}>
+                    <div className="mt3 f5" style={{fontSize:"14px"}}>
                       Email Us:{" "}
-                      <span className="pointer" style={{ color: "#0C0474",fontSize:"1.2vw" }}>
+                      <span className="pointer" style={{ color: "#0C0474",fontSize:"14px" }}>
                         info@nupuganda.org
                       </span>
                     </div>
-                    <div className="mt2 f5" style={{fontSize:"1.2vw"}}>
+                    <div className="mt2 f5" style={{fontSize:"14px"}}>
                       Visit Us:{" "}
-                      <span className="pointer" style={{ color: "#0C0474",fontSize:"1.2vw" }}>
+                      <span className="pointer" style={{ color: "#0C0474",fontSize:"14px" }}>
                         Plot 1622/ 1623 Kira Road K'la
                       </span>
                     </div>
+                     <div>
+                    <div className="nupmd">
+                      <img src={nup} alt="nup" className="imgbg " />
+                    </div>
+                  </div>
                   </div>
                   <div>
                     <div className="mt3  fw6" style={{fontSize:"1.3vw"}}>Quick Links</div>
                     <div className="flex flex-row justify-between mt4">
                       <Space size="large">
                         <div>
-                          <div className="flex flex-row">
+                          <Link to="/">
+                              <div className="flex flex-row">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -87,8 +94,9 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>Home</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Home</div>
                           </div>
+                        </Link>
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
@@ -101,8 +109,26 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>Donate</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Donate</div>
                           </div>{" "}
+                          <Link to="/store">
+                                                    <div className="flex flex-row mt3">
+                            <div>
+                              <IconContext.Provider
+                                value={{
+                                  color: "#0C0474",
+                                  size: "1.3vw",
+                                }}>
+                                <div className="pointer  mr1">
+                                  <FiChevronsRight />
+                                </div>
+                              </IconContext.Provider>
+                            </div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Store</div>
+                          </div>{" "}
+                          </Link>
+                          <Link to="/videos">
+                            
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
@@ -115,9 +141,11 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>Issues</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Videos</div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                          </Link>
+                         <Link to="/getInvolved">
+                            <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -129,25 +157,13 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>Videos</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Get Involved</div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
-                            <div>
-                              <IconContext.Provider
-                                value={{
-                                  color: "#0C0474",
-                                  size: "1.3vw",
-                                }}>
-                                <div className="pointer  mr1">
-                                  <FiChevronsRight />
-                                </div>
-                              </IconContext.Provider>
-                            </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>join Us</div>
-                          </div>{" "}
+                         </Link>
                         </div>
                         <div>
-                          <div className="flex flex-row">
+                          <Link to="/news">
+                             <div className="flex flex-row">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -159,9 +175,11 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>News</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>News</div>
                           </div>
-                          <div className="flex flex-row mt3">
+                         </Link>
+                         <Link to="/events">
+                            <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -173,9 +191,11 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>Events</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Events</div>
                           </div>
-                          <div className="flex flex-row mt3">
+                         </Link>
+                          <Link to="/about_Kyagulanyi">
+                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -187,8 +207,9 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>About</div>
-                          </div>{" "}
+                            <div className="pointer " style={{fontSize:"14px"}}>About</div>
+                            </div>
+                          </Link>
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
@@ -201,8 +222,9 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>FAQ</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>FAQ</div>
                           </div>{" "}
+                          <Link to="/contact">
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
@@ -215,8 +237,9 @@ const MediumScreen = () => {
                                 </div>
                               </IconContext.Provider>
                             </div>
-                            <div className="pointer " style={{fontSize:"1.2vw"}}>Contact</div>
+                            <div className="pointer " style={{fontSize:"14px"}}>Contact</div>
                           </div>
+                          </Link>
                         </div>
                       </Space>
                     </div>
@@ -224,20 +247,16 @@ const MediumScreen = () => {
                   <div>
                     <div className="mt3  fw6" style={{fontSize:"1.3vw"}}>Latest Posts</div>
                     <div className="mt4">
-                      <div className=" w-90" style={{fontSize:"1.2vw"}}>
+                      <div className=" w-90" style={{fontSize:"14px"}}>
                         We are unvieling a new campaing...
                       </div>
                       <div className="flex flex-row justify-between">
-                        <div className="myc" style={{fontSize:"1.2vw"}}>05 Nov, 2020</div>
-                        <div className="pointer hover-red" style={{fontSize:"1.2vw"}}>Read More</div>
+                        <div className="myc" style={{fontSize:"14px"}}>05 Nov, 2020</div>
+                        <div className="pointer hover-red" style={{fontSize:"14px"}}>Read More</div>
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div className="nupmd">
-                      <img src={nup} alt="nup" className="imgbg " />
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
               <div className=" w-100 flex btm justify-center items-center">

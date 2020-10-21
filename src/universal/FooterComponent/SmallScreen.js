@@ -7,6 +7,7 @@ import { RiInstagramFill } from "react-icons/ri";
 import { FiChevronsRight } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { Layout } from "antd";
+import { Link } from "react-router-dom";
 import flag from "../../lotties/flag.jpg";
 import peoplepower from "../../lotties/peoplepower.png";
 import nup from "../../lotties/nup.png";
@@ -29,7 +30,7 @@ const SmallScreen = () => {
                       volunteer Today.
                       <br /> Lets do this together!
                     </div>
-                    <div style={{ fontSize: "12px" }}>
+                    <div style={{ fontSize: "14px" }}>
                       Thank you for joining our campaign to elect Kyagulanyi. By
                       providing your mobile phone number you consent to recieve
                       recurring text messages from Kyagulanyi for president
@@ -55,7 +56,7 @@ const SmallScreen = () => {
                     <div className="mt3  fw6" style={{ fontSize: "14px" }}>
                       About
                     </div>
-                    <div className="mt4 " style={{ fontSize: "12px" }}>
+                    <div className="mt4 " style={{ fontSize: "14px" }}>
                       This website is designed,coded and paid for by{" "}
                       <span className="pointer" style={{ color: "#0C0474" }}>
                         Jemba Tony
@@ -65,19 +66,19 @@ const SmallScreen = () => {
                       <br />
                       Kyagulanyi For President.
                     </div>
-                    <div className="mt3 f5" style={{ fontSize: "12px" }}>
+                    <div className="mt3 f5" style={{ fontSize: "14px" }}>
                       Email Us:{" "}
                       <span
                         className="pointer"
-                        style={{ color: "#0C0474", fontSize: "12px" }}>
+                        style={{ color: "#0C0474", fontSize: "14px" }}>
                         info@nupuganda.org
                       </span>
                     </div>
-                    <div className="mt2 f5" style={{ fontSize: "12px" }}>
+                    <div className="mt2 f5" style={{ fontSize: "14px" }}>
                       Visit Us:{" "}
                       <span
                         className="pointer"
-                        style={{ color: "#0C0474", fontSize: "12px" }}>
+                        style={{ color: "#0C0474", fontSize: "14px" }}>
                         Plot 1622/ 1623 Kira Road K'la
                       </span>
                     </div>
@@ -92,7 +93,8 @@ const SmallScreen = () => {
                     <div className="flex flex-row justify-between mt4">
                       <Space size="large">
                         <div>
-                          <div className="flex flex-row">
+                          <Link to="/">
+                                                     <div className="flex flex-row">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -106,10 +108,11 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1 "
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               Home
                             </div>
                           </div>
+ </Link>
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
@@ -124,11 +127,12 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               Donate
                             </div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                          <Link to="/store">
+                              <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -142,11 +146,13 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
-                              Issues
+                              style={{ fontSize: "14px" }}>
+                              Store
                             </div>
-                          </div>{" "}
-                          <div className="flex flex-row mt3">
+                          </div>
+                        </Link>
+                          <Link to="/videos">
+                            <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -160,11 +166,13 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               Videos
                             </div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                          </Link>
+                          <Link to="/getInvolved">
+                                 <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -178,13 +186,15 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1 "
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               join Us
                             </div>
                           </div>{" "}
+                     </Link>
                         </div>
                         <div>
-                          <div className="flex flex-row">
+                          <Link to="/news">
+                             <div className="flex flex-row">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -198,11 +208,13 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               News
                             </div>
                           </div>
-                          <div className="flex flex-row mt3">
+                         </Link>
+                        <Link to="/events">
+                            <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -216,11 +228,13 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               Events
                             </div>
                           </div>
-                          <div className="flex flex-row mt3">
+                          </Link>
+                          <Link to="/about_Kyagulanyi">
+                                                <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -234,10 +248,12 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               About
                             </div>
-                          </div>{" "}
+                          </div>
+                          </Link>
+      
                           <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
@@ -252,11 +268,12 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1 "
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               FAQ
                             </div>
                           </div>{" "}
-                          <div className="flex flex-row mt3">
+                          <Link to="/contact">
+                                 <div className="flex flex-row mt3">
                             <div>
                               <IconContext.Provider
                                 value={{
@@ -270,35 +287,37 @@ const SmallScreen = () => {
                             </div>
                             <div
                               className="pointer mt1"
-                              style={{ fontSize: "12px" }}>
+                              style={{ fontSize: "14px" }}>
                               Contact
                             </div>
                           </div>
+                     </Link>
                         </div>
                       </Space>
                     </div>
-                  </div>
-                  <div>
-                    <div className="mt3  fw6" style={{ fontSize: "14px" }}>
+                           <div>
+                    <div className="mt4  fw6" style={{ fontSize: "14px" }}>
                       Latest Posts
                     </div>
-                    <div className="mt4">
-                      <div className=" w-90" style={{ fontSize: "12px" }}>
+                    <div className="mt3">
+                      <div className=" w-90" style={{ fontSize: "14px" }}>
                         We are unvieling a new campaing...
                       </div>
                       <div className="flex flex-row justify-between">
-                        <div className="myc" style={{ fontSize: "12px" }}>
+                        <div className="myc" style={{ fontSize: "14px" }}>
                           05 Nov, 2020
                         </div>
                         <div
                           className="pointer hover-red"
-                          style={{ fontSize: "12px" }}>
+                          style={{ fontSize: "14px" }}>
                           Read More
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div></div>
+                  </div>
+           
+                  
                 </div>
               </div>
               <div className=" w-100 flex btm justify-center items-center">
