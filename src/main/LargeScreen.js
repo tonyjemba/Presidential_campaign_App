@@ -10,8 +10,7 @@ import NewsCard from "../universal/NewsCard/NewsCard";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
-import { connect } from "react-redux";
-import { getInput } from "../Redux/Home/Actions";
+
 
 
 
@@ -31,12 +30,6 @@ const text = `please gt srs this might be a tp in your life so get onto it and d
 const { Panel } = Collapse;
 const { Title } = Typography;
 
-const mapDispatchToProps = (dispatch) => ({
-  getInput: input => dispatch(getInput(input))
-});
-const mapStateToProps = (state) => ({
-  input: state.Home.input
-});
 class LargeScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -375,4 +368,4 @@ class LargeScreen extends React.Component {
     );
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(LargeScreen);
+export default LargeScreen;

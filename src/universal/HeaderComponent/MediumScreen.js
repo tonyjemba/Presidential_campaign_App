@@ -109,11 +109,11 @@ const MediumScreen = () =>{
             <div className=" flex items-center justify-center w-100">
               <div className="innercontwidth  flex flex-row justify-between mt2 mb3 ">
                 <div className="w-75  flex flex-row  justify-between ">
-                   <link to="/">
-                     <div className="mr2 pointer logo w-33">
+                   <Link to="/">
+                     <div className="mr2 pointer logo ">
                     <img src={real} alt="logo" height={30} />
                   </div>
-                  </link>
+                  </Link>
                   <Space size="large">
                     <div className="pointer fw7" style={{ color: "#311B92" ,fontSize:"1.5vw"}}>
                       {" "}
