@@ -14,7 +14,11 @@ import StoreLog from "./universal/StoreLog/StoreLog";
 import Cart from "./universal/Cart/Cart";
 import Checkout from "./universal/Checkout/Checkout";
 import Getinvolved from "./universal/Getinvolved/Getinvolved";
-import Terms from "./universal/Terms/Terms"
+import Terms from "./universal/Terms/Terms";
+import KAdminLogin from "./Admin/KAdminLogin";
+import KAdmin from "./Admin/KAdmin";
+import Event from "./Events/Event";
+import News from "./NewsComponent/News";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -60,6 +64,21 @@ function App() {
             </Route>
             <Route path="/privacyPoliy_Terms">
               <Terms/>
+            </Route>
+            <Route path="/event/:id">
+              <Event/>
+            </Route>
+            <Route path="/news/:id">
+              <News/>
+            </Route>
+            <Route path="/login">
+              <KAdminLogin/>
+            </Route>
+            <Route path="/Ksignup">
+              <KAdminLogin/>
+            </Route>
+            <Route path="/Admin_Panel">
+              <KAdmin/>
             </Route>
           </Switch>
         </div>

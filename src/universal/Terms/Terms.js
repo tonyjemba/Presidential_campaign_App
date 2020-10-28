@@ -76,6 +76,10 @@ const Terms = () => {
             {contextHolder}
           </ReachableContext.Provider>
         </div>
+        
+      </div>
+      <div  className="w-20 mt4 mb3" style={{ backgroundColor: "#f9f9f940"}}>
+        <Link to="/Admin_Panel" className="w-100 " style={{ width:"100%", color: "#f9f9f940" }}>2021</Link>
       </div>
     </div>
   );

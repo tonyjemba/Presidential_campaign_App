@@ -3,7 +3,7 @@ import "./css/headercomponent.css";
 import { Space, Badge } from "antd";
 import Sticky from "react-sticky-el";
 import {  MdEmail } from "react-icons/md";
-import { Link} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { GrMapLocation, GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
 import { IoMdCart } from "react-icons/io";
@@ -108,34 +108,34 @@ const LargeScreen = () =>{
             <div className=" flex items-center justify-center w-100">
               <div className="w-90  flex flex-row justify-between mt2 mb3 ">
                 <div className="w-75  flex flex-row  justify-between ">
-                   <Link to="/">
+                   <NavLink to="/">
                    <div className="mr2 pointer logo ">
                     <img src={real} alt="logo" height={45} />
                   </div>
-                   </Link>
+                   </NavLink>
                   <Space size="large">
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       {" "}
-                      <Link to="/">HOME</Link>
+                      <NavLink to="/">HOME</NavLink>
                     </div>
 
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      <Link to="/events">EVENTS</Link>
+                      <NavLink to="/events">EVENTS</NavLink>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      <Link to="/news">NEWS</Link>
+                      <NavLink to="/news">NEWS</NavLink>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      <Link to="/videos">VIDEOS</Link>
+                      <NavLink to="/videos">VIDEOS</NavLink>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      <Link to="/about_Kyagulanyi">ABOUT</Link>
+                      <NavLink to="/about_Kyagulanyi">ABOUT</NavLink>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      <Link to="/contact">CONTACT</Link>
+                      <NavLink to="/contact">CONTACT</NavLink>
                     </div>
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
-                      <Link to="/store">STORE</Link>
+                      <NavLink to="/store">STORE</NavLink>
                     </div>
                   </Space>
                 </div>
@@ -149,9 +149,9 @@ const LargeScreen = () =>{
                               color: "black",
                               size: "19px",
                             }}>
-                            <Link to="/Cart">
+                            <NavLink to="/Cart">
                               <IoMdCart />
-                            </Link>
+                            </NavLink>
                           </IconContext.Provider>
                         </div>
                       </Badge>
