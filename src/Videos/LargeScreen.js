@@ -1,142 +1,318 @@
-import React from "react";
+import React, { useState } from 'react'
 import {
   Layout,
   Typography,
   Input,
-  Upload,
+  Form,
   message,
+  Button,
   Divider,
+  DatePicker,
+  Progress,
+  Modal,
   Select,
   List,
-} from "antd";
-import {
-  UserOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
-  InboxOutlined,
-} from "@ant-design/icons";
-import { MdLocationOn } from "react-icons/md";
-
+  Spin,
+} from 'antd'
+import { addVideo } from '../Redux/video/Actions';
+import firebase from '../base';
+import { Link } from 'react-router-dom';
+import 'video-react/dist/video-react.css';
+import { connect } from 'react-redux';
+import { MdLocationOn } from 'react-icons/md';
+import { Player, BigPlayButton, LoadingSpinner } from 'video-react';
+import moment from 'moment';
+import { useSelector } from 'react-redux';
+import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 const { Content } = Layout;
-const { Title,Paragraph  } = Typography;
-const { Dragger } = Upload;
+const { Title, Paragraph } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+}
 
-const VideoTemplate = ({ desc }) => {
+const VideoTemplate = ({ desc, video, date, location }) => {
   return (
     <div>
       <div className="w-100">
-        <div className="w-100 bg-red" style={{ height: "40vh" }}>
-          video
+        <div className="w-100 bg-red" style={{ height: '40vh' }}>
+          <Player src={video} fluid={false} height="100%" width="100%">
+            <BigPlayButton position="center" />
+            <LoadingSpinner />
+          </Player>
         </div>
-        <div className = "fw7"><Paragraph ellipsis={{ rows: 2, expandable:false}} style={{color:"black",fontSize:"16px"}}>{desc}</Paragraph></div>
+        <div className="flex flex-row" style={{ cursor: 'default' }}>
+          <div className="fw2 mr4" style={{ fontSize: '16px' }}>
+            {moment(date.toDate()).calendar()}
+          </div>
+          <div style={{ fontSize: '16px' }} className="fw2">
+            {location}
+          </div>
+        </div>
+        <div className="fw7">
+          <Paragraph
+            ellipsis={{ rows: 3, expandable: true }}
+            style={{ color: 'black', fontSize: '16px' }}
+          >
+            {desc}
+          </Paragraph>
+        </div>
       </div>
     </div>
-  );
-};
-const props = {
-  name: "video",
-  multiple: true,
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  onChange(info) {
-    const { status } = info.file;
-    if (status !== "uploading") {
-      console.log(info.file, info.fileList);
+  )
+}
+
+const ReachableContext = React.createContext()
+
+const config = {
+  title: 'Video size too Large! should be less than 50MB.',
+  okText: <Link to="/videos">Try Again</Link>,
+  centered: true,
+  content: (
+    <>
+      <ReachableContext.Consumer>
+        {() =>
+          `What Should I do then? 
+
+           1. Visit https://www.youcompress.com/ to reduce video size. 
+           2. Download Video Dieter 2 app from PlayStore.
+           3. Download Wondershare UniConverter Desktop App to reduce video size.
+          `
+        }
+      </ReachableContext.Consumer>
+    </>
+  ),
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addVideo: (video) => dispatch(addVideo(video)),
+  }
+}
+const LargeScreen = ({ addVideo }) => {
+  const [modal, contextHolder] = Modal.useModal()
+
+  const [videoUrl, setvideoUrl] = useState('')
+  const [progress, setProgress] = useState(0)
+  const [VideoDetail, setVideoDetail] = useState(null)
+  const [btn, setBtn] = useState(true)
+  const [form] = Form.useForm()
+  const [videoState, setvideoState] = useState(false)
+
+  const [searchInput, set_searchInput] = useState("");
+  const [search,setSearch] = useState(false)
+
+  useFirestoreConnect([{ collection: 'videos', orderBy: ['Date', 'desc'] }])
+  const videos = useSelector((state) => state.firestore.ordered.videos);
+
+  
+  const doSearch = (e) => {
+    set_searchInput(e.target.value);
+    setSearch(true);
+  }
+const filteredArray = videos && videos.filter(video => `${video.Description.toLowerCase()} + ${video.Location.toLowerCase()} + ${moment(video.Date.toDate()).calendar().toLowerCase()}`.includes(searchInput.toLowerCase()));
+  
+
+  const onFileChange = (e) => {
+    const file = e.target.files[0]
+    if (file.size < 50000000) {
+      setvideoState(false)
+      const storageRef = firebase.storage().ref()
+      const fileRef = storageRef.child(file.name)
+      const uploadTask = fileRef.put(file)
+
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+          )
+          setProgress(progress)
+        },
+        (e) => {
+          console.log(e)
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+            setvideoUrl({ videoUrl: url })
+            setBtn(false)
+          })
+        },
+      )
+      return
     }
-    if (status === "done") {
-      message.success(`${info.file.name} video uploaded successfully.`);
-    } else if (status === "error") {
-      message.error(`${info.file.name} video upload failed.`);
+    setvideoState(true)
+    modal.warning(config)
+  }
+
+  const onFinish = (values) => {
+    setVideoDetail({ ...values, Date: values.Date._d, ...videoUrl })
+    if (!btn && VideoDetail) {
+      addVideo(VideoDetail)
+      message
+        .success('Video Has been added successfully!', 3)
+        .then(() => form.resetFields())
+      setVideoDetail(null)
+      setvideoUrl(null)
+      setProgress(0)
+      setBtn(true)
+      return
     }
-  },
-};
-const data = [
-  { desc: "Today in the north there is too much victory of the National Unity Platform as they endorse Kyagulanyi" },
-  { desc: "iam am 3" },
-  { desc: "iam am 4" },
-  { desc: "iam am 5" },
-  { desc: "iam am 6" },
-  { desc: "iam am 7" },
-  { desc: "iam am 8" },
-];
-const LargeScreen = () => {
+    message
+      .loading('Verification in progress..', 3)
+      .then(() => message.info('Verified! Now try Again.', 3.5))
+  }
+
   return (
-    <Layout style={{ backgroundColor: "#ffffff" }}>
+    <Layout style={{ backgroundColor: '#ffffff' }}>
       <Content>
-        <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
+        <div className="w-100" style={{ backgroundColor: '#f9f9f9' }}>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
-              <Title level={4} style={{ color: "#0C0474" ,fontWeight:"700" ,cursor:"default"}}>
+              <Title
+                level={4}
+                style={{
+                  color: '#0C0474',
+                  fontWeight: '700',
+                  cursor: 'default',
+                }}
+              >
                 ARCHIVES: VIDEOS
               </Title>
-              <div style={{ color: "#0C0474", fontSize: "16px",cursor:"default" }}>
-                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{" "}
+              <div
+                style={{
+                  color: '#0C0474',
+                  fontSize: '16px',
+                  cursor: 'default',
+                }}
+              >
+                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{' '}
               </div>
             </div>
           </div>
         </div>
-        <div className="w-100 flex justify-center" >
+        <div className="w-100 flex justify-center">
           <div className="w-90">
-            <div className="flex flex-row justify-between w-80 mt5">
-              <div>
-                <Input
-                  placeholder="Username or Email"
-                  size="large"
-                  prefix={<UserOutlined className="site-form-item-icon" />}
-                />
-              </div>
-              <div>
-                <Input.Password
-                  placeholder="Password"
-                  size="large"
-                  iconRender={(visible) =>
-                    visible ? (
-                      <EyeTwoTone style={{ color: "#ff0000" }} />
-                    ) : (
-                      <EyeInvisibleOutlined />
-                    )
-                  }
-                />
-              </div>
-              <div>
-                <Input
-                  placeholder="Video location"
-                  suffix={<MdLocationOn />}
-                  size="large"
-                />
-              </div>
-            </div>
-            <div className="mt5 w-100 ">
-              <Dragger {...props}>
-                <p className="ant-upload-drag-icon tc " style={{ marginTop: "50px" }}>
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text tc">
-                  Click or drag video file to this area to upload
-                </p>
-                <p className="ant-upload-hint tc " style={{ marginBottom: "50px" }}>
-                  Support for short videos only. Strictly prohibited from uploading videos
-                  out of topic. ProtectYourVote
-                </p>
-              </Dragger>
-            </div>
-            <div className="mt5 w-100">
-              <TextArea rows={5} placeholder="What Really Took Place..." />
-            </div>
-            <div className="w-100 flex justify-center mt4">
-              <div className="Hbtn   flex redbg justify-center  hover-bg-dark-red items-center pt2 pb2 pl3 pr3 pointer">
-                <div className="fw7" style={{ fontSize: "16px", color: "#ffffff" }}>
-                  UPLOAD
+            <div className="flex w-90 mt5">
+              <div className="mt5 w-100">
+                <ReachableContext.Provider>
+                  {contextHolder}
+                </ReachableContext.Provider>
+                <div className="w-100">
+                  {videoState ? (
+                    <div>
+                      <Title level={4}>Please compress your video:</Title>
+                      <Title level={1} style={{ fontSize: '16px' }}>
+                        How To Do This
+                      </Title>
+                      <div className="mt3" style={{ fontSize: '16px' }}>
+                        Option 1:{' '}
+                        <a target="_blank" href="https://www.youcompress.com/">
+                          Click Here
+                        </a>{' '}
+                        to visit site.
+                      </div>
+                      <div className="mt3" style={{ fontSize: '16px' }}>
+                        Option 2:{' '}
+                        <a
+                          target="_blank"
+                          href="https://play.google.com/store/apps/details?id=com.outplaylab.VideoDiet2&hl=en"
+                        >
+                          {' '}
+                          Click Here
+                        </a>{' '}
+                        to Download app from PlayStore.
+                      </div>
+                      <div className="mt3 mb4" style={{ fontSize: '16px' }}>
+                        Option 3:{' '}
+                        <a
+                          target="_blank"
+                          href="https://videoconverter.wondershare.net/"
+                        >
+                          {' '}
+                          Click Here
+                        </a>{' '}
+                        to Download desktop app.
+                      </div>
+                    </div>
+                  ) : null}{' '}
                 </div>
+               
+                <Form onFinish={onFinish} {...layout} form={form}>
+                  <Form.Item name="videoUrl" label="Add video">
+                    <Input
+                      type="file"
+                      accept="video/*,.mkv"
+                      onChange={onFileChange}
+                    />
+                    <div className="w-100">
+                      {progress !== 0 ? (
+                        <Progress
+                          percent={progress}
+                          status={`${progress == 100 ? 'success' : 'active'}`}
+                          size="small"
+                          strokeColor={{ '0%': '#000080', '100%': '#ff0000' }}
+                        />
+                      ) : null}
+                    </div>
+                  </Form.Item>
+                  <Form.Item
+                    name="Location"
+                    label="Location"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please enter the Location!',
+                        whitespace: true,
+                      },
+                    ]}
+                  >
+                    <Input size="large" suffix={<MdLocationOn />} />
+                  </Form.Item>
+                  <Form.Item name="Date" label="Date">
+                    <DatePicker showTime />
+                  </Form.Item>
+                  <Form.Item
+                    name="Description"
+                    label="Description"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please enter the Description!',
+                        whitespace: true,
+                      },
+                    ]}
+                  >
+                    <TextArea
+                      rows={5}
+                      placeholder="What Really Took Place..."
+                    />
+                  </Form.Item>
+                  <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                    <Button htmlType="submit" type="primary" disabled={btn}>
+                      Upload
+                    </Button>
+                  </Form.Item>
+                </Form>
               </div>
             </div>
+
             <div className="mt5">
-              <div className="black fw5" style={{ fontSize: "18px", cursor: "default" }}>
-                Have no Account? Create one now to upload videos.Lets expose them!{" "}
+              <div
+                className="black fw5"
+                style={{ fontSize: '18px', cursor: 'default' }}
+              >
+                Have no Account? Create one now to upload videos.Lets expose
+                them!{' '}
                 <span
                   className="fw7"
-                  style={{ color: "#0C0474", fontSize: "18px", cursor: "pointer" }}>
+                  style={{
+                    color: '#0C0474',
+                    fontSize: '18px',
+                    cursor: 'pointer',
+                  }}
+                >
                   CREATE ACCOUNT
                 </span>
               </div>
@@ -146,15 +322,29 @@ const LargeScreen = () => {
                 <Divider orientation="right">
                   <div
                     className="fw7"
-                    style={{ color: "#0C0474", fontSize: "18px", cursor: "default" }}>
+                    style={{
+                      color: '#0C0474',
+                      fontSize: '18px',
+                      cursor: 'default',
+                    }}
+                  >
                     UPLOADED VIDEOS
                   </div>
                 </Divider>
               </div>
+              <div className="flex flex-column w-50">
+                  <div className="fw7 black" style={{ fontSize: "1.5vw" }}>
+                    Find Video
+                  </div>
+                  <div className="w-100 flex flex-row">
+                      <Input placeholder="Use any Keyword : Date, Location or anything" size="large" onChange={doSearch}/>
+                  </div>
+                </div>
             </div>
             <div
               className="w-100 "
-              style={{ display: "flex", justifyContent: "flex-end" }}>
+              style={{ display: 'flex', justifyContent: 'flex-end' }}
+            >
               <div>
                 <Select defaultValue="date" style={{ width: 200 }}>
                   <Option value="date">Order by Latest Upload</Option>
@@ -167,24 +357,44 @@ const LargeScreen = () => {
               </div>
             </div>
             <div className="w-100 mt4 mb4">
-              <List
-                grid={{ gutter: [15,30], column: 3 }}
-                dataSource={data}
-                pagination={{
-                  showSizeChanger: true,
-                  pageSize: 6,
-                }}
-                renderItem={(item) => (
-                  <List.Item>
-                    <VideoTemplate desc={item.desc} />
-                  </List.Item>
-                )}
-              />
+              {!isLoaded(videos) ? (
+                <div className="w-100 pt5 pb5 flex justify-center items-center">
+                  <div>
+                    <Spin size="large" />
+                  </div>
+                </div>
+              ) : isEmpty(videos) ? (
+                <div className="w-100 pt5 pb5 flex justify-center items-center">
+                  <div>
+                    <Spin size="large" />
+                  </div>
+                </div>
+              ) : (
+                <List
+                  grid={{ gutter: [15, 30], column: 3 }}
+                  dataSource={search?filteredArray:videos}
+                  pagination={{
+                    showSizeChanger: true,
+                    pageSize: 51,
+                  }}
+                  renderItem={(item) => (
+                    <List.Item>
+                      <VideoTemplate
+                        key={item.id}
+                        video={item.videoUrl}
+                        location={item.Location}
+                        date={item.Date}
+                        desc={item.Description}
+                      />
+                    </List.Item>
+                  )}
+                />
+              )}
             </div>
           </div>
         </div>
       </Content>
     </Layout>
-  );
-};
-export default LargeScreen;
+  )
+}
+export default connect(null, mapDispatchToProps)(LargeScreen)

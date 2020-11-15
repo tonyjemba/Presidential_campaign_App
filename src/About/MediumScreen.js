@@ -1,5 +1,5 @@
-import React from "react";
-import { Layout, Typography, Input } from "antd";
+import React,{useState} from "react";
+import { Layout, Typography, Input,Form,message,Button } from "antd";
 import { BsArrowRight } from "react-icons/bs";
 import { FaFistRaised,FaRegLifeRing } from "react-icons/fa";
 import "./css/about.css";
@@ -9,36 +9,61 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { SiStorybook } from "react-icons/si"
-
+import { connect } from "react-redux";
+import { addStory } from "../Redux/Admin/Actions";
 import { IconContext } from "react-icons";
 import about from "../lotties/about.png";
 
 const { Content, Sider } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addStory: (story) => dispatch(addStory(story)),
+  };
+};
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+const MediumScreen = ({ addStory }) => {
+  const [email, setEmail] = useState({ email: "" });
+  const [name, setName] = useState({ name: "" });
+  const [phone, setPhone] = useState({ phone: "" });
+  const [story, setStory] = useState({ story: "" });
+  const [form] = Form.useForm();
 
-const MediumScreen = () => {
+  const send = () => {
+    addStory({ ...email, ...name, ...phone, ...story });
+    form.resetFields();
+    message.success("Your Story has been sent!", 3);
+    setEmail({ email: "" });
+    setName({ name: "" });
+    setPhone({ phone: "" });
+    setStory({ story: "" });
+  };
+
   return (
     <div>
       <Layout style={{ backgroundColor: "#0C0474" }}>
         <Sider theme="light" width="30%" style={{ backgroundColor: "#0C0474" }}>
           <div className="" style={{ width: "100%" }}>
-            
             <div className="relative">
-                            <img
+              <img
                 className="relative"
-              src={about}
-              alt="Kyagulanyi"
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-                width: "100%",
-                height: "100%",
-              }}
+                src={about}
+                alt="Kyagulanyi"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  width: "100%",
+                  height: "100%",
+                }}
               />
-              <div className="w-100 imgdown absolute bottom-0 h-100"><div style={{color:"#0C0474"}}>HE</div> </div>
+              <div className="w-100 imgdown absolute bottom-0 h-100">
+                <div style={{ color: "#0C0474" }}>HE</div>{" "}
               </div>
-              
+            </div>
           </div>
         </Sider>
         <Content style={{ backgroundColor: "#0C0474" }}>
@@ -49,15 +74,23 @@ const MediumScreen = () => {
                   <div className="w-100 tc mt4 fw7 ">
                     <Title
                       level={6}
-                      style={{ color: "#ffffff", Cursor: "default", paddingTop: "10%" }}>
+                      style={{
+                        color: "#ffffff",
+                        Cursor: "default",
+                        paddingTop: "10%",
+                      }}
+                    >
                       KYAGULANYI'S STORY
                     </Title>
                   </div>
                   <VerticalTimeline>
-       
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0b047400", color: "#ffffff",marginRight:"10px" }}
+                      contentStyle={{
+                        background: "#0b047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
                       date="2011 - present"
                       iconStyle={{
@@ -65,7 +98,7 @@ const MediumScreen = () => {
                         color: "#ffffff",
                         marginRight: "20px",
                       }}
-                      icon={<SiStorybook/>}
+                      icon={<SiStorybook />}
                     >
                       <h3 className="vertical-timeline-element-title white">
                         Art Director
@@ -73,45 +106,25 @@ const MediumScreen = () => {
                       <h4 className="vertical-timeline-element-subtitle ehite">
                         San Francisco, CA
                       </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
-                                                Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
-                                                Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
-                      </div>
-                    </VerticalTimelineElement>
-       <VerticalTimelineElement
-                      className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0b047400", color: "#ffffff",marginRight:"10px" }}
-                      contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
-                      iconStyle={{
-                        background: "#0C0474",
-                        color: "#ffffff",
-                        
-                      }}
-                      icon={<FaRegLifeRing />}
-                    >
-                      <h3 className="vertical-timeline-element-title white">
-                        Art Director
-                      </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
-                      </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing Creative Direction,
+                        User Exerience, Visual Design, SEO, Online
+                        MarketingCreative Direction, User Experience, Visual
+                        Design, SEO, Online Marketing Creative Direction, User
+                        Exerience, Visual Design, SEO, Online MarketingCreative
+                        Direction, User Experience, Visual Design, SEO, Online
                         Marketing
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0b047400", color: "#ffffff",marginRight:"10px" }}
+                      contentStyle={{
+                        background: "#0b047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
                       date="2011 - present"
                       iconStyle={{
@@ -126,15 +139,19 @@ const MediumScreen = () => {
                       <h4 className="vertical-timeline-element-subtitle ehite">
                         San Francisco, CA
                       </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0C047400", color: "#ffffff",marginRight:"10px" }}
+                      contentStyle={{
+                        background: "#0b047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
                       date="2011 - present"
                       iconStyle={{
@@ -149,15 +166,19 @@ const MediumScreen = () => {
                       <h4 className="vertical-timeline-element-subtitle ehite">
                         San Francisco, CA
                       </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0C047400", color: "#ffffff",marginRight:"10px" }}
+                      contentStyle={{
+                        background: "#0C047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
                       date="2011 - present"
                       iconStyle={{
@@ -172,15 +193,19 @@ const MediumScreen = () => {
                       <h4 className="vertical-timeline-element-subtitle ehite">
                         San Francisco, CA
                       </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing
                       </div>
                     </VerticalTimelineElement>
-                 <VerticalTimelineElement
+                    <VerticalTimelineElement
                       className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0C047400", color: "#ffffff",marginRight:"10px" }}
+                      contentStyle={{
+                        background: "#0C047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
                       date="2011 - present"
                       iconStyle={{
@@ -195,15 +220,19 @@ const MediumScreen = () => {
                       <h4 className="vertical-timeline-element-subtitle ehite">
                         San Francisco, CA
                       </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing
                       </div>
                     </VerticalTimelineElement>
-                  <VerticalTimelineElement
+                    <VerticalTimelineElement
                       className="vertical-timeline-element--work "
-                      contentStyle={{ background: "#0C047400", color: "#ffffff",marginRight:"10px" }}
+                      contentStyle={{
+                        background: "#0C047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
                       date="2011 - present"
                       iconStyle={{
@@ -218,10 +247,37 @@ const MediumScreen = () => {
                       <h4 className="vertical-timeline-element-subtitle ehite">
                         San Francisco, CA
                       </h4>
-                      <div className="white " style={{fontSize:"14px"}}>
-                        Creative Direction, User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing
+                      </div>
+                    </VerticalTimelineElement>
+                    <VerticalTimelineElement
+                      className="vertical-timeline-element--work "
+                      contentStyle={{
+                        background: "#0C047400",
+                        color: "#ffffff",
+                        marginRight: "10px",
+                      }}
+                      contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
+                      date="2011 - present"
+                      iconStyle={{
+                        background: "#0C0474",
+                        color: "#ffffff",
+                      }}
+                      icon={<FaRegLifeRing />}
+                    >
+                      <h3 className="vertical-timeline-element-title white">
+                        Art Director
+                      </h3>
+                      <h4 className="vertical-timeline-element-subtitle ehite">
+                        San Francisco, CA
+                      </h4>
+                      <div className="white " style={{ fontSize: "14px" }}>
+                        Creative Direction, User Exerience, Visual Design, SEO,
+                        Online MarketingCreative Direction, User Experience,
+                        Visual Design, SEO, Online Marketing
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -240,45 +296,113 @@ const MediumScreen = () => {
           <div className="w-100 tc ">
             <Title
               level={4}
-              style={{ color: "#ffffff", Cursor: "default", paddingTop: "10%" }}>
+              style={{ color: "#ffffff", Cursor: "default", paddingTop: "10%" }}
+            >
               THAT'S KYAGULANYI'S STORY-WHAT IS YOURS?
             </Title>
           </div>
         </div>
         <div className="w-100 flex   justify-center mt4">
-          <div className="w-60 flex flex-column">
-            <div>
-              <Input placeholder="Email" size="large" />
-            </div>
-            <div className="w-100 flex flex-row justify-between mt3">
-              <div className="w-40 ">
-                <Input placeholder="First Name" size="large" />
-              </div>
-              <div className="w-40">
-                <Input placeholder="Phone Number" size="large" />
-              </div>
-            </div>
-            <div className="w-100 mt3">
-              <TextArea rows={6} placeholder="What is your Story..." />
-            </div>
-            <div className="w-100 mt4 mb5 flex justify-center">
-              <div
-                className="fw7 relative Hbtn redbg hover-bg-dark-red  pointer pt2 pb2 pl5 pr5 ml4"
-                style={{ fontSize: "1.35vw", color: "#ffffff" }}>
-                <div className="absolute arrow " style={{ top: "8%", right: "9%" }}>
-                  <IconContext.Provider
-                    value={{
-                      color: "white",
-                      size: "30px",
-                    }}>
-                    <div className="pointer arrow fw8">
-                      <BsArrowRight />
+          <div className="w-90 flex flex-column">
+            <Form id="clear" onFinish={send} {...layout} form={form}>
+              <Form.Item
+                name="email"
+                label="Email"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your Email!",
+                    whitespace: true,
+                    type: "email",
+                  },
+                ]}
+              >
+                <Input
+                  size="large"
+                  placeholder="Email"
+                  onChange={(e) => setEmail({ email: e.target.value })}
+                />
+              </Form.Item>
+              <Form.Item
+                name="name"
+                label="Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your Name!",
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <Input
+                  size="large"
+                  placeholder="Name"
+                  onChange={(e) => setName({ name: e.target.value })}
+                />
+              </Form.Item>
+              <Form.Item
+                name="phone"
+                label="Phone Number"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your Phone!",
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <Input
+                  size="large"
+                  placeholder="Phone Number"
+                  maxLength={15}
+                  type="text"
+                  onChange={(e) => setPhone({ phone: e.target.value })}
+                />
+              </Form.Item>
+              <Form.Item
+                name="story"
+                label="Story"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter your Story!",
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <TextArea
+                  rows={6}
+                  style={{ fontSize: "16px" }}
+                  placeholder="What is your Story..."
+                  onChange={(e) => setStory({ story: e.target.value })}
+                />
+              </Form.Item>
+              <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                <Button
+                  htmlType="submit"
+                  size="large"
+                  style={{ backgroundColor: "#ff0000" }}
+                  type="primary"
+                  className="w-100 mt4 mb5"
+                >
+                  <div className="flex flex-row justify-center">
+                    <div className="mr4">Send it To Kyagulanyi</div>
+                    <div>
+                      <IconContext.Provider
+                        value={{
+                          color: "white",
+                          size: "30px",
+                        }}
+                      >
+                        <div className="pointer arrow fw8">
+                          <BsArrowRight />
+                        </div>
+                      </IconContext.Provider>
                     </div>
-                  </IconContext.Provider>
-                </div>
-                Send it To Kyagulanyi
-              </div>
-            </div>
+                  </div>
+                </Button>
+              </Form.Item>
+            </Form>
           </div>
         </div>
       </div>
@@ -286,4 +410,4 @@ const MediumScreen = () => {
   );
 };
 
-export default MediumScreen;
+export default connect(null, mapDispatchToProps)(MediumScreen);

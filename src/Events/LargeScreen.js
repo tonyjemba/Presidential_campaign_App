@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   Layout,
   Dropdown,
@@ -7,15 +7,18 @@ import {
   List,
 } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import camp from "../lotties/camp.jpg";
 import {CgCalendarToday,CgViewMonth} from "react-icons/cg";
 import {ImCalendar} from "react-icons/im";
-import { Input, Button } from "antd";
+import { Input, Button ,Spin} from "antd";
 import "./css/events.css";
+import moment from "moment";
+import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
-const Template = ({ title }) => {
+const Template = ({ title,date,location,detail,id }) => {
   return (
     <div>
       <Title level={4} style={{ cursor: "default", color: "#ff0000" }}>
@@ -25,10 +28,10 @@ const Template = ({ title }) => {
         <div
           className="fw7 mr6"
           style={{ color: "#000080", fontSize: "1.5vw" }}>
-          September 19, 2020
+          {date}
         </div>
         <div style={{ color: "#000080", fontSize: "1.5vw" }} className="fw7">
-          Nakawa
+          {location}
         </div>
       </div>
       <div
@@ -39,52 +42,53 @@ const Template = ({ title }) => {
           textJustify: "inter-word",
         }}>
         <Paragraph
-          ellipsis={{ rows: 3, expandable: true, symbol: "Show More" }}
+          ellipsis={{ rows: 3, expandable: false, }}
           style={{ fontSize: "16px" }}>
-          Operating systems are an essential part of any computer system.
-          Similarly, a course on operating systems is an essential part of any
-          computer science education. This field is undergoing rapid change, as
-          computers are now prevalent in virtually every arena of day-to-day
-          life— from embedded devices in automobiles through the most
-          sophisticated planning tools for governments and multinational firms.
-          Yet the fundamental concepts remain fairly clear, and it is on these
-          that we base this book.course on operating systems is an essential
-          part of any computer science education. This field is undergoing rapid
-          change, as computers are now prevalent in virtually every arena of
-          day-to-day life— from embedded devices in automobiles through the most
-          sophisticated planning tools for governments and multinational firms.
-          Yet the fundamental concepts remain fairly clear, and it is on these
-          that we base this book
+          {detail}
         </Paragraph>
+      </div>
+      <div className="w-100 flex justify-end">
+        <div ><Link to={"/event/" + id}>Show More</Link></div>
       </div>
     </div>
   );
 };
+
 const LargeScreen = () => {
-  let data = [
-    { title: "Election Day", index: 0 },
-    { title: "Openning New Offices", index: 1 },
-    { title: "Membership Fee", index: 2 },
-    { title: "charity", index: 3 },
-    { title: "General Cleaning", index: 4 },
-    { title: "Membership Fee", index: 2 },
-    { title: "charity", index: 3 },
-    { title: "General Cleaning", index: 4 },
-  ];
+
+
+  const [searchInput, set_searchInput] = useState("");
+  const [search,setSearch] = useState(false)
+  useFirestoreConnect([
+    { collection: 'events', orderBy: ["Date", "desc"] },
+    { collection: 'images'}
+  ])
+  
+  const events = useSelector((state) => state.firestore.ordered.events);
+  const hero = useSelector((state) => state.firestore.ordered.images);
+  const heroImage = hero && hero[0].eventImageUrl;
   const menu = (
     <Menu>
       <Menu.Item key="1" icon={<CgCalendarToday/>}>
-        Order By Day
+        Order By Date
       </Menu.Item>
       <Menu.Item key="2" icon={<CgViewMonth />}>
         Order By Month
       </Menu.Item>
-      <Menu.Item key="3" icon={<ImCalendar />}>
+      <Menu.Item key="3" icon={<ImCalendar />} disabled>
         Order By Year
       </Menu.Item>
     </Menu>
   );
 
+  const doSearch = (e) => {
+    set_searchInput(e.target.value);
+    setSearch(true);
+  }
+
+  const filteredArray = events && events.filter(event => `${event.Title.toLowerCase()} + ${event.Location.toLowerCase()} + ${event.Detail.toLowerCase()} + ${moment(event.Date.toDate()).calendar().toLowerCase()}`.includes(searchInput.toLowerCase()));
+  
+  
   return (
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
@@ -106,8 +110,8 @@ const LargeScreen = () => {
               </div>
             </div>
             <img
-              src={camp}
-              alt="event"
+              src={heroImage}
+              alt="Kyagulanyi2021"
               style={{
                 objectFit: "cover",
                 objectPosition: "center",
@@ -128,9 +132,9 @@ const LargeScreen = () => {
                   </div>
                   <div className="w-100 flex flex-row">
                     <div className="mr4">
-                      <Input placeholder="Keyword" />
+                      <Input placeholder="Keyword" onChange={doSearch}/>
                     </div>
-                    <Button type="primary">
+                    <Button type="primary" >
                       <div className="white fw7">Find Event</div>
                     </Button>
                   </div>
@@ -156,19 +160,19 @@ const LargeScreen = () => {
               </div>
 
               <div className="mb5">
-                <List
+                {!isLoaded(events)?<div className="w-100 pt5 pb5 flex justify-center items-center"><div><Spin size="large"/></div></div>:<List
                   pagination={{
                     showSizeChanger: true,
-                    pageSize: 3,
+                    pageSize: 8,
                     pageSizeOptions: ["10", "30", "100"],
                   }}
-                  dataSource={data}
+                  dataSource={search?filteredArray:events}
                   renderItem={(val) => (
                     <List.Item>
-                      <Template title={val.title} />
+                      <Template  key={val.id} id={val.id} date={moment(val.Date.toDate()).calendar()} title={val.Title}  location={val.Location} detail={val.Detail}/>
                     </List.Item>
                   )}
-                />
+                />}
               </div>
             </div>
           </div>
@@ -179,3 +183,4 @@ const LargeScreen = () => {
 };
 
 export default LargeScreen;
+

@@ -1,5 +1,5 @@
-import React from "react";
-import { Layout, Typography, Input } from "antd";
+import React,{useState} from "react";
+import { Layout, Typography, Input,Form,message,Button  } from "antd";
 import { BsArrowRight } from "react-icons/bs";
 import { FaFistRaised, FaRegLifeRing } from "react-icons/fa";
 import "./css/about.css";
@@ -9,15 +9,39 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { SiStorybook } from "react-icons/si";
-
+import { addStory } from "../Redux/Admin/Actions";
+import { connect } from "react-redux";
 import { IconContext } from "react-icons";
 import about from "../lotties/about.png";
 
 const { Content } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addStory: (story) => dispatch(addStory(story)),
+  };
+};
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+const PhoneScreen = ({ addStory }) => {
+   const [email, setEmail] = useState({ email: "" });
+   const [name, setName] = useState({ name: "" });
+   const [phone, setPhone] = useState({ phone: "" });
+   const [story, setStory] = useState({ story: "" });
+   const [form] = Form.useForm();
 
-const PhoneScreen = () => {
+   const send = () => {
+     addStory({ ...email, ...name, ...phone, ...story });
+     form.resetFields();
+     message.success("Your Story has been sent!", 3);
+     setEmail({ email: "" });
+     setName({ name: "" });
+     setPhone({ phone: "" });
+     setStory({ story: "" });
+   };
   return (
     <Layout style={{ backgroundColor: "#0C0474" }}>
       <Content style={{ backgroundColor: "#0C0474" }}>
@@ -37,7 +61,7 @@ const PhoneScreen = () => {
                       height: "100%",
                     }}
                   />
-                  <div className="w-100 imgdown absolute bottom-0 h-100">
+                  <div className="w-100 imgdown absolute bottom-0 h-100 " style={{bottom:"0px"}}>
                     <div style={{ color: "#0C0474" }}>HE</div>{" "}
                   </div>
                 </div>
@@ -48,7 +72,12 @@ const PhoneScreen = () => {
                 <div className="w-100 tc  fw7 ">
                   <Title
                     level={6}
-                    style={{ color: "#ffffff", Cursor: "default", paddingTop: "10%" }}>
+                    style={{
+                      color: "#ffffff",
+                      Cursor: "default",
+                      paddingTop: "10%",
+                    }}
+                  >
                     KYAGULANYI'S STORY
                   </Title>
                 </div>
@@ -67,7 +96,8 @@ const PhoneScreen = () => {
                       color: "#ffffff",
                       marginRight: "20px",
                     }}
-                    icon={<SiStorybook />}>
+                    icon={<SiStorybook />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -75,13 +105,15 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing Creative Direction, User Exerience, Visual Design,
-                      SEO, Online MarketingCreative Direction, User Experience, Visual
-                      Design, SEO, Online Marketing Creative Direction, User Exerience,
-                      Visual Design, SEO, Online MarketingCreative Direction, User
-                      Experience, Visual Design, SEO, Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing Creative Direction,
+                      User Exerience, Visual Design, SEO, Online
+                      MarketingCreative Direction, User Experience, Visual
+                      Design, SEO, Online Marketing Creative Direction, User
+                      Exerience, Visual Design, SEO, Online MarketingCreative
+                      Direction, User Experience, Visual Design, SEO, Online
+                      Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -97,7 +129,8 @@ const PhoneScreen = () => {
                       background: "#0C0474",
                       color: "#ffffff",
                     }}
-                    icon={<FaRegLifeRing />}>
+                    icon={<FaRegLifeRing />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -105,9 +138,9 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -123,7 +156,8 @@ const PhoneScreen = () => {
                       background: "#0C0474",
                       color: "#ffffff",
                     }}
-                    icon={<FaRegLifeRing />}>
+                    icon={<FaRegLifeRing />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -131,9 +165,9 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -149,7 +183,8 @@ const PhoneScreen = () => {
                       background: "#0C0474",
                       color: "#ffffff",
                     }}
-                    icon={<FaRegLifeRing />}>
+                    icon={<FaRegLifeRing />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -157,9 +192,9 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -175,7 +210,8 @@ const PhoneScreen = () => {
                       background: "#0C0474",
                       color: "#ffffff",
                     }}
-                    icon={<FaRegLifeRing />}>
+                    icon={<FaRegLifeRing />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -183,9 +219,9 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -201,7 +237,8 @@ const PhoneScreen = () => {
                       background: "#0C0474",
                       color: "#ffffff",
                     }}
-                    icon={<FaRegLifeRing />}>
+                    icon={<FaRegLifeRing />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -209,9 +246,9 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -227,7 +264,8 @@ const PhoneScreen = () => {
                       background: "#0C0474",
                       color: "#ffffff",
                     }}
-                    icon={<FaRegLifeRing />}>
+                    icon={<FaRegLifeRing />}
+                  >
                     <h3 className="vertical-timeline-element-title white">
                       Art Director
                     </h3>
@@ -235,9 +273,9 @@ const PhoneScreen = () => {
                       San Francisco, CA
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual Design, SEO,
-                      Online Marketing
+                      Creative Direction, User Exerience, Visual Design, SEO,
+                      Online MarketingCreative Direction, User Experience,
+                      Visual Design, SEO, Online Marketing
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -252,47 +290,119 @@ const PhoneScreen = () => {
                   <div className="w-100 tc ">
                     <Title
                       level={4}
-                      style={{ color: "#ffffff", Cursor: "default", paddingTop: "10%" }}>
+                      style={{
+                        color: "#ffffff",
+                        Cursor: "default",
+                        paddingTop: "10%",
+                      }}
+                    >
                       THAT'S KYAGULANYI'S STORY-WHAT IS YOURS?
                     </Title>
                   </div>
                 </div>
                 <div className="w-100 flex   justify-center mt4">
                   <div className="w-90 flex flex-column">
-                    <div>
-                      <Input placeholder="Email" size="large" />
-                    </div>
-                    <div className="w-100 flex flex-column justify-between mt3">
-                      <div className="w-100 ">
-                        <Input placeholder="First Name" size="large" />
-                      </div>
-                      <div className="w-100 mt3">
-                        <Input placeholder="Phone Number" size="large" />
-                      </div>
-                    </div>
-                    <div className="w-100 mt3">
-                      <TextArea rows={6} placeholder="What is your Story..." />
-                    </div>
-                    <div className="w-100 mt4 mb5 flex justify-center">
-                      <div
-                        className="fw7 relative Hbtn redbg hover-bg-dark-red  pointer pt2 pb2 pl4 pr4  "
-                        style={{ fontSize: "14px", color: "#ffffff" }}>
-                        <div
-                          className="absolute arrow  ml4"
-                          style={{ top: "8%", right: "9%" }}>
-                          <IconContext.Provider
-                            value={{
-                              color: "white",
-                              size: "25px",
-                            }}>
-                            <div className="pointer arrow fw8">
-                              <BsArrowRight />
+                    <Form id="clear" onFinish={send} {...layout} form={form}>
+                      <Form.Item
+                        name="email"
+                        label="Email"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter your Email!",
+                            whitespace: true,
+                            type: "email",
+                          },
+                        ]}
+                      >
+                        <Input
+                          size="large"
+                          placeholder="Email"
+                          onChange={(e) => setEmail({ email: e.target.value })}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        name="name"
+                        label="Name"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter your Name!",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <Input
+                          size="large"
+                          placeholder="Name"
+                          onChange={(e) => setName({ name: e.target.value })}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        name="phone"
+                        label="Phone Number"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter your Phone!",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <Input
+                          size="large"
+                          placeholder="Phone Number"
+                          maxLength={15}
+                          type="text"
+                          onChange={(e) => setPhone({ phone: e.target.value })}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        name="story"
+                        label="Story"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter your Story!",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <TextArea
+                          rows={6}
+                          style={{ fontSize: "16px" }}
+                          placeholder="What is your Story..."
+                          onChange={(e) => setStory({ story: e.target.value })}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        wrapperCol={{ ...layout.wrapperCol,}}
+                      >
+                        <Button
+                          htmlType="submit"
+                          size="large"
+                          style={{ backgroundColor: "#ff0000" }}
+                          type="primary"
+                          className="w-100 mt4 mb5"
+                        >
+                          <div className="flex flex-row justify-center">
+                            <div className="mr4">Send it To Kyagulanyi</div>
+                            <div>
+                              <IconContext.Provider
+                                value={{
+                                  color: "white",
+                                  size: "30px",
+                                }}
+                              >
+                                <div className="pointer arrow fw8">
+                                  <BsArrowRight />
+                                </div>
+                              </IconContext.Provider>
                             </div>
-                          </IconContext.Provider>
-                        </div>
-                        Send it To Kyagulanyi
-                      </div>
-                    </div>
+                          </div>
+                        </Button>
+                      </Form.Item>
+                    </Form>
                   </div>
                 </div>
               </div>
@@ -304,4 +414,4 @@ const PhoneScreen = () => {
   );
 };
 
-export default PhoneScreen;
+export default connect(null, mapDispatchToProps)(PhoneScreen);

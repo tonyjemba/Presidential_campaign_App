@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/homehero.css";
-import Hero from "../lotties/Hero.jpg";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { Typography } from "antd";
 
-const MediumScreen = () => {
+const { Title } = Typography;
+
+const MediumScreen = ({HomeContent}) => {
   const [offset, setOffset] = useState(0);
   useEffect(() => {
     function handleScroll() {
@@ -14,27 +19,30 @@ const MediumScreen = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  const image= HomeContent && HomeContent[0].imageUrl;
+    const text = HomeContent && HomeContent[0].Hero_Slogan;
   return (
     <div className="bacground transparent ">
       <section className="hero">
         <div className="image">
           <img
-            src={Hero}
+            src={image}
             alt="Hero"
             className="parallax"
-
           />
         </div>
         <div className="w-100 flex justify-center contm">
           <div className="innercontwidth " style={{ color: "#311B92" }}>
-            <div className="w-75   fw7">
-              <div className=" w-100 fs-normal " style={{ fontSize: "4vw" }}>
-                CREATE A UGANDA
-              </div>
-              <div className=" w-100" style={{ fontSize: "4vw" }}>
-                FOR EVERY CITIZEN
-              </div>
+            <div className="w-40">
+              <Title
+                level={1}
+                style={{
+                  color: "#0C0474",
+                  fontWeight: "bold",
+                }}
+              >
+                {text}
+              </Title>
             </div>
             <Link to="/getInvolved">
                         <div
@@ -58,4 +66,11 @@ const MediumScreen = () => {
     </div>
   );
 };
-export default MediumScreen;
+export default compose(
+  firestoreConnect(() => [
+    { collection: "HomeContent" },
+  ]),
+  connect((state, props) => ({
+    HomeContent: state.firestore.ordered.HomeContent,
+  }))
+)(MediumScreen);

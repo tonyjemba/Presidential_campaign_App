@@ -1,26 +1,41 @@
-import React from "react";
-import { Layout, Divider, Row, Col, Select, Typography, List } from "antd";
+import React, { useState }from "react";
+import { Layout, Divider, Row, Col, Select, Typography, List,Spin,Skeleton} from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
+import moment from "moment";
+import { Link } from "react-router-dom";
 import "./css/news.css";
-import event from "../lotties/event.jpg";
+import { useSelector } from 'react-redux';
+import { useFirestoreConnect, isLoaded,isEmpty  } from 'react-redux-firebase';
 
 const { Content, Sider } = Layout;
 const { Option } = Select;
 const { Paragraph } = Typography;
 
-const NewsTemplate = ({ span }) => {
+const antIcon = <LoadingOutlined style={{ fontSize: 50 }} spin />
 
-  return (
+const NewsTemplate = ({ span,title,photo,id,date }) => {
+
+  return(
     <Col className="gutter-row" span={span}>
-      <div className=" w-100  relative" style={{ height: "40vh" }}>
-        <img src={event} alt="news" className="newsImage" />
+      <div className=" w-100  relative" style={{ height: "45vh" }}>
+        <img src={photo} alt="news" className="newsImage" />
         <div className="absolute bottom-0 w-100 nlay ">
           <div className="w-100 flex justify-center">
             <div className="w-90 ">
-              <div className="white fw7 pt3 pointer" style={{ fontSize: "16px" }}>
-                WATCH: Kyagulanyi Cheering Up People Power Supporters After Victory.
+              <div className="white w-100 fw7 pt3 pointer" >
+                       <Paragraph
+          ellipsis={{ rows: 2, expandable: false }}
+          style={{ color: "white", fontSize: "16px", cursor: "default" }}>
+         {title}
+        </Paragraph>
               </div>
-              <div className="pointer pb1 " style={{ color: "#ff0000" }}>
+              <div className="w-100 flex flex-row justify-between">
+                <div>
+                  <Link to={"/thenews/" + id} className="pointer pb1 " style={{ color: "#ff0000" }}>
                 READ MORE
+              </Link>
+                </div>
+                <div style={{ color: "#ff0000",fontSize: "16px" ,pointer:"default"}} className=" pb1 ">{moment(date.toDate()).calendar()}</div>
               </div>
             </div>
           </div>
@@ -29,79 +44,57 @@ const NewsTemplate = ({ span }) => {
     </Col>
   );
 };
-const NewsShortTemplate = ({ title }) => {
+const NewsShortTemplate = ({ title,detail ,id}) => {
   return (
     <div>
-      <div className="fw7 black" style={{ fontSize: "15px", cursor: "default" }}>
+      <div className="fw7 black" style={{ fontSize: "16px", cursor: "default" }}>
         {title}
       </div>
       <div>
         <Paragraph
           ellipsis={{ rows: 2, expandable: false }}
-          style={{ color: "black", fontSize: "15px", cursor: "default" }}>
-          Kibalama clarifies that Kyagulanyi is the president of the NUP political party
-          Kibalama clarifies that Kyagulanyi is the president of the NUP political party
-          Kibalama clarifies that Kyagulanyi is the president of the NUP political party
+          style={{ color: "black", fontSize: "16px", cursor: "default" }}>
+         {detail}
         </Paragraph>
       </div>
-      <div className="pointer w-50" style={{ color: "#ff0000" }}>
+      <Link  to={"/thenews/" + id} className="pointer w-50" style={{ color: "#ff0000" }}>
         READ MORE
-      </div>
+      </Link>
     </div>
   );
 };
 const SmallScreen = () => {
-  let data = [
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 0,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 1,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 2,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 3,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 4,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 2,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 3,
-    },
-    {
-      title:
-        "'I have never demanded Kyagulanyi any money'...Kibalama Asserts as court countinues to find the truth.",
-      index: 4,
-    },
-  ];
+    useFirestoreConnect([
+      { collection: 'news', orderBy: ["Date", "desc"] },
+      { collection: 'images'}
+  ])
+  const news = useSelector((state) => state.firestore.ordered.news);
+    const latest = news && news.slice(0,8);
+  const rest = news && news.slice(8, news.length);
+  const hero = useSelector((state) => state.firestore.ordered.images);
+  
+  // const videoImage = hero && hero[1].imageUrl;
+  const youtubeID = hero && hero[1].youtubeID;
+
   return (
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <Divider style={{ margin: 0 }} />
         <div className="flex justify-center mt4">
           <div
-            className="w-90 bg-red"
-            style={{ height: "50vh", objectFit: "cover", objectPosition: "center" }}>
-            video
+            className="w-90 "
+            style={{ height: "70vh", objectFit: "cover", objectPosition: "center", backgroundColor: "#E5E5E5" }}>
+            <iframe className='video'
+               width="100%" height="100%"
+               loading="lazy" 
+              frameBorder="0"
+              allowFullScreen
+                          allow="accelerometer;
+                           encrypted-media;
+                           gyroscope;
+                           picture-in-picture"
+        src={`https://youtube.com/embed/${youtubeID}?autoplay=0`}>
+         </iframe> 
           </div>
         </div>
         <div className=" flex justify-between mt5" style={{ width: "95%" }}>
@@ -117,26 +110,23 @@ const SmallScreen = () => {
           <div className="w-90 ">
             <Layout>
               <Content style={{ backgroundColor: "#ffffff" }}>
-                <div className="" style={{ width: "98%" }}>
+                {
+                  !isLoaded(latest)?(<div className="w-100 pt5 pb5 flex justify-center items-center"><div><Spin indicator={antIcon} /></div></div>): isEmpty(latest)?(<div className="w-100 pt5 pb5 flex justify-center items-center"><div><Spin indicator={antIcon} /></div></div>):(
+                    <div className="" style={{ width: "98%" }}>
                   <Row gutter={[16, 34]}>
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
-                    <NewsTemplate span={24} />
+                    {latest && latest.map((news) =>  <NewsTemplate  key={news.id} id={news.id} date={news.Date} span={24} title={news.Title} photo={news.photoUrl}/>)}
                   </Row>
                 </div>
+                  )
+                }
               </Content>
               <Sider theme="light" width="32%" className="pl2">
-                <div className="w-100 flex flex-column justify-between">
-                  <div className="fw7" style={{ color: "#0C0474" }}>
+                <div className="w-100 flex flex-column">
+                  <div className="fw7 mb3" style={{ color: "#0C0474" }}>
                     ARCHIVES
                   </div>
                   <div>
-                    <Select defaultValue="date" style={{ width: 150 }}>
+                    <Select defaultValue="date" style={{ width: 140 }}>
                       <Option value="date">Order by Date</Option>
                       <Option value="mostViewed">Order by Most Viewed</Option>
                       <Option value="video">Order by Video</Option>
@@ -147,19 +137,35 @@ const SmallScreen = () => {
                   </div>
                 </div>
                 <div className="mt4">
-                  <List
+                  {!isLoaded(rest) ? (<div className="mb4">
+                    <Skeleton active />
+                    <Divider />
+                    <Skeleton active />
+                    <Divider />
+                    <Skeleton active />
+  
+                  </div>): isEmpty(rest)?(<div className="mb4">
+                    <Skeleton active />
+                    <Divider />
+                    <Skeleton active />
+                    <Divider />
+                    <Skeleton active />
+  
+                  </div>):(
+                    <List
                     pagination={{
                       showSizeChanger: true,
-                      pageSize: 4,
+                      pageSize: 6,
                       pageSizeOptions: ["10", "30", "100"],
                     }}
-                    dataSource={data}
+                    dataSource={rest}
                     renderItem={(val) => (
                       <List.Item>
-                        <NewsShortTemplate title={val.title} />
+                        <NewsShortTemplate title={val.Title} id={val.id} detail={val.Detail}/>
                       </List.Item>
                     )}
                   />
+                  )}
                 </div>
               </Sider>
             </Layout>
@@ -171,3 +177,5 @@ const SmallScreen = () => {
 };
 
 export default SmallScreen;
+
+

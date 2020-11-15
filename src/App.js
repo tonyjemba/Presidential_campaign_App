@@ -19,10 +19,11 @@ import KAdminLogin from "./Admin/KAdminLogin";
 import KAdmin from "./Admin/KAdmin";
 import Event from "./Events/Event";
 import News from "./NewsComponent/News";
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+
+
   return (
     <Router>
       <div>
@@ -65,12 +66,8 @@ function App() {
             <Route path="/privacyPoliy_Terms">
               <Terms/>
             </Route>
-            <Route path="/event/:id">
-              <Event/>
-            </Route>
-            <Route path="/news/:id">
-              <News/>
-            </Route>
+            <Route path="/event/:id" children={<Event/>}/>
+            <Route path="/thenews/:id" children={<News/>}/>
             <Route path="/login">
               <KAdminLogin/>
             </Route>

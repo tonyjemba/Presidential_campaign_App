@@ -9,7 +9,7 @@
     color: rgba(228, 224, 224, 0.329);
 }
 .wid{
-    width:35%
+    width:90%
 }
 .wid2{
     width:55%
@@ -68,6 +68,4 @@ p{
         transform: translate(-5%, 0);
       }
   }
-.fotwid{
-    width: 97.3%;
-}
+

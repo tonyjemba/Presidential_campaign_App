@@ -1,9 +1,13 @@
 import { combineReducers } from "redux";
-import { HomeReducer } from "./Home/HomeReducer";
+import AdminReducer from "./Admin/AdminReducer";
+import { firebaseReducer} from "react-redux-firebase";
+import { firestoreReducer } from "redux-firestore";
 
 //combines all reducers so that they can be put in the store as rootReducer
 const rootReducer = combineReducers({
-  Home: HomeReducer,
+  firebase: firebaseReducer,
+  firestore: firestoreReducer, 
+  Admin: AdminReducer
 });
 
 export default rootReducer;
