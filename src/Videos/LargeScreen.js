@@ -20,7 +20,13 @@ import { Link } from 'react-router-dom';
 import 'video-react/dist/video-react.css';
 import { connect } from 'react-redux';
 import { MdLocationOn } from 'react-icons/md';
-import { Player, BigPlayButton, LoadingSpinner } from 'video-react';
+import {
+  Player,
+  BigPlayButton,
+  LoadingSpinner,
+  ReplayControl,
+  ControlBar,
+} from "video-react";
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
@@ -41,6 +47,9 @@ const VideoTemplate = ({ desc, video, date, location }) => {
           <Player src={video} fluid={false} height="100%" width="100%">
             <BigPlayButton position="center" />
             <LoadingSpinner />
+             <ControlBar autoHide={false}>
+              <ReplayControl seconds={10} order={2.2} />
+            </ControlBar>
           </Player>
         </div>
         <div className="flex flex-row" style={{ cursor: 'default' }}>
@@ -93,18 +102,20 @@ const mapDispatchToProps = (dispatch) => {
 const LargeScreen = ({ addVideo }) => {
   const [modal, contextHolder] = Modal.useModal()
 
-  const [videoUrl, setvideoUrl] = useState('')
-  const [progress, setProgress] = useState(0)
-  const [VideoDetail, setVideoDetail] = useState(null)
-  const [btn, setBtn] = useState(true)
-  const [form] = Form.useForm()
-  const [videoState, setvideoState] = useState(false)
+  const [videoUrl, setvideoUrl] = useState('');
+  const [progress, setProgress] = useState(0);
+  const [btn, setBtn] = useState(true);
+  const [published] = useState({ published: false });
+  const [form] = Form.useForm();
+  const [videoState, setvideoState] = useState(false);
 
   const [searchInput, set_searchInput] = useState("");
   const [search,setSearch] = useState(false)
 
-  useFirestoreConnect([{ collection: 'videos', orderBy: ['Date', 'desc'] }])
-  const videos = useSelector((state) => state.firestore.ordered.videos);
+  useFirestoreConnect([
+    { collection: "Public_Videos", orderBy: ["Date", "desc"] },
+  ]);
+  const videos = useSelector((state) => state.firestore.ordered.Public_Videos);
 
   
   const doSearch = (e) => {
@@ -119,7 +130,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
     if (file.size < 50000000) {
       setvideoState(false)
       const storageRef = firebase.storage().ref()
-      const fileRef = storageRef.child(file.name)
+      const fileRef = storageRef.child("videos/" + file.name)
       const uploadTask = fileRef.put(file)
 
       uploadTask.on(
@@ -135,7 +146,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            setvideoUrl({ videoUrl: url })
+            setvideoUrl({ videoUrl: url, Path: fileRef.fullPath });
             setBtn(false)
           })
         },
@@ -147,13 +158,12 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
   }
 
   const onFinish = (values) => {
-    setVideoDetail({ ...values, Date: values.Date._d, ...videoUrl })
-    if (!btn && VideoDetail) {
-      addVideo(VideoDetail)
+    
+    if (values) {
+      addVideo({ ...values, Date: values.Date._d, ...videoUrl, ...published });;
       message
-        .success('Video Has been added successfully!', 3)
+        .success('Video Has been uploaded!', 3)
         .then(() => form.resetFields())
-      setVideoDetail(null)
       setvideoUrl(null)
       setProgress(0)
       setBtn(true)
@@ -275,7 +285,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   </Form.Item>
                   <Form.Item
                     name="Description"
-                    label="Description"
+                    label="Short Description"
                     rules={[
                       {
                         required: true,

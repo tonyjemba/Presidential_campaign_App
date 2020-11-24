@@ -3,6 +3,8 @@ import { Layout, Typography, Input,Form,message,Button } from "antd";
 import { BsArrowRight } from "react-icons/bs";
 import { FaFistRaised,FaRegLifeRing } from "react-icons/fa";
 import "./css/about.css";
+import { useSelector } from "react-redux";
+import { useFirestoreConnect } from "react-redux-firebase";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -12,7 +14,6 @@ import { SiStorybook } from "react-icons/si"
 import { connect } from "react-redux";
 import { addStory } from "../Redux/Admin/Actions";
 import { IconContext } from "react-icons";
-import about from "../lotties/about.png";
 
 const { Content, Sider } = Layout;
 const { Title } = Typography;
@@ -33,6 +34,9 @@ const MediumScreen = ({ addStory }) => {
   const [story, setStory] = useState({ story: "" });
   const [form] = Form.useForm();
 
+      useFirestoreConnect([{ collection: "images" }]);
+      const images = useSelector((state) => state.firestore.ordered.images);
+      const bobimage = images && images[3].imageUrl;
   const send = () => {
     addStory({ ...email, ...name, ...phone, ...story });
     form.resetFields();
@@ -51,7 +55,7 @@ const MediumScreen = ({ addStory }) => {
             <div className="relative">
               <img
                 className="relative"
-                src={about}
+                src={bobimage}
                 alt="Kyagulanyi"
                 style={{
                   objectFit: "cover",

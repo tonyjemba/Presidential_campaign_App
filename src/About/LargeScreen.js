@@ -10,7 +10,8 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { SiStorybook } from "react-icons/si";
 import { IconContext } from "react-icons";
-import about from "../lotties/about.png";
+import { useSelector } from "react-redux";
+import { useFirestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { addStory } from "../Redux/Admin/Actions";
 
@@ -33,6 +34,11 @@ const LargeScreen = ({ addStory }) => {
   const [story, setStory] = useState({ story: "" });
   const [form] = Form.useForm();
 
+      useFirestoreConnect([
+    { collection: 'images' }
+  ]);
+  const images = useSelector((state) => state.firestore.ordered.images);
+   const bobimage = images && images[3].imageUrl;
   const send = () => {
     addStory({ ...email, ...name, ...phone, ...story });
     form.resetFields();
@@ -51,7 +57,7 @@ const LargeScreen = ({ addStory }) => {
             <div className="relative">
               <img
                 className="relative"
-                src={about}
+                src={bobimage}
                 alt="Kyagulanyi"
                 style={{
                   objectFit: "cover",

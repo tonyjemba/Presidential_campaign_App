@@ -1,242 +1,351 @@
 import React from "react";
-import { Layout, Collapse, Affix, Button, Typography, Carousel, Row,Col } from "antd";
-import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
-import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
-import { BsArrowRight } from "react-icons/bs";
+import { Layout, Carousel } from "antd";
+import "./css/main.css";
+import { Collapse, Typography, Row,Affix, Col, Button } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { IconContext } from "react-icons";
+import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
-import { FaRegFileVideo } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
+import { IconContext } from "react-icons";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import { GrTwitter } from "react-icons/gr";
 import moment from "moment";
+import { FaRegFileVideo } from "react-icons/fa";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { BsFillClockFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
-import { DownloadOutlined } from "@ant-design/icons";
 
+const { Content, Footer} = Layout;
+const { Paragraph, Title } = Typography;
 
 const { Panel } = Collapse;
-const { Content, Footer } = Layout;
-const { Title ,Paragraph} = Typography;
+
 class SmallScreen extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.carousel = React.createRef();
   }
-  render() {
-      const { events, news, HomeContent } = this.props;
-      const latest = events && events.slice(0, 5);
-      const latestnews = news && news.slice(0, 6);
 
-      const slogan = HomeContent && HomeContent[1].Slogan.toUpperCase();
-      const noteHeading = HomeContent && HomeContent[2].Heading;
-      const noteContent = HomeContent && HomeContent[2].Content;
-      const panel1Heading = HomeContent && HomeContent[3].Panel1Heading;
-      const panel1Content = HomeContent && HomeContent[3].Panel1Content;
-      const panel2Heading = HomeContent && HomeContent[3].Panel2Heading;
-      const panel2Content = HomeContent && HomeContent[3].Panel2Content;
-      const panel3Heading = HomeContent && HomeContent[3].Panel3Heading;
-      const panel3Content = HomeContent && HomeContent[3].Panel3Content;
-      const panel4Heading = HomeContent && HomeContent[3].Panel4Heading;
-      const panel4Content = HomeContent && HomeContent[3].Panel4Content;
-    const settings = {
-      dots: false,
-      infinite: true,
-      autoplaySpeed: 6000,
-      speed: 1000,
-      slidesToShow: 1,
-      swipeToSlide: true,
-      adaptiveHeight: true,
-      slidesToScroll: 1,
-    };
-    const next = () => {
-      this.carousel.next();
-    };
-    const previous = () => {
-      this.carousel.prev();
-    };
-     const NewsCard = ({ span, id, date, fontSize, image, title, author }) => {
-       return (
-         <Col className="gutter-row" span={span}>
-           <div style={{ background: "#fbfbfb" }}>
-             <Link to={"/thenews/" + id}>
-               <div
-                 className="w-100 pointer"
-                 style={{ height: "35vh", background: "#fbfbfb" }}
-               >
-                 <img
-                   src={image}
-                   alt="news"
-                   style={{
-                     objectFit: "cover",
-                     objectPosition: "center",
-                     height: "100%",
-                     width: "100%",
-                   }}
-                 />
-               </div>
-             </Link>
-             <div className="w-100 mt2 mb2  fw5">
+  render() {
+       const { events, news, HomeContent } = this.props;
+       const latest = events && events.slice(0, 5);
+       const latestnews = news && news.slice(0, 4);
+
+       const slogan = HomeContent && HomeContent[1].Slogan.toUpperCase();
+       const noteHeading = HomeContent && HomeContent[2].Heading;
+       const noteContent = HomeContent && HomeContent[2].Content;
+       const panel1Heading = HomeContent && HomeContent[3].Panel1Heading;
+       const panel1Content = HomeContent && HomeContent[3].Panel1Content;
+       const panel2Heading = HomeContent && HomeContent[3].Panel2Heading;
+       const panel2Content = HomeContent && HomeContent[3].Panel2Content;
+       const panel3Heading = HomeContent && HomeContent[3].Panel3Heading;
+       const panel3Content = HomeContent && HomeContent[3].Panel3Content;
+       const panel4Heading = HomeContent && HomeContent[3].Panel4Heading;
+       const panel4Content = HomeContent && HomeContent[3].Panel4Content;
+       const settings = {
+         dots: false,
+         infinite: true,
+         autoplaySpeed: 8000,
+         speed: 2000,
+         slidesToShow: 2,
+         swipeToSlide: true,
+         adaptiveHeight: true,
+         slidesToScroll: 1,
+       };
+       const NewsCard = ({
+         span,
+         id,
+         date,
+         fontSize,
+         image,
+         title,
+         author,
+       }) => {
+         return (
+           <Col  span={span}>
+             <div style={{ background: "#fbfbfb" }} className="mb4">
                <Link to={"/thenews/" + id}>
                  <div
-                   style={{ color: "#ff0000", fontSize: `${fontSize}` }}
-                   className="pointer pl2"
+                   className="w-100 pointer"
+                   style={{ height: "35vh", background: "#fbfbfb" }}
                  >
-                   {date}
+                   <img
+                     src={image}
+                     alt="news"
+                     style={{
+                       objectFit: "cover",
+                       objectPosition: "center",
+                       height: "100%",
+                       width: "100%",
+                     }}
+                   />
                  </div>
                </Link>
+               <div className="w-100 mt2 mb2  fw5">
+                 <Link to={"/thenews/" + id}>
+                   <div
+                     style={{ color: "#ff0000", fontSize: `${fontSize}` }}
+                     className="pointer pl2"
+                   >
+                     {date}
+                   </div>
+                 </Link>
+               </div>
+               <Link to={"/thenews/" + id}>
+                 <div className="fw7 pl2">
+                   <Paragraph
+                     ellipsis={{ rows: 2, expandable: false }}
+                     style={{ color: "black", fontSize: `${fontSize}` }}
+                   >
+                     {title}
+                   </Paragraph>
+                 </div>
+               </Link>
+               <div
+                 className="fw4 pl2"
+                 style={{ fontSize: `${fontSize}`, cursor: "default" }}
+               >
+                 {" "}
+                 Author: {author}
+               </div>
              </div>
-             <Link to={"/thenews/" + id}>
-               <div className="fw7 pl2">
+           </Col>
+         );
+       };
+
+       const Tmp = ({
+         id,
+         day,
+         month,
+         time,
+         image,
+         title,
+         location,
+         detail,
+       }) => {
+         return (
+           <div className="flex flex-column w-90">
+             <Link to={"/event/" + id}>
+               <div className="w-100 pointer">
+                 <img src={image} alt="event" className="eimg" />
+               </div>
+               <Layout className="w-100" style={{ backgroundColor: "#ffffff" }}>
+                 <Content
+                   className="flex flex-row justify-between"
+                   style={{ backgroundColor: "#ffffff" }}
+                 >
+                   <div className=" mt1 tc white fw7 w-20 pa0">
+                     <div
+                       style={{
+                         fontSize: "16px",
+                         backgroundColor: "#ff0000",
+                         cursor: "default",
+                       }}
+                     >
+                       {day} <br /> {month}
+                     </div>
+                   </div>
+                   <div className=" mt1 w-75 pointer">
+                     <Paragraph
+                       ellipsis={{ rows: 2, expandable: false }}
+                       style={{
+                         color: "#000000",
+                         fontSize: "16px",
+                         margin: "0px",
+                       }}
+                       className="fw7"
+                     >
+                       {title}
+                     </Paragraph>
+                     <div className="w-100 flex flex-row justify-between items-center">
+                       <div className=" flex flex-row  items-center  ">
+                         <div className="mr1">
+                           <IconContext.Provider
+                             value={{
+                               color: "rgba(0,0,0,0.5)",
+                               // size: "1.1vw",
+                             }}
+                           >
+                             <div className="pointer  mr1">
+                               <BsFillClockFill />
+                             </div>
+                           </IconContext.Provider>
+                         </div>
+                         <div
+                           className="fw4 pointer"
+                           style={{ verticalAlign: "middle" }}
+                         >
+                           {time}
+                         </div>
+                       </div>
+                       <div className=" flex flex-row  items-center content-end">
+                         <div className="mr1">
+                           <IconContext.Provider
+                             value={{
+                               color: "rgba(0,0,0,0.5)",
+                               // size: "1.3vw",
+                             }}
+                           >
+                             <div className="pointer  mr1 mt1 ">
+                               <MdLocationOn />
+                             </div>
+                           </IconContext.Provider>
+                         </div>
+                         <div className="fw4 pointer" style={{}}>
+                           {location}
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </Content>
+               </Layout>
+               <div>
                  <Paragraph
                    ellipsis={{ rows: 2, expandable: false }}
-                   style={{ color: "black", fontSize: `${fontSize}` }}
+                   style={{
+                     color: "#000000",
+                     textAlign: "justify",
+                     fontSize: "16px",
+                     textJustify: "inter-word",
+                     margin: "0px",
+                   }}
                  >
-                   {title}
+                   {detail}
                  </Paragraph>
                </div>
              </Link>
-             <div
-               className="fw4 pl2"
-               style={{ fontSize: `${fontSize}`, cursor: "default" }}
-             >
-               {" "}
-               Author: {author}
-             </div>
            </div>
-         </Col>
-       );
-     };
-    
-    const Tmp = ({ id, day, month, time, image, title, location, detail }) => {
+         );
+       };
+
+
+    const Panels = () => {
       return (
-        <div className="flex flex-column w-90">
-          <Link to={"/event/" + id}>
-            <div className="w-100 pointer">
-              <img src={image} alt="event" className="eimg" />
-            </div>
-            <Layout className="w-100" style={{ backgroundColor: "#ffffff" }}>
-              <Content
-                className="flex flex-row justify-between"
-                style={{ backgroundColor: "#ffffff" }}
-              >
-                <div className=" mt1 tc white fw7 w-20 pa0">
-                  <div
-                    style={{
-                      fontSize: "1.5vw",
-                      backgroundColor: "#ff0000",
-                      cursor: "default",
-                    }}
-                  >
-                    {day} <br /> {month}
-                  </div>
-                </div>
-                <div className=" mt1 w-75 pointer">
-                  <Paragraph
-                    ellipsis={{ rows: 2, expandable: false }}
-                    style={{
-                      color: "#000000",
-                      fontSize: "16px",
-                      textAlign: "justify",
-                      textJustify: "inter-word",
-                      margin: "0px",
-                    }}
-                    className="fw7"
-                  >
-                    {title}
-                  </Paragraph>
-                  <div className="w-100 flex flex-row justify-between items-center">
-                    <div className=" flex flex-row  items-center  ">
-                      <div className="mr1">
-                        <IconContext.Provider
-                          value={{
-                            color: "rgba(0,0,0,0.5)",
-                            // size: "1.1vw",
-                          }}
-                        >
-                          <div className="pointer  mr1">
-                            <BsFillClockFill />
-                          </div>
-                        </IconContext.Provider>
-                      </div>
+        <div className="w-100 mt6 flex justify-center items-center">
+          <div className="w-90  flex flex-row justify-between">
+            <Layout>
+              <Content style={{ backgroundColor: "#ffffff" }}>
+                <div className=" w-100 mb2">
+                  <Collapse
+                    defaultActiveKey={["1"]}
+                    style={{ fontSize: "17px" }}
+                    ghost
+                    expandIconPosition="right"
+                    style={{ fontsize: "16px", color: "#000000" }}
+                    accordion
+                    expandIcon={({ isActive }) => (
                       <div
-                        className="fw4 pointer"
-                        style={{ verticalAlign: "middle" }}
+                        className="pointer flex justify-center items-center"
+                        style={{
+                          backgroundColor: `${
+                            isActive ? "#ff0000" : "#0C0474"
+                          }`,
+                          borderRadius: "50%",
+                        }}
                       >
-                        {time}
+                        <CaretRightOutlined
+                          rotate={isActive ? -90 : 90}
+                          className="pa2 "
+                          style={{ color: "#ffffff" }}
+                        />
                       </div>
-                    </div>
-                    <div className=" flex flex-row  items-center content-end">
-                      <div className="mr1">
-                        <IconContext.Provider
-                          value={{
-                            color: "rgba(0,0,0,0.5)",
-                            // size: "1.3vw",
-                          }}
-                        >
-                          <div className="pointer  mr1 mt1 ">
-                            <MdLocationOn />
-                          </div>
-                        </IconContext.Provider>
+                    )}
+                  >
+                    <Panel
+                      header={<Title level={4}>{panel1Heading}</Title>}
+                      key="1"
+                    >
+                      <div style={{ fontSize: "16px", color: "#000000" }}>
+                        {panel1Content}
                       </div>
-                      <div className="fw4 pointer" style={{}}>
-                        {location}
+                    </Panel>
+                    <Panel
+                      header={<Title level={4}>{panel2Heading}</Title>}
+                      key="2"
+                    >
+                      <div style={{ fontSize: "16px", color: "#000000" }}>
+                        {panel2Content}
                       </div>
-                    </div>
-                  </div>
+                    </Panel>
+                    <Panel
+                      header={<Title level={4}>{panel3Heading}</Title>}
+                      key="3"
+                    >
+                      <div style={{ fontSize: "16px", color: "#000000" }}>
+                        {panel3Content}
+                      </div>
+                    </Panel>
+
+                    <Panel
+                      header={<Title level={4}>{panel4Heading}</Title>}
+                      key="4"
+                    >
+                      <div style={{ fontSize: "16px", color: "#000000" }}>
+                        {panel4Content}
+                        <br />
+
+                        <div className="mt3 w-60">
+                          <Button
+                            type="primary"
+                            shape="round"
+                            icon={<DownloadOutlined />}
+                            size="large"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                            target="_blank"
+                            href="https://peoplepower.org.ug/wp-content/uploads/2020/11/NUP-MANIFESTO.pdf"
+                          >
+                            Download Manifesto
+                          </Button>
+                        </div>
+                      </div>
+                    </Panel>
+                  </Collapse>
                 </div>
               </Content>
             </Layout>
-            <div>
-              <Paragraph
-                ellipsis={{ rows: 2, expandable: false }}
-                style={{
-                  color: "#000000",
-                  textAlign: "justify",
-                  fontSize: "16px",
-                  textJustify: "inter-word",
-                  margin: "0px",
-                }}
-              >
-                {detail}
-              </Paragraph>
-            </div>
-          </Link>
+          </div>
         </div>
       );
     };
-
     return (
-      <Layout className="relative" style={{ backgroundColor: "#ffffff" }}>
+      <Layout className="relative bg-white">
         <Layout className="bg-white">
           <Layout>
             <Content className="transparent wh">
               <HomeHeroContainer />
             </Content>
           </Layout>
-          <Layout className="top">
+          <Layout className="top ">
             <Content className="bg-white">
               <div className="w-100 flex flex-column justify-center items-center">
                 <div className="w-100 " style={{ backgroundColor: "#0C0474" }}>
-                  <div className="w-90 ">
-                    <div className="w-100 mt3  flex flex-row justify-between">
+                  <div className="w-100 ">
+                    <div className="w-100 mt3  flex flex-column justify-between">
                       <div
-                        className="h-100  tc w-40 white fw7"
-                        style={{ fontSize: "4vw",verticalAlign:"center" }}
+                        className="h-100  tc w-100 white fw7"
+                        style={{ fontSize: "4.2vw" }}
                       >
                         {slogan}
                       </div>
-                      <div className="w-50  h-100 flex flex-column items-center justify-center">
+                      <div className="w-100  h-100 ">
                         <div
-                          className="fw7 white mb1"
-                          style={{ fontSize: "2.1vw" }}
+                          className="fw7 w-100 tc white mb1 mt3"
+                          style={{ fontSize: "3.5vw" }}
                         >
                           Sign up to Volunteer.
                         </div>
-                        <VolunteerForm size="large" />
+                        <div className="w-100 flex  items-center justify-center">
+                          <div className=" w-90">
+                            {/* <VolunteerForm size="large" /> */}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -277,145 +386,56 @@ class SmallScreen extends React.Component {
                   </div>
                 </div>
                 <div
-                  className="w-90  tc "
-                  style={{ fontSize: "16px", color: "#000000" }}
+                  className="w-90  tc  "
+                  style={{ fontSize: "18px", color: "#000000" }}
                 >
                   {noteContent}
                 </div>
               </div>
-              <Layout style={{ backgroundColor: "#ffffff",marginBottom:"20px" }}>
-                <Content className="mb6" style={{ backgroundColor: "#ffffff" }}>
-                  <div className="w-100 mt5 flex justify-center items-center">
-                    <div className="w-90 ">
-                      <div className=" w-100" style={{ height: "40vh" }}>
-                        <Collapse
-                          defaultActiveKey={["1"]}
-                          ghost
-                          expandIconPosition="right"
-                          style={{fontSize:"16px"}}
-                          accordion
-                          expandIcon={({ isActive }) => (
-                            <div
-                              className="pointer flex justify-center items-center"
+
+              <Panels />
+              <Layout style={{ backgroundColor: "#ffffff" }}>
+                <Content style={{ backgroundColor: "#ffffff" }}>
+                  <div className="w-100 flex justify-center mt6">
+                    <div className="w-90 flex justify-center">
+                      <div
+                        className="w-100 fw8 tc mc relative"
+                        style={{
+                          fontSize: "10vw",
+                          cursor: "default",
+                        }}
+                      >
+                        <div
+                          className="tc w-100 absolute  black"
+                          style={{ top: "20%" }}
+                        >
+                          <div style={{ fontSize: "4vw" }}>
+                            {" "}
+                            Events During <br /> The Struggle
+                          </div>
+                          <span
+                            className="w-100  tc  pa0  absolute  flex justify-center"
+                            style={{ fontSize: "0.5vw", top: "100%" }}
+                          >
+                            <span
                               style={{
-                                backgroundColor: `${
-                                  isActive ? "#ff0000" : "#0C0474"
-                                }`,
-                                borderRadius: "50%",
+                                color: "#ff0000",
+                                backgroundColor: "#ff0000",
                               }}
                             >
-                              <CaretRightOutlined
-                                rotate={isActive ? -90 : 90}
-                                className="pa2 "
-                                style={{ color: "#ffffff" }}
-                              />
-                            </div>
-                          )}
-                        >
-                          <Panel
-                            header={<Title level={4}>{panel1Heading}</Title>}
-                            key="1"
-                          >
-                            <div style={{ fontsize: "16px", color: "#000000" }}>
-                              {panel1Content}
-                            </div>
-                          </Panel>
-                          <Panel
-                            header={<Title level={4}>pane21Heading</Title>}
-                            key="2"
-                          >
-                            <div style={{ fontsize: "16px", color: "#000000" }}>
-                              {panel2Content}
-                            </div>
-                          </Panel>
-                          <Panel
-                            header={<Title level={4}>{panel3Heading}</Title>}
-                            key="3"
-                          >
-                            <div style={{ fontsize: "16px", color: "#000000" }}>
-                              {panel3Content}
-                            </div>
-                          </Panel>
-                          <Panel
-                            header={<Title level={4}>{panel4Heading}</Title>}
-                            key="4"
-                          >
-                            <div style={{ fontsize: "16px", color: "#000000" }}>
-                              {panel4Content}
-                              <br />
-
-                              <div className="mt3 w-50">
-                                <Button
-                                  type="primary"
-                                  shape="round"
-                                  icon={<DownloadOutlined />}
-                                  size="large"
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                  }}
-                                  target="_blank"
-                                  href="https://peoplepower.org.ug/wp-content/uploads/2020/11/NUP-MANIFESTO.pdf"
-                                >
-                                  Download Manifesto
-                                </Button>
-                              </div>
-                            </div>
-                          </Panel>
-                        </Collapse>
+                              llljemba tonylll
+                            </span>
+                          </span>
+                        </div>
+                        MISSION <br /> 2021
                       </div>
                     </div>
                   </div>
                 </Content>
               </Layout>
-              <div className="w-100 mt6 flex justify-center items-center">
-                <div className="w-90  flex flex-row ">
-                  <div
-                    className="wid fw8 tc mc relative"
-                    style={{
-                      height: "50vh",
-                      fontSize: "7.5vw",
-                      cursor: "default",
-                    }}
-                  >
-                    <div className="tc w-100 absolute top-0 black">
-                      <div style={{ fontSize: "3vw" }}>
-                        {" "}
-                        Events During <br /> The Struggle
-                      </div>
-                      <span
-                        className="w-100  tc  pa0 mb5 absolute  flex justify-center"
-                        style={{ fontSize: "0.5vw", top: "100%" }}
-                      >
-                        <span
-                          style={{
-                            color: "#ff0000",
-                            backgroundColor: "#ff0000",
-                          }}
-                        >
-                          llljemba tonylll
-                        </span>
-                      </span>
-                    </div>
-                    MISSION <br /> 2021
-                  </div>
-                  <div className=" flex items-center justify-center pr2">
-                    <div
-                      className="pointer flex justify-center items-center"
-                      style={{
-                        backgroundColor: "#0C0474",
-                        borderRadius: "50%",
-                      }}
-                      onClick={() => previous()}
-                    >
-                      <CaretLeftOutlined
-                        className=" pa1"
-                        style={{ color: "#ffffff" }}
-                      />
-                    </div>
-                  </div>
-                  <div className=" wid2 " style={{ height: "50vh" }}>
+              <div className="w-100 flex justify-center items-center">
+                <div className="w-90  flex flex-row justify-between">
+                  <div className=" w-90 " style={{ height: "50vh" }}>
                     <Carousel
                       autoplay
                       {...settings}
@@ -444,21 +464,6 @@ class SmallScreen extends React.Component {
                           />
                         ))}
                     </Carousel>
-                  </div>
-                  <div className=" flex items-center justify-center pr2">
-                    <div
-                      className="pointer flex justify-center items-center"
-                      style={{
-                        backgroundColor: "#0C0474",
-                        borderRadius: "50%",
-                      }}
-                      onClick={() => next()}
-                    >
-                      <CaretRightOutlined
-                        className="pa1 "
-                        style={{ color: "#ffffff" }}
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
@@ -516,27 +521,27 @@ class SmallScreen extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>{" "}
           </Content>
         </Layout>
-        <div className="w-100  mt5 flex justify-center items-center">
+        <div className="w-100 bg-white pt5 flex justify-center items-center">
           <div className="w-90 flex flex-row ">
-            <div className="black fw7 mr4" style={{ fontSize: "4vw" }}>
+            <div className="black fw7 mr4" style={{ fontSize: "6vw" }}>
               Make Everyone <br /> Know Who <br />
               We Are!
             </div>
             <div className=" flex  justify-center   items-center ">
-              <a 
-              target="_blank"
-                  href="https://kyagulanyi2021stores.bigcartel.com/"
+              <a
+                target="_blank"
+                href="https://kyagulanyi2021stores.bigcartel.com/"
               >
                 <div
-                  className="fw7 relative Hbtn redbg hover-bg-dark-red  pointer pt2 pb2 pl5 pr5 ml4"
-                  style={{ fontSize: "1.9vw", color: "#ffffff" }}
+                  className="fw7 relative tc Hbtn redbg hover-bg-dark-red  pointer pt1 pb1 pl5 pr5 ml4"
+                  style={{ fontSize: "16px", color: "#ffffff" }}
                 >
                   <div
                     className="absolute arrow "
-                    style={{ top: "6%", right: "9%" }}
+                    style={{ top: "8%", right: "9%" }}
                   >
                     <IconContext.Provider
                       value={{
@@ -555,17 +560,17 @@ class SmallScreen extends React.Component {
             </div>
           </div>
         </div>
-        <Footer style={{ backgroundColor: "#ffffff" }}>
+        <div style={{ backgroundColor: "#ffffff" }}>
           <div className="w-100 bg-white pt5 ">
             <Link to="/news">
-              <div className="w-100 tc black fw7" style={{ fontSize: "15px" }}>
+              <div className="w-100 tc black fw7" style={{ fontSize: "3vw" }}>
                 Latest News
               </div>
             </Link>
             <div className="w-100  flex justify-center">
-              <div className="fotwid ">
+              <div className="w-90 ">
                 <div className="w-100 mt4">
-                  <Row gutter={[16, 34]}>
+                  <Row gutter={[30, 34]}>
                     {latestnews &&
                       latestnews.map((news) => (
                         <NewsCard
@@ -586,7 +591,7 @@ class SmallScreen extends React.Component {
                     <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
                       <div
                         className="fw7"
-                        style={{ fontSize: "1.7vw", color: "#ffffff" }}
+                        style={{ fontSize: "14px", color: "#ffffff" }}
                       >
                         SEE MORE
                       </div>
@@ -596,7 +601,7 @@ class SmallScreen extends React.Component {
               </div>
             </div>
           </div>
-        </Footer>
+        </div>
       </Layout>
     );
   }

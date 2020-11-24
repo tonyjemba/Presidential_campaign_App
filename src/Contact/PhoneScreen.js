@@ -3,13 +3,12 @@ import { Layout, Typography, Form, Input, Button, message } from "antd";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import { IconContext } from "react-icons";
 import { GrTwitter } from "react-icons/gr";
-import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 import { connect } from "react-redux";
 import { addMessage } from "../Redux/Admin/Actions";
-import googlemap from "../lotties/googlemap.png";
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-//googlemap.png
+import { useSelector } from "react-redux";
+import { useFirestoreConnect } from "react-redux-firebase";
 const { Content, Sider } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -35,7 +34,9 @@ const PhoneScreen = ({ addMessage }) => {
   const [story, setstory] = useState({ msg: "" });
   const [location, setLocation] = useState({ location: "" });
   const [form] = Form.useForm();
-
+ useFirestoreConnect([{ collection: "images" }]);
+ const images = useSelector((state) => state.firestore.ordered.images);
+ const mapimage = images && images[4].imageUrl;
   const send = () => {
     addMessage({ ...email, ...name, ...phone, ...story, ...location });
     form.resetFields();
@@ -80,7 +81,7 @@ const PhoneScreen = ({ addMessage }) => {
                 <div className="w-100 pointer mt3" style={{ height: "70vh" }}>
                   <img
                     className="relative"
-                    src={googlemap}
+                    src={mapimage}
                     alt="NUP"
                     style={{
                       objectFit: "cover",
@@ -275,7 +276,6 @@ const PhoneScreen = ({ addMessage }) => {
                       Kyagulanyi For President 2021.{" "}
                     </div>
                     <div className=" w-100 mt3">
-                      <VolunteerForm />
                     </div>
                   </div>
                   <a target="_blank" href="https://peoplepower.org.ug/donate/">

@@ -12,8 +12,8 @@ import { SiStorybook } from "react-icons/si";
 import { connect } from "react-redux";
 import { addStory } from "../Redux/Admin/Actions";
 import { IconContext } from "react-icons";
-import about from "../lotties/about.png";
-
+import { useFirestoreConnect } from "react-redux-firebase";
+import { useSelector } from "react-redux";
 const { Content, Sider } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -32,7 +32,9 @@ const SmallScreen = ({addStory}) => {
    const [phone, setPhone] = useState({ phone: "" });
    const [story, setStory] = useState({ story: "" });
    const [form] = Form.useForm();
-
+  useFirestoreConnect([{ collection: "images" }]);
+      const images = useSelector((state) => state.firestore.ordered.images);
+      const bobimage = images && images[3].imageUrl;
    const send = () => {
      addStory({ ...email, ...name, ...phone, ...story });
      form.resetFields();
@@ -50,7 +52,7 @@ const SmallScreen = ({addStory}) => {
             <div className="relative">
               <img
                 className="relative"
-                src={about}
+                src={bobimage}
                 alt="Kyagulanyi"
                 style={{
                   objectFit: "cover",
@@ -376,7 +378,10 @@ const SmallScreen = ({addStory}) => {
                   onChange={(e) => setStory({ story: e.target.value })}
                 />
               </Form.Item>
-              <Form.Item wrapperCol={{ ...layout.wrapperCol,  }} className="w-100 flex justify-end">
+              <Form.Item
+                wrapperCol={{ ...layout.wrapperCol }}
+                className="w-100 flex justify-end"
+              >
                 <Button
                   htmlType="submit"
                   size="large"

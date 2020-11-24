@@ -20,7 +20,13 @@ import { Link } from 'react-router-dom'
 import 'video-react/dist/video-react.css'
 import { connect } from 'react-redux'
 import { MdLocationOn } from 'react-icons/md'
-import { Player, BigPlayButton, LoadingSpinner } from 'video-react'
+import {
+  Player,
+  BigPlayButton,
+  LoadingSpinner,
+  ReplayControl,
+  ControlBar,
+} from "video-react";
 import moment from 'moment'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -37,31 +43,34 @@ const VideoTemplate = ({ desc, video, date, location }) => {
   return (
     <div>
       <div className="w-100">
-        <div className="w-100 bg-red" style={{ height: '40vh' }}>
+        <div className="w-100 bg-red" style={{ height: "40vh" }}>
           <Player src={video} fluid={false} height="100%" width="100%">
             <BigPlayButton position="center" />
             <LoadingSpinner />
+            <ControlBar autoHide={false}>
+              <ReplayControl seconds={10} order={2.2} />
+            </ControlBar>
           </Player>
         </div>
-        <div className="flex flex-row" style={{ cursor: 'default' }}>
-          <div className="fw2 mr4" style={{ fontSize: '16px' }}>
+        <div className="flex flex-row" style={{ cursor: "default" }}>
+          <div className="fw2 mr4" style={{ fontSize: "16px" }}>
             {moment(date.toDate()).calendar()}
           </div>
-          <div style={{ fontSize: '16px' }} className="fw2">
+          <div style={{ fontSize: "16px" }} className="fw2">
             {location}
           </div>
         </div>
         <div className="fw7">
           <Paragraph
             ellipsis={{ rows: 3, expandable: true }}
-            style={{ color: 'black', fontSize: '16px' }}
+            style={{ color: "black", fontSize: "16px" }}
           >
             {desc}
           </Paragraph>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 const ReachableContext = React.createContext()
@@ -95,13 +104,15 @@ const MediumScreen = ({ addVideo }) => {
 
   const [videoUrl, setvideoUrl] = useState('')
   const [progress, setProgress] = useState(0)
-  const [VideoDetail, setVideoDetail] = useState(null)
+  const [published] = useState({ published: false });
   const [btn, setBtn] = useState(true)
   const [form] = Form.useForm()
   const [videoState, setvideoState] = useState(false)
 
-  useFirestoreConnect([{ collection: 'videos', orderBy: ['Date', 'desc'] }])
-  const videos = useSelector((state) => state.firestore.ordered.videos)
+  useFirestoreConnect([
+    { collection: "Public_Videos", orderBy: ["Date", "desc"] },
+  ]);
+  const videos = useSelector((state) => state.firestore.ordered.Public_Videos);
 const [searchInput, set_searchInput] = useState("");
   const [search,setSearch] = useState(false);
   
@@ -117,7 +128,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
     if (file.size < 50000000) {
       setvideoState(false)
       const storageRef = firebase.storage().ref()
-      const fileRef = storageRef.child(file.name)
+      const fileRef = storageRef.child("videos/" + file.name)
       const uploadTask = fileRef.put(file)
 
       uploadTask.on(
@@ -133,7 +144,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            setvideoUrl({ videoUrl: url })
+            setvideoUrl({ videoUrl: url, Path: fileRef.fullPath });
             setBtn(false)
           })
         },
@@ -145,13 +156,11 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
   }
 
   const onFinish = (values) => {
-    setVideoDetail({ ...values, Date: values.Date._d, ...videoUrl })
-    if (!btn && VideoDetail) {
-      addVideo(VideoDetail)
+    if ( values) {
+      addVideo({ ...values, Date: values.Date._d, ...videoUrl, ...published, });
       message
-        .success('Video Has been added successfully!', 3)
-        .then(() => form.resetFields())
-      setVideoDetail(null)
+        .success("Video Has been uploaded!", 3)
+        .then(() => form.resetFields());
       setvideoUrl(null)
       setProgress(0)
       setBtn(true)
@@ -273,7 +282,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   </Form.Item>
                   <Form.Item
                     name="Description"
-                    label="Description"
+                    label="Short Description"
                     rules={[
                       {
                         required: true,

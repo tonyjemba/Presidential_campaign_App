@@ -52,7 +52,7 @@ const { Title } = Typography;
             />
                                 </div>
                             </div>
-                            <div className="mt4" ><Title level="3"style={{ color: "#ff0000"}}>{event.Title}</Title></div>
+                            <div className="mt4" ><Title level={3} sytle={{ color: "#ff0000"}}>{event.Title}</Title></div>
                              <div className="flex flex-row" style={{ cursor: "default" }}>
         <div
           className="fw7 mr6"
@@ -97,7 +97,7 @@ const { Title } = Typography;
             />
                                 </div>
                             </div>
-                            <div className="mt4" ><Title level="3"style={{ color: "#ff0000"}}>{event.Title}</Title></div>
+                            <div className="mt4" ><Title level="5"style={{ color: "#ff0000"}}>{event.Title}</Title></div>
                              <div className="flex flex-row" style={{ cursor: "default" }}>
         <div
           className="fw7 mr6"

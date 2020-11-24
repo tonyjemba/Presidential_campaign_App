@@ -1,7 +1,9 @@
-import React from "react";
-import { Form, Input, Button, Checkbox, Select, Tooltip, Typography } from "antd";
+import React, {useState }from "react";
+import { Form, Input, Button, Checkbox, Select, Tooltip, Typography,message } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addVolunteer } from "../../Redux/Admin/Actions";
 
 const { Option } = Select;
 const { Title } = Typography;
@@ -36,35 +38,51 @@ const formItemLayout = {
     },
   },
 };
-const onFinish = (values) => {
-  console.log("Received values of Registration form: ", values);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addVolunteer: (story) => dispatch(addVolunteer(story)),
+  };
 };
-const Getinvolved = () => {
+const Getinvolved = ({ addVolunteer }) => {
+    const [email, setEmail] = useState({ email: "" });
+    const [Name, setName] = useState({ Name: "" });
+    const [phone, setPhone] = useState({ phone: "" });
+  const [village, setVillage] = useState({ village: "" });
+  const [district, setDistrict] = useState({ district: "" });
+  const [help, setHelp] = useState({ help: "" });
+
+    const send = () => {
+      addVolunteer({ ...email, ...Name, ...phone, ...village, ...district, ...help });
+      form.resetFields();
+      message.success("Thank you for supporting Kyagulanyi!", 3);
+      setEmail({ email: "" });
+      setName({ Name: "" });
+      setPhone({ phone: "" });
+      setVillage({ village: "" });
+      setDistrict({ district: "" });
+      setHelp({ help: "" });
+    };
   const [form] = Form.useForm();
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 90,
-        }}>
-        <Option value="256">+256</Option>
-        <Option value="254">+254</Option>
-        <Option value="255">+255</Option>
-        <Option value="257">+257</Option>
-        <Option value="250">+250</Option>
-      </Select>
-    </Form.Item>
-  );
+ 
+ 
   return (
     <div>
-      <div className="w-100 flex justify-center" style={{ backgroundColor: "#f6f6f6" }}>
+      <div
+        className="w-100 flex justify-center"
+        style={{ backgroundColor: "#f6f6f6" }}
+      >
         <div className="w-90 mb4 mt4 fw7">
           <Title
             level={3}
-            style={{ color: "#0C0474", fontWeight: "700", cursor: "default" }}>
+            style={{ color: "#0C0474", fontWeight: "700", cursor: "default" }}
+          >
             Get Involved
           </Title>
-          <div className="pointer" style={{ color: "#0C0474", cursor: "default" }}>
+          <div
+            className="pointer"
+            style={{ color: "#0C0474", cursor: "default" }}
+          >
             <span className="pointer" style={{ color: "#0C047460" }}>
               HOME/
             </span>
@@ -80,11 +98,12 @@ const Getinvolved = () => {
               form={form}
               name="register"
               className="w-100"
-              onFinish={onFinish}
+              onFinish={send}
               initialValues={{
                 prefix: "+256",
               }}
-              scrollToFirstError>
+              scrollToFirstError
+            >
               <Form.Item
                 name="Name"
                 label="Name"
@@ -94,20 +113,28 @@ const Getinvolved = () => {
                     message: "Please enter your Name!",
                     whitespace: true,
                   },
-                ]}>
-                <Input size="large" />
+                ]}
+              >
+                <Input
+                  size="large"
+                  onChange={(e) => setName({ Name: e.target.value })}
+                />
               </Form.Item>
 
               <Form.Item
-                name="District / Region"
+                name="District/Region"
                 label="District / Region"
                 rules={[
                   {
                     required: true,
                     message: "Please enter your District / Region!",
                   },
-                ]}>
-                <Input size="large" />
+                ]}
+              >
+                <Input
+                  size="large"
+                  onChange={(e) => setDistrict({ district: e.target.value })}
+                />
               </Form.Item>
               <Form.Item
                 name="Village"
@@ -117,8 +144,12 @@ const Getinvolved = () => {
                     required: true,
                     message: "Please enter your Village Name",
                   },
-                ]}>
-                <Input size="large" />
+                ]}
+              >
+                <Input
+                  size="large"
+                  onChange={(e) => setVillage({ village: e.target.value })}
+                />
               </Form.Item>
               <Form.Item
                 name="email"
@@ -131,8 +162,12 @@ const Getinvolved = () => {
                   {
                     message: "Please enter your E-mail!",
                   },
-                ]}>
-                <Input size="large" />
+                ]}
+              >
+                <Input
+                  size="large"
+                  onChange={(e) => setEmail({ email: e.target.value })}
+                />
               </Form.Item>
 
               <Form.Item
@@ -143,17 +178,18 @@ const Getinvolved = () => {
                     required: true,
                     message: "Please enter your phone number!",
                   },
-                ]}>
+                ]}
+              >
                 <Input
-                  addonBefore={prefixSelector}
                   style={{
                     width: "100%",
                   }}
                   size="large"
+                  onChange={(e) => setPhone({ phone: e.target.value })}
                 />
               </Form.Item>
               <Form.Item
-                name="message"
+                name="help"
                 label={
                   <span>
                     Additional Information&nbsp;
@@ -161,8 +197,13 @@ const Getinvolved = () => {
                       <QuestionCircleOutlined />
                     </Tooltip>
                   </span>
-                }>
-                <TextArea rows={6} placeholder="e.g. How you can help in the Campaign" />
+                }
+              >
+                <TextArea
+                  rows={6}
+                  placeholder="e.g. How you can help in the Campaign"
+                  onChange={(e) => setHelp({ help: e.target.value })}
+                />
               </Form.Item>
 
               <Form.Item
@@ -173,12 +214,16 @@ const Getinvolved = () => {
                     validator: (_, value) =>
                       value
                         ? Promise.resolve()
-                        : Promise.reject("Should agree to the terms and conditions"),
+                        : Promise.reject(
+                            "Should agree to the terms and conditions"
+                          ),
                   },
                 ]}
-                {...tailFormItemLayout}>
+                {...tailFormItemLayout}
+              >
                 <Checkbox>
-                  I Agree to the <Link to="/privacyPoliy_Terms">Terms and Conditions</Link>
+                  I Agree to the{" "}
+                  <Link to="/privacyPoliy_Terms">Terms and Conditions</Link>
                 </Checkbox>
               </Form.Item>
               <Form.Item {...tailFormItemLayout}>
@@ -193,4 +238,4 @@ const Getinvolved = () => {
     </div>
   );
 };
-export default Getinvolved;
+export default connect(null, mapDispatchToProps)(Getinvolved);

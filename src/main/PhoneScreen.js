@@ -5,7 +5,6 @@ import { Collapse, Typography, Row,Affix, Col, Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
-import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
@@ -290,7 +289,7 @@ class PhoneScreen extends React.Component {
                         {panel4Content}
                         <br />
 
-                        <div className="mt3 w-60">
+                        <div className="mt3 w-70">
                           <Button
                             type="primary"
                             shape="round"
@@ -346,7 +345,7 @@ class PhoneScreen extends React.Component {
                         </div>
                         <div className="w-100 flex  items-center justify-center">
                           <div className=" w-90">
-                            <VolunteerForm size="large" />
+                            {/* <VolunteerForm size="large" /> */}
                           </div>
                         </div>
                       </div>

@@ -5,7 +5,6 @@ import { Collapse, Typography, Row, Col, Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
-import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
@@ -366,7 +365,7 @@ class MediumScreen extends React.Component {
                       >
                         Sign up to Volunteer.
                       </div>
-                      <VolunteerForm size="large" />
+                      {/* <VolunteerForm size="large" /> */}
                     </div>
                   </div>
                 </div>
@@ -573,7 +572,7 @@ class MediumScreen extends React.Component {
                       <IconContext.Provider
                         value={{
                           color: "white",
-                          size: "40px",
+                          size: "30px",
                         }}
                       >
                         <div className="pointer arrow fw8">
@@ -596,9 +595,9 @@ class MediumScreen extends React.Component {
               </div>
             </Link>
 
-            <div className="w-100  flex justify-center">
+            <div className="w-100 ">
                 <div className="w-100 mt4">
-                  <Row gutter={[16, 34]}>
+                  <Row gutter={[30, 34]}>
                     {latestnews &&
                       latestnews.map((news) => (
                         <NewsCard

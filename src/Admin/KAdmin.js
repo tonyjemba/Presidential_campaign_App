@@ -9,6 +9,8 @@ import Others from "./Other";
 import AddNews from "./AddNews";
 import NewsVideo from "./NewsVideo";
 import Home from "./Home";
+import Videos from "./Videos"
+
 
 const { Title } = Typography
 const { Content } = Layout
@@ -57,6 +59,9 @@ const KAdmin = () => {
                   </TabPane>
                   <TabPane tab="eventHero" key="5">
                     <Others />
+                  </TabPane>
+                  <TabPane tab="Videos" key="6">
+                    <Videos />
                   </TabPane>
                 </Tabs>
               </div>

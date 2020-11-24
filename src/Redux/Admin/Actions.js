@@ -1,3 +1,4 @@
+//am not using the dispatches
 export const addEvent = (event) => {
   return (dispatch, getstate, { getFirebase }) => {
     const firestore = getFirebase().firestore();
@@ -74,6 +75,21 @@ export const addStory = (story) => {
       })
       .catch((error) => {
         dispatch({ type: 'ADD_STORY_ERROR', payload: error })
+      })
+  }
+}
+export const addVolunteer = (volunteer) => {
+  return (dispatch, getstate, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+
+    firestore
+      .collection('involved')
+      .add({ ...volunteer })
+      .then(() => {
+        dispatch({ type: 'ADD_VOLUNTEER' })
+      })
+      .catch((error) => {
+        dispatch({ type: 'ADD_VOLUNTEER_ERROR', payload: error })
       })
   }
 }
@@ -159,6 +175,75 @@ export const addPanels = (panel) => {
       });
   };
 };
+export const addFooterImage = (image) => {
+  return (dispatch, getstate, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+
+    firestore
+      .collection("images")
+      .doc("OFooterImage")
+      .set({ ...image })
+      .then(() => {
+        dispatch({ type: "FOOTERIMAGE" });
+      })
+      .catch((error) => {
+        dispatch({ type: "FOOTERIMAGE_ERROR", payload: error });
+      });
+  };
+};
+export const addAboutImage = (image) => {
+  return (dispatch, getstate, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+
+    firestore
+      .collection("images")
+      .doc("PAboutImage")
+      .set({ ...image })
+      .then(() => {
+        dispatch({ type: "ABOUTIMAGE" });
+      })
+      .catch((error) => {
+        dispatch({ type: "ABOUTIMAGE_ERROR", payload: error });
+      });
+  };
+};
+export const addMapImage = (image) => {
+  return (dispatch, getstate, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+
+    firestore
+      .collection("images")
+      .doc("QMapImage")
+      .set({ ...image })
+      .then(() => {
+        dispatch({ type: "MAPIMAGE" });
+      })
+      .catch((error) => {
+        dispatch({ type: "MAPIMAGE_ERROR", payload: error });
+      });
+  };
+};
+export const addNupImage = (image) => {
+  return (dispatch, getstate, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+
+    firestore
+      .collection("images")
+      .doc("RNupImage")
+      .set({ ...image })
+      .then(() => {
+        dispatch({ type: "NUPIMAGE" });
+      })
+      .catch((error) => {
+        dispatch({ type: "NUPIMAGE_ERROR", payload: error });
+      });
+  };
+};
+export const addUser = (user) => {
+  return { type: "CURRENT_USER", payload: user } 
+
+  };
+//d
 //dELETING
 // export const deleteEvent = (event) => {
 //   return (dispatch, getstate, { getFirebase }) => {

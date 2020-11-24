@@ -33,7 +33,7 @@ const AddEvent = ({ addEvent }) => {
   const onFileChange = (e) => {
     const file = e.target.files[0]
     const storageRef = firebase.storage().ref()
-    const fileRef = storageRef.child(file.name)
+    const fileRef = storageRef.child("images/" + file.name);
     const uploadTask = fileRef.put(file)
 
     uploadTask.on(

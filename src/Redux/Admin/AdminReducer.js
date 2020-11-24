@@ -1,6 +1,7 @@
 const initialState = {
   showMoreEvent: {},
-  eventHeroImage:{}
+  eventHeroImage:{},
+  currentUser:null
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -15,6 +16,10 @@ const AdminReducer = (state = initialState, action) => {
       ...state,
       eventHeroImage: action.payload
     }
+      case "CURRENT_USER": return {
+        ...state,
+        currentUser: action.payload,
+      };
     default:
       return state;
   }

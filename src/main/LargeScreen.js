@@ -5,7 +5,6 @@ import { Collapse, Typography, Row ,Col,Button} from "antd";
 import { DownloadOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
-import VolunteerForm from "../universal/VolunteerForm/VolunteerForm";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
@@ -386,7 +385,7 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
                       >
                         Sign up to Volunteer.
                       </div>
-                      <VolunteerForm size="large" />
+                      {/* <VolunteerForm size="large" /> */}
                     </div>
                   </div>
                 </div>

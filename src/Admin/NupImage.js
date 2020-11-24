@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message, Progress } from "antd";
 import { connect } from "react-redux";
-import { addHomeHeroHeroImage } from "../Redux/Admin/Actions";
+import { addNupImage } from "../Redux/Admin/Actions";
 import firebase from "../base";
 
 const layout = {
@@ -11,14 +11,13 @@ const layout = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addHomeHeroHeroImage: (image) => dispatch(addHomeHeroHeroImage(image)),
+    addNupImage: (image) => dispatch(addNupImage(image)),
   };
 };
 
-const HomeHero = ({ addHomeHeroHeroImage }) => {
+const NupImage = ({ addNupImage }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [HomeHeroHero, setHomeHeroHero] = useState(null);
   const [btn, setBtn] = useState(true);
   const [form] = Form.useForm();
 
@@ -48,12 +47,10 @@ const HomeHero = ({ addHomeHeroHeroImage }) => {
     );
   };
 
-  const finished = (values) => {
-    setHomeHeroHero({ ...values, ...imageUrl });
-    if (!btn && HomeHeroHero) {
-      addHomeHeroHeroImage(HomeHeroHero);
+  const finished = () => {
+    if (!btn && imageUrl) {
+      addNupImage(imageUrl);
       message.success(" Added successfully!", 3).then(() => form.resetFields());
-      setHomeHeroHero(null);
       setImageUrl(null);
       setProgress(0);
       setBtn(true);
@@ -66,20 +63,7 @@ const HomeHero = ({ addHomeHeroHeroImage }) => {
   return (
     <div className="mt4">
       <Form onFinish={finished} {...layout} form={form}>
-        <Form.Item
-          name="Hero_Slogan"
-          label="Hero_Slogan"
-          rules={[
-            {
-              required: true,
-              message: "Please enter a slogan.",
-              whitespace: true,
-            },
-          ]}
-        >
-                  <Input size="large" maxLength={ 35}/>
-        </Form.Item>
-        <Form.Item name="imageUrl" label="Home Hero Image">
+        <Form.Item name="imageUrl" label="Nup Image">
           <Input type="file" accept="image/*" onChange={onFileChange} />
           <div className="w-100">
             {progress !== 0 ? (
@@ -102,4 +86,4 @@ const HomeHero = ({ addHomeHeroHeroImage }) => {
     </div>
   );
 };
-export default connect(null, mapDispatchToProps)(HomeHero);
+export default connect(null, mapDispatchToProps)(NupImage);
