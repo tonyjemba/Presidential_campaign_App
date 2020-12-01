@@ -8,19 +8,22 @@ import { FiChevronsRight } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { Layout } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import peoplepower from "../../lotties/peoplepower.png";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, } from "react-redux-firebase";
 
 const { Content } = Layout;
-
-const MediumScreen = () => {
-   useFirestoreConnect([
-    { collection: 'images' }
-  ]);
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.Admin.currentUser,
+  };
+};
+const MediumScreen = ({ currentUser }) => {
+  useFirestoreConnect([{ collection: "images" }]);
   const images = useSelector((state) => state.firestore.ordered.images);
   const backgroundImage = images && images[2].imageUrl;
-   const NupImage = images && images[5].imageUrl;
+  const NupImage = images && images[5].imageUrl;
   return (
     <Layout>
       <Content>
@@ -29,21 +32,55 @@ const MediumScreen = () => {
             <div className="w-90 flex flex-row justify-between">
               <div className=" w-50 mt4 mb4">
                 <div className="fw7 " style={{ fontSize: "2.5vw" }}>
-                  Kyagulanyi can't win this struggle without you. sign up to
-                  volunteer Today.
+                  Make Kyagulanyi win this struggle by signing in to volunteer
+                  Today.
                   <br /> Lets do this together!
                 </div>
                 <div style={{ fontSize: "1vw" }}>
                   Thank you for joining our campaign to elect Kyagulanyi. By
                   providing your details you consent to recieve recurring text
                   messages from Kyagulanyi for president 2021.
-                  <Link to="/volunteer"  style={{color:"#ffffff"}}>click here</Link> to opt out.{" "}
+                  <Link to="/volunteer" style={{ color: "#ffffff" }}>
+                    click here
+                  </Link>{" "}
+                  to opt out.{" "}
                   <span className="fw5">
                     Terms and Conditions and Privacy policy
                   </span>
                 </div>
               </div>
-              <div className="w-33 mt3">{/* <VolunteerForm /> */}</div>
+              <div className="w-33 mt3">
+                {currentUser ? (
+                  <div className="w-100 tc mt4 ">
+                    <div
+                      style={{ fontWeight: "lighter", color: "#ffffff" ,fontSize:"16px"}}
+                    >
+                      Welcome back {currentUser.name}!
+                    </div>
+                    <div
+                      style={{ fontWeight: "lighter", color: "#ffffff",fontSize:"16px" }}
+                    >
+                      Thank You For Supporting Kyagulanyi.
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mt4">
+                    <Link to="/volunteer">
+                      <div className="w-100 flex justify-center">
+                        <div
+                          className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                          style={{
+                            backgroundColor: "#FF0000",
+                            fontSize: "14px",
+                          }}
+                        >
+                          Sign in
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div className="fh vh-75 w-100 relative">
@@ -351,15 +388,7 @@ const MediumScreen = () => {
                         </span>
                       </IconContext.Provider>
                     </span>
-                    2020-2021. All Rights Reserved. Coded by{" "}
-                    <span className="pointer ml1" style={{ color: "#0C0474" }}>
-                      <a
-                        target="_blank"
-                        href="https://www.twitter.com/TonyJjemba"
-                      >
-                        Jemba Tony
-                      </a>
-                    </span>
+                    2020-2021. All Rights Reserved. 
                   </div>
                   <div className="flex flex-row">
                     <Space size="large">
@@ -435,4 +464,4 @@ const MediumScreen = () => {
     </Layout>
   );
 };
-export default MediumScreen;
+export default connect(mapStateToProps)(MediumScreen);

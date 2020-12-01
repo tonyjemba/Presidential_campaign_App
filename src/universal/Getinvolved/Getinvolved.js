@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addVolunteer } from "../../Redux/Admin/Actions";
 
-const { Option } = Select;
 const { Title } = Typography;
 const { TextArea } = Input;
 const tailFormItemLayout = {

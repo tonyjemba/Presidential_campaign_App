@@ -15,6 +15,7 @@ import {
   firebaseConnect,
 } from "react-redux-firebase";
 import { Player, BigPlayButton, LoadingSpinner } from "video-react";
+import "video-react/dist/video-react.css";
 import Media from 'react-media';
 import { smaller } from '../universal/ScreenSize';
 import { addPublicVideo, } from "../Redux/video/Actions";

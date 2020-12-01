@@ -5,7 +5,7 @@ import { Collapse, Typography, Row,Affix, Col, Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
-import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
+import { CaretRightOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
@@ -18,7 +18,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { BsFillClockFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
 
-const { Content, Footer} = Layout;
+const { Content} = Layout;
 const { Paragraph, Title } = Typography;
 
 const { Panel } = Collapse;
@@ -30,7 +30,7 @@ class PhoneScreen extends React.Component {
   }
 
   render() {
-       const { events, news, HomeContent } = this.props;
+       const { events, news, HomeContent, currentUser } = this.props;
        const latest = events && events.slice(0, 5);
        const latestnews = news && news.slice(0, 4);
 
@@ -154,8 +154,6 @@ class PhoneScreen extends React.Component {
                        style={{
                          color: "#000000",
                          fontSize: "16px",
-                         textAlign: "justify",
-                         textJustify: "inter-word",
                          margin: "0px",
                        }}
                        className="fw7"
@@ -338,14 +336,51 @@ class PhoneScreen extends React.Component {
                       </div>
                       <div className="w-100  h-100 ">
                         <div
-                          className="fw7 w-100 tc white mb1 mt3"
-                          style={{ fontSize: "3.5vw" }}
+                          className=" w-100 tc white mb1 mt3"
+                          style={{ fontSize: "16px",fontWeight:"lighter" }}
                         >
-                          Sign up to Volunteer.
+                          {currentUser ? null : <div>Sign in to Volunteer.</div>}
                         </div>
                         <div className="w-100 flex  items-center justify-center">
                           <div className=" w-90">
-                            {/* <VolunteerForm size="large" /> */}
+                            {currentUser ? (
+                              <div className="w-100 tc">
+                                <div
+                                  style={{
+                                    fontWeight: "lighter",
+                                    color: "#ffffff",
+                                    fontSize: "16px",
+                                  }}
+                                >
+                                  Welcome back {currentUser.name}!
+                                </div>
+                                <div
+                                  style={{
+                                    fontWeight: "lighter",
+                                    color: "#ffffff",
+                                    fontSize: "16px",
+                                  }}
+                                >
+                                  Thank You For Supporting Kyagulanyi.
+                                </div>
+                              </div>
+                            ) : (
+                              <div>
+                                <Link to="/volunteer">
+                                  <div className="w-100 flex justify-center">
+                                    <div
+                                      className="w-33 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                                      style={{
+                                        backgroundColor: "#FF0000",
+                                        fontSize: "16px",
+                                      }}
+                                    >
+                                      Sign in
+                                    </div>
+                                  </div>
+                                </Link>
+                              </div>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -618,5 +653,6 @@ export default compose(
     events: state.firestore.ordered.events,
     news: state.firestore.ordered.news,
     HomeContent: state.firestore.ordered.HomeContent,
+    currentUser: state.Admin.currentUser,
   }))
 )(PhoneScreen);

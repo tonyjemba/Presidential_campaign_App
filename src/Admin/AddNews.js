@@ -134,7 +134,7 @@ const AddNews = ({addNews}) => {
                            
                           />
                           <div className="w-100">
-                               {progress !== 0 ? <Progress percent={progress}  status={`${progress==100?"success":"active"}`}  size="small"   strokeColor={{'0%': '#000080', '100%': '#ff0000',}}/>: null }
+                               {progress !== 0 ? <Progress percent={progress}  status={`${progress===100?"success":"active"}`}  size="small"   strokeColor={{'0%': '#000080', '100%': '#ff0000',}}/>: null }
                           </div>
                         </Form.Item>
                         <Form.Item

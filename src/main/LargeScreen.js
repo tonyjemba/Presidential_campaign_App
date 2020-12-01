@@ -31,7 +31,7 @@ class LargeScreen extends React.Component {
 
 
    render() {
-    const { events,news,HomeContent } = this.props;
+    const { events,news,HomeContent ,currentUser} = this.props;
      const latest = events && events.slice(0, 5);
      const latestnews = news && news.slice(0, 6);
 
@@ -94,8 +94,6 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
                 style={{
                   color: "#000000",
                   fontSize: "16px",
-                  textAlign: "justify",
-                  textJustify: "inter-word",
                   margin: "0px",
                 }}
                 className="fw7"
@@ -383,9 +381,45 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
                         className="fw7 white mb3"
                         style={{ fontSize: "1.8vw" }}
                       >
-                        Sign up to Volunteer.
+                        {currentUser?null:"Sign in to Volunteer."}
+                        {currentUser ? (
+                          <div className="w-100 tc">
+                            <Title
+                              level={4}
+                              style={{
+                                fontWeight: "lighter",
+                                color: "#ffffff",
+                              }}
+                            >
+                              Welcome back {currentUser.name}!
+                            </Title>
+                            <Title
+                              level={4}
+                              style={{
+                                fontWeight: "lighter",
+                                color: "#ffffff",
+                              }}
+                            >
+                              Thank You For Supporting Kyagulanyi.
+                            </Title>
+                          </div>
+                        ) : (
+                            <div>
+                              <Link to="/volunteer">
+                        <div className="w-100 flex justify-center">
+                          <div
+                            className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                            style={{
+                              backgroundColor: "#FF0000",
+                              fontSize: "16px",
+                            }}
+                          >
+                            Sign in
+                          </div>
+                        </div>
+                      </Link></div>
+                              )}
                       </div>
-                      {/* <VolunteerForm size="large" /> */}
                     </div>
                   </div>
                 </div>
@@ -650,5 +684,6 @@ export default compose(
     events: state.firestore.ordered.events,
     news: state.firestore.ordered.news,
     HomeContent: state.firestore.ordered.HomeContent,
+    currentUser: state.Admin.currentUser
   }))
 )(LargeScreen);

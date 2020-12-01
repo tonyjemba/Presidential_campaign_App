@@ -64,7 +64,10 @@ const PhoneScreen = ({ addStory }) => {
                       height: "100%",
                     }}
                   />
-                  <div className="w-100 imgdown absolute bottom-0 h-100 " style={{bottom:"0px"}}>
+                  <div
+                    className="w-100 imgdown absolute bottom-0 h-100 "
+                    style={{ bottom: "0px" }}
+                  >
                     <div style={{ color: "#0C0474" }}>HE</div>{" "}
                   </div>
                 </div>
@@ -102,21 +105,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<SiStorybook />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing Creative Direction,
-                      User Exerience, Visual Design, SEO, Online
-                      MarketingCreative Direction, User Experience, Visual
-                      Design, SEO, Online Marketing Creative Direction, User
-                      Exerience, Visual Design, SEO, Online MarketingCreative
-                      Direction, User Experience, Visual Design, SEO, Online
-                      Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -135,15 +130,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<FaRegLifeRing />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -162,15 +155,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<FaRegLifeRing />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -189,15 +180,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<FaRegLifeRing />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -216,15 +205,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<FaRegLifeRing />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -243,15 +230,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<FaRegLifeRing />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -270,15 +255,13 @@ const PhoneScreen = ({ addStory }) => {
                     icon={<FaRegLifeRing />}
                   >
                     <h3 className="vertical-timeline-element-title white">
-                      Art Director
+                      President
                     </h3>
                     <h4 className="vertical-timeline-element-subtitle ehite">
-                      San Francisco, CA
+                      Kampala,UG
                     </h4>
                     <div className="white " style={{ fontSize: "14px" }}>
-                      Creative Direction, User Exerience, Visual Design, SEO,
-                      Online MarketingCreative Direction, User Experience,
-                      Visual Design, SEO, Online Marketing
+                      about Kyagulanyi....
                     </div>
                   </VerticalTimelineElement>
                   <VerticalTimelineElement
@@ -378,9 +361,7 @@ const PhoneScreen = ({ addStory }) => {
                           onChange={(e) => setStory({ story: e.target.value })}
                         />
                       </Form.Item>
-                      <Form.Item
-                        wrapperCol={{ ...layout.wrapperCol,}}
-                      >
+                      <Form.Item wrapperCol={{ ...layout.wrapperCol }}>
                         <Button
                           htmlType="submit"
                           size="large"

@@ -4,13 +4,18 @@ import { FaRegCopyright } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { Layout } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import peoplepower from "../../lotties/peoplepower.png";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, } from "react-redux-firebase";
 
 const { Content } = Layout;
-
-const PhoneScreen = () => {
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.Admin.currentUser,
+  };
+};
+const PhoneScreen = ({currentUser}) => {
       useFirestoreConnect([
     { collection: 'images' }
   ]);
@@ -26,8 +31,8 @@ const PhoneScreen = () => {
               <div className="w-90 flex flex-column justify-between">
                 <div className=" w-100 mt4 mb4">
                   <div className="fw7 " style={{ fontSize: "4.5vw" }}>
-                    Kyagulanyi can't win this struggle without you. sign up to
-                    volunteer Today.
+                    Make Kyagulanyi win this struggle by signing in to volunteer
+                    Today.
                     <br /> Lets do this together!
                   </div>
                   <div style={{ fontSize: "12px" }}>
@@ -44,7 +49,44 @@ const PhoneScreen = () => {
                   </div>
                 </div>
                 <div className="w-100 mt3 mb4">
-                  {/* <VolunteerForm size="large" /> */}
+                  {currentUser ? (
+                    <div className="w-100 tc  ">
+                      <div
+                        style={{
+                          fontWeight: "lighter",
+                          color: "#ffffff",
+                          fontSize: "16px",
+                        }}
+                      >
+                        Welcome back {currentUser.name}!
+                      </div>
+                      <div
+                        style={{
+                          fontWeight: "lighter",
+                          color: "#ffffff",
+                          fontSize: "16px",
+                        }}
+                      >
+                        Thank You For Supporting Kyagulanyi.
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="">
+                      <Link to="/volunteer">
+                        <div className="w-100 flex justify-center">
+                          <div
+                            className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                            style={{
+                              backgroundColor: "#FF0000",
+                              fontSize: "14px",
+                            }}
+                          >
+                            Sign in
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -110,16 +152,6 @@ const PhoneScreen = () => {
                       </IconContext.Provider>
                     </span>
                     2020-2021. All Rights Reserved.
-                    <br /> Coded by{" "}
-                    <a
-                      target="_blank"
-                      href="https://www.twitter.com/TonyJjemba"
-                    >
-                      Jemba Tony
-                    </a>
-                    {/* <span className="pointer ml1" style={{ color: "#0C0474" }}>
-                      Jemba Tony
-                    </span> */}
                   </div>
 
                   <div className=" mt2  ppp pointer">
@@ -138,5 +170,5 @@ const PhoneScreen = () => {
     </Layout>
   );
 };
-export default PhoneScreen;
+export default connect(mapStateToProps)(PhoneScreen);
 

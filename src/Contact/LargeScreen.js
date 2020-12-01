@@ -217,7 +217,7 @@ const LargeScreen = ({ addMessage }) => {
                         <TextArea
                           rows={6}
                           style={{ fontSize: "16px" }}
-                          placeholder="Type is your Message here..."
+                          placeholder="Type your Message here..."
                           onChange={(e) => setstory({ msg: e.target.value })}
                         />
                       </Form.Item>

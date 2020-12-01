@@ -241,7 +241,9 @@ export const addNupImage = (image) => {
 };
 export const addUser = (user) => {
   return { type: "CURRENT_USER", payload: user } 
-
+};
+  export const prevPath = (path) => {
+  return { type: "PREV_PATH", payload: path } 
   };
 //d
 //dELETING

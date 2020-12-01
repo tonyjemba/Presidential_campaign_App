@@ -105,21 +105,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<SiStorybook />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing Creative Direction,
-                        User Exerience, Visual Design, SEO, Online
-                        MarketingCreative Direction, User Experience, Visual
-                        Design, SEO, Online Marketing Creative Direction, User
-                        Exerience, Visual Design, SEO, Online MarketingCreative
-                        Direction, User Experience, Visual Design, SEO, Online
-                        Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -138,15 +130,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -165,15 +155,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -192,15 +180,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -219,15 +205,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -246,15 +230,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -273,15 +255,13 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        Art Director
+                        President
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        San Francisco, CA
+                        Kampala, UG
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        Creative Direction, User Exerience, Visual Design, SEO,
-                        Online MarketingCreative Direction, User Experience,
-                        Visual Design, SEO, Online Marketing
+                        about Kyagulanyi....
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement

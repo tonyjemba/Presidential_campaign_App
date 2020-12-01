@@ -29,7 +29,7 @@ class MediumScreen extends React.Component {
   }
 
   render() {
-    const { events, news, HomeContent } = this.props;
+    const { events, news, HomeContent,currentUser } = this.props;
     const latest = events && events.slice(0, 5);
     const latestnews = news && news.slice(0, 6);
 
@@ -91,8 +91,6 @@ class MediumScreen extends React.Component {
                     style={{
                       color: "#000000",
                       fontSize: "16px",
-                      textAlign: "justify",
-                      textJustify: "inter-word",
                       margin: "0px",
                     }}
                     className="fw7"
@@ -360,12 +358,48 @@ class MediumScreen extends React.Component {
                   <div className="w-40 mt4 mb4 mr2">
                     <div className=" h-100 flex flex-column items-center justify-center">
                       <div
-                        className="fw7 white mb3"
-                        style={{ fontSize: "1.8vw" }}
+                        className=" white mb3"
                       >
-                        Sign up to Volunteer.
+                        {currentUser ? null : <Title level={1} style={{color:"#ffffff",fontWeight:"lighter"}}>Sign in to Volunteer.</Title>}
+                        {currentUser ? (
+                          <div className="w-100 tc">
+                            <Title
+                              level={4}
+                              style={{
+                                fontWeight: "lighter",
+                                color: "#ffffff",
+                              }}
+                            >
+                              Welcome back {currentUser.name}!
+                            </Title>
+                            <Title
+                              level={4}
+                              style={{
+                                fontWeight: "lighter",
+                                color: "#ffffff",
+                              }}
+                            >
+                              Thank You For Supporting Kyagulanyi.
+                            </Title>
+                          </div>
+                        ) : (
+                          <div>
+                            <Link to="/volunteer">
+                              <div className="w-100 flex justify-center">
+                                <div
+                                  className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                                  style={{
+                                    backgroundColor: "#FF0000",
+                                    fontSize: "16px",
+                                  }}
+                                >
+                                  Sign in
+                                </div>
+                              </div>
+                            </Link>
+                          </div>
+                        )}
                       </div>
-                      {/* <VolunteerForm size="large" /> */}
                     </div>
                   </div>
                 </div>
@@ -426,7 +460,6 @@ class MediumScreen extends React.Component {
                     </div>
                   </div>
                 </Content>
-               
               </Layout>
               <div className="w-100 flex justify-center items-center">
                 <div className="w-90  flex flex-row justify-between">
@@ -496,59 +529,59 @@ class MediumScreen extends React.Component {
           </Layout>
         </Layout>
         <Layout style={{ backgroundColor: "#ffffff" }}>
-                <Content style={{ backgroundColor: "#ffffff" }}>
-        <div className="w-100 flex justify-center bg-white mt6">
-          <div className="w-50">
-            <div
-              className="w-100  pl3 pr3 pt4 pb4 mt4 pointer"
-              style={{
-                backgroundColor: "#00acee50",
-                border: "10px",
-                borderColor: "blue",
-              }}
-            >
-              <Title
-                style={{
-                  color: "white",
-                  cursor: "default",
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-                level={4}
-              >
-                <div className="mr2">
-                  <IconContext.Provider
-                    value={{
-                      color: "#00acee",
-                      size: "17px",
-                    }}
-                  >
-                    <div className="pointer  ">
-                      <GrTwitter />
-                    </div>
-                  </IconContext.Provider>
-                </div>
-                <div>Latest Tweet</div>
-              </Title>
-              <div className="fw7 white mt2" style={{ fontStyle: "16px" }}>
-                <TwitterTimelineEmbed
-                  sourceType="profile"
-                  screenName="HEBobiwine"
-                  options={{
-                    tweetLimit: "1",
-                    width: "100%",
-                    height: "100%",
+          <Content style={{ backgroundColor: "#ffffff" }}>
+            <div className="w-100 flex justify-center bg-white mt6">
+              <div className="w-50">
+                <div
+                  className="w-100  pl3 pr3 pt4 pb4 mt4 pointer"
+                  style={{
+                    backgroundColor: "#00acee50",
+                    border: "10px",
+                    borderColor: "blue",
                   }}
-                  noHeader="true"
-                  noBorders="true"
-                  noFooter="true"
-                ></TwitterTimelineEmbed>
+                >
+                  <Title
+                    style={{
+                      color: "white",
+                      cursor: "default",
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                    level={4}
+                  >
+                    <div className="mr2">
+                      <IconContext.Provider
+                        value={{
+                          color: "#00acee",
+                          size: "17px",
+                        }}
+                      >
+                        <div className="pointer  ">
+                          <GrTwitter />
+                        </div>
+                      </IconContext.Provider>
+                    </div>
+                    <div>Latest Tweet</div>
+                  </Title>
+                  <div className="fw7 white mt2" style={{ fontStyle: "16px" }}>
+                    <TwitterTimelineEmbed
+                      sourceType="profile"
+                      screenName="HEBobiwine"
+                      options={{
+                        tweetLimit: "1",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                      noHeader="true"
+                      noBorders="true"
+                      noFooter="true"
+                    ></TwitterTimelineEmbed>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-            </div>
-            </Content>
-            </Layout>
+          </Content>
+        </Layout>
         <div className="w-100 bg-white pt5 flex justify-center items-center">
           <div className="w-90 flex flex-row justify-between ">
             <div className="w-70 flex flex-row justify-center items-center">
@@ -596,34 +629,34 @@ class MediumScreen extends React.Component {
             </Link>
 
             <div className="w-100 ">
-                <div className="w-100 mt4">
-                  <Row gutter={[30, 34]}>
-                    {latestnews &&
-                      latestnews.map((news) => (
-                        <NewsCard
-                          key={news.id}
-                          id={news.id}
-                          date={moment(news.Date.toDate()).calendar()}
-                          author={news.Author}
-                          span={12}
-                          fontSize="17px"
-                          title={news.Title}
-                          image={news.photoUrl}
-                        />
-                      ))}
-                  </Row>
-                </div>
-                <div className="w-100 flex justify-center items-center">
-                  <Link to="/news">
-                    <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
-                      <div
-                        className="fw7"
-                        style={{ fontSize: "16px", color: "#ffffff" }}
-                      >
-                        SEE MORE
-                      </div>
+              <div className="w-100 mt4">
+                <Row gutter={[30, 34]}>
+                  {latestnews &&
+                    latestnews.map((news) => (
+                      <NewsCard
+                        key={news.id}
+                        id={news.id}
+                        date={moment(news.Date.toDate()).calendar()}
+                        author={news.Author}
+                        span={12}
+                        fontSize="17px"
+                        title={news.Title}
+                        image={news.photoUrl}
+                      />
+                    ))}
+                </Row>
+              </div>
+              <div className="w-100 flex justify-center items-center">
+                <Link to="/news">
+                  <div className="Hbtn  mt3 flex redbg justify-center pl4 pr4 pt1 pb1 mb5 hover-bg-dark-red items-center pointer">
+                    <div
+                      className="fw7"
+                      style={{ fontSize: "16px", color: "#ffffff" }}
+                    >
+                      SEE MORE
                     </div>
-                  </Link>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -642,5 +675,6 @@ export default compose(
     events: state.firestore.ordered.events,
     news: state.firestore.ordered.news,
     HomeContent: state.firestore.ordered.HomeContent,
+    currentUser: state.Admin.currentUser,
   }))
 )(MediumScreen);

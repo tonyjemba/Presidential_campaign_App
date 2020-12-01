@@ -15,6 +15,7 @@ import {
   Spin,
 } from 'antd'
 import { addVideo } from '../Redux/video/Actions';
+import { prevPath} from "../Redux/Admin/Actions";
 import firebase from '../base';
 import { Link } from 'react-router-dom';
 import 'video-react/dist/video-react.css';
@@ -39,39 +40,44 @@ const layout = {
   wrapperCol: { span: 16 },
 }
 
-const VideoTemplate = ({ desc, video, date, location }) => {
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.Admin.currentUser
+  }
+}
+const VideoTemplate = ({ desc, video, date, location,  }) => {
   return (
     <div>
       <div className="w-100">
-        <div className="w-100 bg-red" style={{ height: '40vh' }}>
+        <div className="w-100 bg-red" style={{ height: "40vh" }}>
           <Player src={video} fluid={false} height="100%" width="100%">
             <BigPlayButton position="center" />
             <LoadingSpinner />
-             <ControlBar autoHide={false}>
+            <ControlBar autoHide={false}>
               <ReplayControl seconds={10} order={2.2} />
             </ControlBar>
           </Player>
         </div>
-        <div className="flex flex-row" style={{ cursor: 'default' }}>
-          <div className="fw2 mr4" style={{ fontSize: '16px' }}>
+        <div className="flex flex-row" style={{ cursor: "default" }}>
+          <div className="fw2 mr4" style={{ fontSize: "16px" }}>
             {moment(date.toDate()).calendar()}
           </div>
-          <div style={{ fontSize: '16px' }} className="fw2">
+          <div style={{ fontSize: "16px" }} className="fw2">
             {location}
           </div>
         </div>
         <div className="fw7">
           <Paragraph
             ellipsis={{ rows: 3, expandable: true }}
-            style={{ color: 'black', fontSize: '16px' }}
+            style={{ color: "black", fontSize: "16px" }}
           >
             {desc}
           </Paragraph>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ReachableContext = React.createContext()
 
@@ -97,12 +103,13 @@ const config = {
 const mapDispatchToProps = (dispatch) => {
   return {
     addVideo: (video) => dispatch(addVideo(video)),
+    prevPath: (path) => dispatch(prevPath(path))
   }
 }
-const LargeScreen = ({ addVideo }) => {
-  const [modal, contextHolder] = Modal.useModal()
+const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
+  const [modal, contextHolder] = Modal.useModal();
 
-  const [videoUrl, setvideoUrl] = useState('');
+  const [videoUrl, setvideoUrl] = useState("");
   const [progress, setProgress] = useState(0);
   const [btn, setBtn] = useState(true);
   const [published] = useState({ published: false });
@@ -110,94 +117,99 @@ const LargeScreen = ({ addVideo }) => {
   const [videoState, setvideoState] = useState(false);
 
   const [searchInput, set_searchInput] = useState("");
-  const [search,setSearch] = useState(false)
+  const [search, setSearch] = useState(false);
 
   useFirestoreConnect([
     { collection: "Public_Videos", orderBy: ["Date", "desc"] },
   ]);
   const videos = useSelector((state) => state.firestore.ordered.Public_Videos);
 
-  
   const doSearch = (e) => {
     set_searchInput(e.target.value);
     setSearch(true);
-  }
-const filteredArray = videos && videos.filter(video => `${video.Description.toLowerCase()} + ${video.Location.toLowerCase()} + ${moment(video.Date.toDate()).calendar().toLowerCase()}`.includes(searchInput.toLowerCase()));
-  
+  };
+  const filteredArray =
+    videos &&
+    videos.filter((video) =>
+      `${video.Description.toLowerCase()} + ${video.Location.toLowerCase()} + ${moment(
+        video.Date.toDate()
+      )
+        .calendar()
+        .toLowerCase()}`.includes(searchInput.toLowerCase())
+    );
 
   const onFileChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (file.size < 50000000) {
-      setvideoState(false)
-      const storageRef = firebase.storage().ref()
-      const fileRef = storageRef.child("videos/" + file.name)
-      const uploadTask = fileRef.put(file)
+      setvideoState(false);
+      const storageRef = firebase.storage().ref();
+      const fileRef = storageRef.child("videos/" + file.name);
+      const uploadTask = fileRef.put(file);
 
       uploadTask.on(
-        'state_changed',
+        "state_changed",
         (snapshot) => {
           const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
-          )
-          setProgress(progress)
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
         },
         (e) => {
-          console.log(e)
+          console.log(e);
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((url) => {
             setvideoUrl({ videoUrl: url, Path: fileRef.fullPath });
-            setBtn(false)
-          })
-        },
-      )
-      return
+            setBtn(false);
+          });
+        }
+      );
+      return;
     }
-    setvideoState(true)
-    modal.warning(config)
-  }
+    setvideoState(true);
+    modal.warning(config);
+  };
 
   const onFinish = (values) => {
-    
     if (values) {
-      addVideo({ ...values, Date: values.Date._d, ...videoUrl, ...published });;
+      addVideo({ ...values, Date: values.Date._d, ...videoUrl, ...published });
       message
-        .success('Video Has been uploaded!', 3)
-        .then(() => form.resetFields())
-      setvideoUrl(null)
-      setProgress(0)
-      setBtn(true)
-      return
+        .success("Video has been uploaded!", 3)
+        .then(() => form.resetFields());
+      setvideoUrl(null);
+      setProgress(0);
+      setBtn(true);
+      return;
     }
     message
-      .loading('Verification in progress..', 3)
-      .then(() => message.info('Verified! Now try Again.', 3.5))
-  }
+      .loading("Verification in progress..", 3)
+      .then(() => message.info("Verified! Now try Again.", 3.5));
+  };
 
   return (
-    <Layout style={{ backgroundColor: '#ffffff' }}>
+    <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
-        <div className="w-100" style={{ backgroundColor: '#f9f9f9' }}>
+        <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title
                 level={4}
                 style={{
-                  color: '#0C0474',
-                  fontWeight: '700',
-                  cursor: 'default',
+                  color: "#0C0474",
+                  fontWeight: "700",
+                  cursor: "default",
                 }}
               >
                 ARCHIVES: VIDEOS
               </Title>
               <div
                 style={{
-                  color: '#0C0474',
-                  fontSize: '16px',
-                  cursor: 'default',
+                  color: "#0C0474",
+                  fontSize: "16px",
+                  cursor: "default",
                 }}
               >
-                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{' '}
+                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{" "}
               </div>
             </div>
           </div>
@@ -213,42 +225,53 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   {videoState ? (
                     <div>
                       <Title level={4}>Please compress your video:</Title>
-                      <Title level={1} style={{ fontSize: '16px' }}>
+                      <Title level={1} style={{ fontSize: "16px" }}>
                         How To Do This
                       </Title>
-                      <div className="mt3" style={{ fontSize: '16px' }}>
-                        Option 1:{' '}
+                      <div className="mt3" style={{ fontSize: "16px" }}>
+                        Option 1:{" "}
                         <a target="_blank" href="https://www.youcompress.com/">
                           Click Here
-                        </a>{' '}
+                        </a>{" "}
                         to visit site.
                       </div>
-                      <div className="mt3" style={{ fontSize: '16px' }}>
-                        Option 2:{' '}
+                      <div className="mt3" style={{ fontSize: "16px" }}>
+                        Option 2:{" "}
                         <a
                           target="_blank"
                           href="https://play.google.com/store/apps/details?id=com.outplaylab.VideoDiet2&hl=en"
                         >
-                          {' '}
+                          {" "}
                           Click Here
-                        </a>{' '}
+                        </a>{" "}
                         to Download app from PlayStore.
                       </div>
-                      <div className="mt3 mb4" style={{ fontSize: '16px' }}>
-                        Option 3:{' '}
+                      <div className="mt3 mb4" style={{ fontSize: "16px" }}>
+                        Option 3:{" "}
                         <a
                           target="_blank"
                           href="https://videoconverter.wondershare.net/"
                         >
-                          {' '}
+                          {" "}
                           Click Here
-                        </a>{' '}
+                        </a>{" "}
                         to Download desktop app.
                       </div>
                     </div>
-                  ) : null}{' '}
+                  ) : null}{" "}
                 </div>
-               
+                <div className="w-100 tc mb4">
+                  {currentUser ? null : (
+                    <Link to="/volunteer">
+                      <Title
+                        level={1}
+                        style={{ fontWeight: "lighter", fontSize: "20px" }}
+                      >
+                        Sign in as a Volunteer to proceed
+                      </Title>
+                    </Link>
+                  )}
+                </div>
                 <Form onFinish={onFinish} {...layout} form={form}>
                   <Form.Item name="videoUrl" label="Add video">
                     <Input
@@ -260,9 +283,9 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                       {progress !== 0 ? (
                         <Progress
                           percent={progress}
-                          status={`${progress == 100 ? 'success' : 'active'}`}
+                          status={`${progress == 100 ? "success" : "active"}`}
                           size="small"
-                          strokeColor={{ '0%': '#000080', '100%': '#ff0000' }}
+                          strokeColor={{ "0%": "#000080", "100%": "#ff0000" }}
                         />
                       ) : null}
                     </div>
@@ -273,7 +296,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     rules={[
                       {
                         required: true,
-                        message: 'Please enter the Location!',
+                        message: "Please enter the Location!",
                         whitespace: true,
                       },
                     ]}
@@ -289,7 +312,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     rules={[
                       {
                         required: true,
-                        message: 'Please enter the Description!',
+                        message: "Please enter the Description!",
                         whitespace: true,
                       },
                     ]}
@@ -300,42 +323,35 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     />
                   </Form.Item>
                   <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                    <Button htmlType="submit" type="primary" disabled={btn}>
-                      Upload
-                    </Button>
+                    {currentUser ? (
+                      <Button htmlType="submit" type="primary" disabled={btn}>
+                        Upload
+                      </Button>
+                    ) : (
+                      <Link to="/volunteer">
+                        <Button
+                          disabled
+                          type="primary"
+                          onClick={() => prevPath("/videos")}
+                        >
+                          Upload
+                        </Button>
+                      </Link>
+                    )}
                   </Form.Item>
                 </Form>
               </div>
             </div>
 
-            <div className="mt5">
-              <div
-                className="black fw5"
-                style={{ fontSize: '18px', cursor: 'default' }}
-              >
-                Have no Account? Create one now to upload videos.Lets expose
-                them!{' '}
-                <span
-                  className="fw7"
-                  style={{
-                    color: '#0C0474',
-                    fontSize: '18px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  CREATE ACCOUNT
-                </span>
-              </div>
-            </div>
             <div className="w-100 mt5">
               <div className="w-40">
                 <Divider orientation="right">
                   <div
                     className="fw7"
                     style={{
-                      color: '#0C0474',
-                      fontSize: '18px',
-                      cursor: 'default',
+                      color: "#0C0474",
+                      fontSize: "18px",
+                      cursor: "default",
                     }}
                   >
                     UPLOADED VIDEOS
@@ -343,17 +359,21 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                 </Divider>
               </div>
               <div className="flex flex-column w-50">
-                  <div className="fw7 black" style={{ fontSize: "1.5vw" }}>
-                    Find Video
-                  </div>
-                  <div className="w-100 flex flex-row">
-                      <Input placeholder="Use any Keyword : Date, Location or anything" size="large" onChange={doSearch}/>
-                  </div>
+                <div className="fw7 black" style={{ fontSize: "1.5vw" }}>
+                  Find Video
                 </div>
+                <div className="w-100 flex flex-row">
+                  <Input
+                    placeholder="Use any Keyword : Date, Location or anything"
+                    size="large"
+                    onChange={doSearch}
+                  />
+                </div>
+              </div>
             </div>
             <div
               className="w-100 "
-              style={{ display: 'flex', justifyContent: 'flex-end' }}
+              style={{ display: "flex", justifyContent: "flex-end" }}
             >
               <div>
                 <Select defaultValue="date" style={{ width: 200 }}>
@@ -382,7 +402,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
               ) : (
                 <List
                   grid={{ gutter: [15, 30], column: 3 }}
-                  dataSource={search?filteredArray:videos}
+                  dataSource={search ? filteredArray : videos}
                   pagination={{
                     showSizeChanger: true,
                     pageSize: 51,
@@ -405,6 +425,6 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
         </div>
       </Content>
     </Layout>
-  )
-}
-export default connect(null, mapDispatchToProps)(LargeScreen)
+  );
+};
+export default connect(mapStateToProps, mapDispatchToProps)(LargeScreen)

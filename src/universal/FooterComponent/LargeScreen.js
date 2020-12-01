@@ -1,20 +1,26 @@
 import React from "react";
 import "./css/footercomponent.css";
-import { Space } from "antd";
+import { Space,Typography} from "antd";
 import { FaRegCopyright } from "react-icons/fa";
 import { GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
 import { FiChevronsRight } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { Layout } from "antd";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import peoplepower from "../../lotties/peoplepower.png";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, } from "react-redux-firebase";
 
 const { Content } = Layout;
-
-const LargeScreen = () => {
+const { Title } = Typography;
+const mapStateToProps = (state) => {
+  return {
+    currentUser:state.Admin.currentUser
+  }
+}
+const LargeScreen = ({currentUser}) => {
   useFirestoreConnect([
     { collection: 'images' }
   ]);
@@ -29,8 +35,8 @@ const LargeScreen = () => {
             <div className="w-90 flex flex-row justify-between">
               <div className=" w-50 mt4 mb4">
                 <div className="fw7 " style={{ fontSize: "2.5vw" }}>
-                  Kyagulanyi can't win this struggle without you. sign up to
-                  volunteer Today.
+                  Make Kyagulanyi win this struggle by signing in to volunteer
+                  Today.
                   <br /> Lets do this together!
                 </div>
                 <div style={{ fontSize: "1vw" }}>
@@ -47,7 +53,28 @@ const LargeScreen = () => {
                 </div>
               </div>
               <div id="getInvolved" className="w-33 mt5">
-                {/* <VolunteerForm /> */}
+                {currentUser ? (
+                  <div className="w-100 tc">
+                    <Title level={4} style={{fontWeight:"lighter",color:"#ffffff"}}>Welcome back {currentUser.name}!</Title>
+                    <Title level={4} style={{fontWeight:"lighter",color:"#ffffff"}}>Thank You For Supporting Kyagulanyi.</Title>
+                  </div>
+                ) : (
+                    <div>
+                      <Link to="/volunteer">
+                        <div className="w-100 flex justify-center">
+                          <div
+                            className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                            style={{
+                              backgroundColor: "#FF0000",
+                              fontSize: "16px",
+                            }}
+                          >
+                            Sign in
+                          </div>
+                        </div>
+                      </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -357,15 +384,8 @@ const LargeScreen = () => {
                         </span>
                       </IconContext.Provider>
                     </span>
-                    2020-2021. All Rights Reserved. Coded by{" "}
-                    <span className="pointer ml1" style={{ color: "#0C0474" }}>
-                      <a
-                        target="_blank"
-                        href="https://www.twitter.com/TonyJjemba"
-                      >
-                        Jemba Tony
-                      </a>
-                    </span>
+                    2020-2021. All Rights Reserved. 
+                    
                   </div>
                   <div className="flex flex-row">
                     <Space size="large">
@@ -441,4 +461,4 @@ const LargeScreen = () => {
     </Layout>
   );
 };
-export default LargeScreen;
+export default connect(mapStateToProps)(LargeScreen);

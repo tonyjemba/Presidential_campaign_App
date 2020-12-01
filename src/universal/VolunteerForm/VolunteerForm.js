@@ -20,8 +20,7 @@ const VolunteerForm = ({ addUser }) => {
 
 
   const uiConfig = {
-    signInFlow: "redirect",
-   signInSuccessUrl:"/volunteer",
+    signInFlow: "popup",
     signInOptions: [
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -33,13 +32,15 @@ const VolunteerForm = ({ addUser }) => {
         const userInfo = result.additionalUserInfo;
         if (userInfo.isNewUser && userInfo.providerId === "password") {
           try {
-            await result.user.sendEmailVerification();
-            Modal.info({
-              title: "Sign-in Email sent",
-              content: `A sign-in email with additional instructions was sent to ${
-                firebase.auth().currentUser.email
-              } Check your email to complete sign-in.`,
+            await result.user.sendEmailVerification().then(() => {
+               Modal.info({
+                 title: "Sign-in Email sent",
+                 content: `A sign-in email with additional instructions was sent to ${
+                   firebase.auth().currentUser.email
+                 } Check your email to complete sign-in.`,
+               });
             });
+           
           } catch (e) {
             Modal.error({
               title: "Error",
@@ -87,14 +88,16 @@ const VolunteerForm = ({ addUser }) => {
       </div>
     );
   }
-  
- addUser({
+  if(firebase.auth().currentUser.emailVerified ){
+addUser({
    verified: firebase.auth().currentUser.emailVerified,
    email: firebase.auth().currentUser.email,
    name: firebase.auth().currentUser.displayName,
    phoneNumber: firebase.auth().currentUser.phoneNumber,
-   photoUrl: firebase.auth().currentUser.p
+   photoUrl: firebase.auth().currentUser.photoURL
  });
+  }
+ 
     return (
       <div className="w-100 tc mt6 mb6">
         {firebase.auth().currentUser.emailVerified ? (
@@ -106,7 +109,8 @@ const VolunteerForm = ({ addUser }) => {
               You are a Volunteer!
             </Title>
             <div className="mt4 mb3">SignOut to opt-out</div>
-            <Button type="primary" onClick={() => firebase.auth().signOut()}>
+            <Button type="primary" onClick={() => { firebase.auth().signOut();
+            addUser(null)}}>
               Sign Out
             </Button>
           </div>

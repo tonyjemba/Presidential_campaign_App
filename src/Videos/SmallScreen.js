@@ -28,6 +28,7 @@ import {
   ControlBar,
 } from "video-react";
 import moment from 'moment'
+import { prevPath } from "../Redux/Admin/Actions";
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 const { Content } = Layout
@@ -97,9 +98,15 @@ const config = {
 const mapDispatchToProps = (dispatch) => {
   return {
     addVideo: (video) => dispatch(addVideo(video)),
-  }
+    prevPath: (path) => dispatch(prevPath(path)),
+  };
 }
-const SmallScreen = ({ addVideo }) => {
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.Admin.currentUser,
+  };
+};
+const SmallScreen = ({ addVideo,prevPath,currentUser }) => {
   const [modal, contextHolder] = Modal.useModal()
 
   const [videoUrl, setvideoUrl] = useState('')
@@ -173,29 +180,29 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
   }
 
   return (
-    <Layout style={{ backgroundColor: '#ffffff' }}>
+    <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
-        <div className="w-100" style={{ backgroundColor: '#f9f9f9' }}>
+        <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title
                 level={4}
                 style={{
-                  color: '#0C0474',
-                  fontWeight: '700',
-                  cursor: 'default',
+                  color: "#0C0474",
+                  fontWeight: "700",
+                  cursor: "default",
                 }}
               >
                 ARCHIVES: VIDEOS
               </Title>
               <div
                 style={{
-                  color: '#0C0474',
-                  fontSize: '16px',
-                  cursor: 'default',
+                  color: "#0C0474",
+                  fontSize: "16px",
+                  cursor: "default",
                 }}
               >
-                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{' '}
+                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{" "}
               </div>
             </div>
           </div>
@@ -211,42 +218,53 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   {videoState ? (
                     <div>
                       <Title level={4}>Please compress your video:</Title>
-                      <Title level={1} style={{ fontSize: '16px' }}>
+                      <Title level={1} style={{ fontSize: "16px" }}>
                         How To Do This
                       </Title>
-                      <div className="mt3" style={{ fontSize: '16px' }}>
-                        Option 1:{' '}
+                      <div className="mt3" style={{ fontSize: "16px" }}>
+                        Option 1:{" "}
                         <a target="_blank" href="https://www.youcompress.com/">
                           Click Here
-                        </a>{' '}
+                        </a>{" "}
                         to visit site.
                       </div>
-                      <div className="mt3" style={{ fontSize: '16px' }}>
-                        Option 2:{' '}
+                      <div className="mt3" style={{ fontSize: "16px" }}>
+                        Option 2:{" "}
                         <a
                           target="_blank"
                           href="https://play.google.com/store/apps/details?id=com.outplaylab.VideoDiet2&hl=en"
                         >
-                          {' '}
+                          {" "}
                           Click Here
-                        </a>{' '}
+                        </a>{" "}
                         to Download app from PlayStore.
                       </div>
-                      <div className="mt3 mb4" style={{ fontSize: '16px' }}>
-                        Option 3:{' '}
+                      <div className="mt3 mb4" style={{ fontSize: "16px" }}>
+                        Option 3:{" "}
                         <a
                           target="_blank"
                           href="https://videoconverter.wondershare.net/"
                         >
-                          {' '}
+                          {" "}
                           Click Here
-                        </a>{' '}
+                        </a>{" "}
                         to Download desktop app.
                       </div>
                     </div>
-                  ) : null}{' '}
+                  ) : null}{" "}
                 </div>
-
+                <div className="w-100 tc mb4">
+                  {currentUser ? null : (
+                    <Link to="/volunteer">
+                      <Title
+                        level={1}
+                        style={{ fontWeight: "lighter", fontSize: "20px" }}
+                      >
+                        Sign in as a Volunteer to proceed
+                      </Title>
+                    </Link>
+                  )}
+                </div>
                 <Form onFinish={onFinish} {...layout} form={form}>
                   <Form.Item name="videoUrl" label="Add video">
                     <Input
@@ -258,9 +276,9 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                       {progress !== 0 ? (
                         <Progress
                           percent={progress}
-                          status={`${progress == 100 ? 'success' : 'active'}`}
+                          status={`${progress == 100 ? "success" : "active"}`}
                           size="small"
-                          strokeColor={{ '0%': '#000080', '100%': '#ff0000' }}
+                          strokeColor={{ "0%": "#000080", "100%": "#ff0000" }}
                         />
                       ) : null}
                     </div>
@@ -271,7 +289,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     rules={[
                       {
                         required: true,
-                        message: 'Please enter the Location!',
+                        message: "Please enter the Location!",
                         whitespace: true,
                       },
                     ]}
@@ -287,7 +305,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     rules={[
                       {
                         required: true,
-                        message: 'Please enter the Description!',
+                        message: "Please enter the Description!",
                         whitespace: true,
                       },
                     ]}
@@ -298,60 +316,57 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     />
                   </Form.Item>
                   <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                    <Button htmlType="submit" type="primary" disabled={btn}>
-                      Upload
-                    </Button>
+                    {currentUser ? (
+                      <Button htmlType="submit" type="primary" disabled={btn}>
+                        Upload
+                      </Button>
+                    ) : (
+                      <Link to="/volunteer">
+                        <Button
+                          disabled
+                          type="primary"
+                          onClick={() => prevPath("/videos")}
+                        >
+                          Upload
+                        </Button>
+                      </Link>
+                    )}
                   </Form.Item>
                 </Form>
               </div>
             </div>
 
-            <div className="mt5">
-              <div
-                className="black fw5"
-                style={{ fontSize: '18px', cursor: 'default' }}
-              >
-                Have no Account? Create one now to upload videos.Lets expose
-                them!{' '}
-                <span
-                  className="fw7"
-                  style={{
-                    color: '#0C0474',
-                    fontSize: '18px',
-                    cursor: 'pointer',
-                  }}
-                >
-                  CREATE ACCOUNT
-                </span>
-              </div>
-            </div>
             <div className="w-100 mt5">
               <div className="w-40">
                 <Divider orientation="right">
                   <div
                     className="fw7"
                     style={{
-                      color: '#0C0474',
-                      fontSize: '18px',
-                      cursor: 'default',
+                      color: "#0C0474",
+                      fontSize: "18px",
+                      cursor: "default",
                     }}
                   >
                     UPLOADED VIDEOS
                   </div>
                 </Divider>
               </div>
-               <div className="flex flex-column w-50 mt3 mb4 ">
-                  <div className="fw7 black" style={{ fontSize: "16px" }}>
-                    Find Video
-                  </div>
-                  <div className="w-100 flex flex-row">
-                      <Input placeholder="Use any Keyword : Date, Location or anything" size="large" onChange={doSearch}/>
-                  </div>
+              <div className="flex flex-column w-50 mt3 mb4 ">
+                <div className="fw7 black" style={{ fontSize: "16px" }}>
+                  Find Video
                 </div>
+                <div className="w-100 flex flex-row">
+                  <Input
+                    placeholder="Use any Keyword : Date, Location or anything"
+                    size="large"
+                    onChange={doSearch}
+                  />
+                </div>
+              </div>
             </div>
             <div
               className="w-100 "
-              style={{ display: 'flex', justifyContent: 'flex-end' }}
+              style={{ display: "flex", justifyContent: "flex-end" }}
             >
               <div>
                 <Select defaultValue="date" style={{ width: 200 }}>
@@ -380,7 +395,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
               ) : (
                 <List
                   grid={{ gutter: [15, 30], column: 2 }}
-                  dataSource={search?filteredArray:videos}
+                  dataSource={search ? filteredArray : videos}
                   pagination={{
                     showSizeChanger: true,
                     pageSize: 40,
@@ -403,6 +418,6 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
         </div>
       </Content>
     </Layout>
-  )
+  );
 }
-export default connect(null, mapDispatchToProps)(SmallScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SmallScreen);

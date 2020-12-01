@@ -14,16 +14,7 @@
 .wid2{
     width:55%
 }
-.Image{
-   background-image: url("../../lotties/post.jpg");
-    object-fit: cover;
-    object-position: center;
-}
-.Image2{
-    background-image: url("../../lotties/post.jpg");
-     object-fit: cover;
-     object-position: center;
- }
+
 .top{
    background-color: #FFFFFF;
 

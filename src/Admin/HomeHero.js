@@ -85,7 +85,7 @@ const HomeHero = ({ addHomeHeroHeroImage }) => {
             {progress !== 0 ? (
               <Progress
                 percent={progress}
-                status={`${progress == 100 ? "success" : "active"}`}
+                status={`${progress === 100 ? "success" : "active"}`}
                 size="small"
                 strokeColor={{ "0%": "#000080", "100%": "#ff0000" }}
               />

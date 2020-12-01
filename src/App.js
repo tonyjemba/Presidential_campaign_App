@@ -1,77 +1,171 @@
 import React from "react";
-import Main from "./main/main";
+// import Main from "./main/main";
 import "./App.less";
-import { BackTop } from "antd";
+import Loadable from "react-loadable";
+import { BackTop, Result,Button } from "antd";
 import HeaderComponent from "./universal/HeaderComponent/HeaderComponent";
 import FooterComponent from "./universal/FooterComponent/FooterComponent";
-import EventsComponent from "./Events/EventsComponent";
-import AboutComponent from "./About/AboutComponent";
-import VideosComponent from "./Videos/VideosComponent";
-import NewsComponent from "./NewsComponent/NewsComponent";
-import ContactComponent from "./Contact/ContactComponent";
-import Checkout from "./universal/Checkout/Checkout";
-import Getinvolved from "./universal/Getinvolved/Getinvolved";
-import Terms from "./universal/Terms/Terms";
-import KAdminLogin from "./Admin/KAdminLogin";
-import VolunteerForm from "./universal/VolunteerForm/VolunteerForm";
-import KAdmin from "./Admin/KAdmin";
-import Event from "./Events/Event";
-import News from "./NewsComponent/News";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import EventsComponent from "./Events/EventsComponent";
+// import AboutComponent from "./About/AboutComponent";
+// import VideosComponent from "./Videos/VideosComponent";
+// import NewsComponent from "./NewsComponent/NewsComponent";
+// import ContactComponent from "./Contact/ContactComponent";
+// import Getinvolved from "./universal/Getinvolved/Getinvolved";
+// import Terms from "./universal/Terms/Terms";
+// import VolunteerForm from "./universal/VolunteerForm/VolunteerForm";
+// import KAdmin from "./Admin/KAdmin";
+// import Event from "./Events/Event";
+// import News from "./NewsComponent/News";
+import {Auth0Provider } from "@auth0/auth0-react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
+
+const domain = "dev-0s5nlpcu.us.auth0.com";
+const clientId = "2dLeAVwtZdKL2X5BDtRw4fsZp7kG3rrA";
+
+const antIcon = <LoadingOutlined style={{ fontSize: 55 }} spin />;
+
+const Loader = ({ pastDelay, error }) => {
+  if (error) {
+    return (
+      <Result
+        status="500"
+        title="Vote Kyagulanyi For President"
+        subTitle="Sorry, something went wrong."
+        extra={<Link to="/"><Button type="primary">Refresh</Button></Link>}
+      />
+    );
+  } else if (pastDelay) {
+    return (
+      <div style={{width:"100%",height:"100vh"}} className="flex items-center justify-center">
+        <div>
+          <Spin indicator={antIcon} />
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
+};
+
+
+const AsyncMain = Loadable({
+  loader: () => import("./main/main"),
+  loading: Loader,
+});
+const AsyncEvents = Loadable({
+  loader: () => import("./Events/EventsComponent"),
+  loading: Loader,
+});
+
+const AsyncAbout = Loadable({
+  loader: () => import("./About/AboutComponent"),
+  loading: Loader,
+});
+
+const AsyncVideos = Loadable({
+  loader: () => import("./Videos/VideosComponent"),
+  loading: Loader,
+});
+
+const AsyncNews = Loadable({
+  loader: () => import("./NewsComponent/NewsComponent"),
+  loading: Loader,
+});
+
+const AsyncContact = Loadable({
+  loader: () => import("./Contact/ContactComponent"),
+  loading: Loader,
+});
+
+
+const AsyncInvolved = Loadable({
+  loader: () => import("./universal/Getinvolved/Getinvolved"),
+  loading: Loader,
+});
+
+const AsyncTerms = Loadable({
+  loader: () => import("./universal/Terms/Terms"),
+  loading: Loader,
+});
+
+const AsyncVolunteer = Loadable({
+  loader: () => import("./universal/VolunteerForm/VolunteerForm"),
+  loading: Loader,
+});
+const AsyncAdmin = Loadable({
+  loader: () => import("./Admin/KAdmin"),
+  loading: Loader,
+});
+const AsyncEvent = Loadable({
+  loader: () => import("./Events/Event"),
+  loading: Loader,
+});
+const AsyncNew = Loadable({
+  loader: () => import("./NewsComponent/News"),
+  loading: Loader,
+});
+
+const NotFoundPage = Loadable({
+  loader: () => import("./NotFoundPage"),
+  loading: Loader,
+});
 function App() {
 
 
   return (
     <Router>
-      <div>
-        <HeaderComponent />
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        redirectUri={window.location.origin}
+      >
         <div>
-          <Switch>
-            <Route path="/" exact>
-              <Main />
-            </Route>
-            <Route path="/events">
-              <EventsComponent />
-            </Route>
-            <Route path="/news">
-              <NewsComponent />
-            </Route>
-            <Route path="/videos">
-              <VideosComponent />
-            </Route>
-            <Route path="/about_Kyagulanyi">
-              <AboutComponent />
-            </Route>
-            <Route path="/contact">
-              <ContactComponent />
-            </Route>
-            <Route path="/volunteer"><VolunteerForm/></Route>
-            <Route path="/checkout">
-              <Checkout />
-            </Route>
-            <Route path="/getInvolved">
-              <Getinvolved />
-            </Route>
-            <Route path="/privacyPoliy_Terms">
-              <Terms />
-            </Route>
-            <Route path="/event/:id" children={<Event />} />
-            <Route path="/thenews/:id" children={<News />} />
-            <Route path="/login">
-              <KAdminLogin />
-            </Route>
-            <Route path="/Ksignup">
-              <KAdminLogin />
-            </Route>
-            <Route path="/Admin_Panel">
-              <KAdmin />
-            </Route>
-          </Switch>
+          <HeaderComponent />
+          <div>
+            <Switch>
+              <Route path="/" exact>
+                <AsyncMain />
+              </Route>
+              <Route path="/events">
+                <AsyncEvents />
+              </Route>
+              <Route path="/news">
+                <AsyncNews />
+              </Route>
+              <Route path="/videos">
+                <AsyncVideos />
+              </Route>
+              <Route path="/about_Kyagulanyi">
+                <AsyncAbout />
+              </Route>
+              <Route path="/contact">
+                <AsyncContact />
+              </Route>
+              <Route path="/volunteer">
+                <AsyncVolunteer />
+              </Route>
+              <Route path="/getInvolved">
+                <AsyncInvolved />
+              </Route>
+              <Route path="/privacyPoliy_Terms">
+                <AsyncTerms />
+              </Route>
+              <Route path="/event/:id" children={<AsyncEvent />} />
+              <Route path="/thenews/:id" children={<AsyncNew />} />
+
+              <Route path="/KAdmin_Panel">
+                <AsyncAdmin />
+              </Route>
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </div>
+          <BackTop />
+          <FooterComponent />
         </div>
-        <BackTop />
-        <FooterComponent />
-      </div>
+      </Auth0Provider>
     </Router>
   );
 }

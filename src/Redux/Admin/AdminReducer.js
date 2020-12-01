@@ -1,7 +1,8 @@
 const initialState = {
   showMoreEvent: {},
   eventHeroImage:{},
-  currentUser:null
+  currentUser: null,
+  previousPath:"/"
 };
 
 const AdminReducer = (state = initialState, action) => {
@@ -19,7 +20,11 @@ const AdminReducer = (state = initialState, action) => {
       case "CURRENT_USER": return {
         ...state,
         currentUser: action.payload,
-      };
+    };
+    case "PREV_PATH": return {
+      ...state,
+      previousPath:action.payload
+    };
     default:
       return state;
   }
