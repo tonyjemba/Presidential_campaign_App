@@ -14,7 +14,7 @@ import { SiStorybook } from "react-icons/si"
 import { connect } from "react-redux";
 import { addStory } from "../Redux/Admin/Actions";
 import { IconContext } from "react-icons";
-
+import { Helmet } from "react-helmet";
 const { Content, Sider } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -49,6 +49,13 @@ const MediumScreen = ({ addStory }) => {
 
   return (
     <div>
+      <Helmet>
+        <title>Kyagulanyi Ssentamu Robert for President| About</title>
+        <meta
+          name="bobi wine |About"
+          content="kyagulanyi for president 2021. Kyagulanyi's Story | Biography"
+        />
+      </Helmet>
       <Layout style={{ backgroundColor: "#0C0474" }}>
         <Sider theme="light" width="30%" style={{ backgroundColor: "#0C0474" }}>
           <div className="" style={{ width: "100%" }}>
@@ -96,7 +103,6 @@ const MediumScreen = ({ addStory }) => {
                         marginRight: "10px",
                       }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
                       iconStyle={{
                         background: "#0C0474",
                         color: "#ffffff",
@@ -105,13 +111,16 @@ const MediumScreen = ({ addStory }) => {
                       icon={<SiStorybook />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        President
+                        BACKGROUND
                       </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
-                      </h4>
+
                       <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
+                        Robert Kyagulanyi Ssentamu also known by his stage name
+                        Bobi Wine is a Ugandan politician, singer, actor, and
+                        businessman. He was born on 12 February 1982 in Nkozi
+                        Hospital, where his late mother worked. He grew up in
+                        the Kamwokya slum in the northeastern part of Kampala,
+                        the capital city of Uganda.
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -122,7 +131,7 @@ const MediumScreen = ({ addStory }) => {
                         marginRight: "10px",
                       }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
+                      date="1986 - present"
                       iconStyle={{
                         background: "#0C0474",
                         color: "#ffffff",
@@ -130,13 +139,23 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        President
+                        EDUCATION
                       </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
-                      </h4>
+
                       <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
+                        Kyagulanyi attended St Maria Goretti Nursery School,
+                        Kanoni Catholic School, Kitante Hill School, where he
+                        attained his Uganda Certificate of Education in 1996, as
+                        well as Kololo Senior Secondary School, where he
+                        attained his Uganda Advanced Certificate of Education in
+                        1998. He then attended Makerere University in Kampala,
+                        where he studied music, dance, and drama, graduating
+                        with a diploma in 2003. In 2016, Kyagulanyi returned to
+                        university to study law at the International University
+                        of East Africa (IUEA). Later joined Cavendish University
+                        Uganda to study for the same. He also studied Leadership
+                        for 21st Century at Harvard University and still a
+                        student at many universities.
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -147,7 +166,7 @@ const MediumScreen = ({ addStory }) => {
                         marginRight: "10px",
                       }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
+                      date="2000 - present"
                       iconStyle={{
                         background: "#0C0474",
                         color: "#ffffff",
@@ -155,13 +174,17 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        President
+                        PERSONAL LIFE
                       </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
-                      </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
+                        While studying at Makerere University, Kyagulanyi met
+                        his wife, Barbara Itungo, who at the time was an S6
+                        student at Bweranyangi Girls' Senior Secondary School.
+                        Their wedding took place in August 2011. They have four
+                        children together: Solomon Kampala Nyanzi, Shalom
+                        Namagembe, Shadraq Shilling Mbogo, and Suubi Shine
+                        Nakaayi. Kyagulanyi and his family reside in Magere
+                        Village, Wakiso District.
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -172,7 +195,7 @@ const MediumScreen = ({ addStory }) => {
                         marginRight: "10px",
                       }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
+                      date="2000 - present"
                       iconStyle={{
                         background: "#0C0474",
                         color: "#ffffff",
@@ -180,13 +203,23 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        President
+                        MUSIC AND FILM CAREER
                       </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
-                      </h4>
+
                       <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
+                        Kyagulanyi began his music career in the early 2000s and
+                        adapted the stage name Bobi Wine. His first singles
+                        "Akagoma", "Funtula", and "Sunda" brought him success in
+                        the East African music scene. His music has been
+                        characterized as reggae, dancehall, and afrobeat, often
+                        with a socially conscious message. He was the leader of
+                        the group Fire Base Crew until its disbandment, after
+                        which he started a new group known as Ghetto Republic of
+                        Uganda. He has released more than 70 songs over 15
+                        years. In 2016, his song "Kiwani" was featured on the
+                        soundtrack for the Disney movie Queen of Katwe.
+                        Kyagulanyi is also a film actor, mainly starring in
+                        local Ugandan movies.
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement
@@ -197,7 +230,7 @@ const MediumScreen = ({ addStory }) => {
                         marginRight: "10px",
                       }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
+                      date="2017 - present"
                       iconStyle={{
                         background: "#0C0474",
                         color: "#ffffff",
@@ -205,15 +238,20 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        President
+                        POLITICAL CAREER
                       </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
-                      </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
+                        In April 2017, Kyagulanyi announced his candidacy for
+                        parliament in an upcoming by-election for Kyadondo
+                        County East constituency. His door-to-door walking
+                        campaign attracted attention both in Uganda and
+                        abroad.He won the contest by a wide margin, beating two
+                        seasoned candidates. In 2018, Kyagulanyi gained
+                        increasing fame, championing the victories in most of
+                        the by-elections by the candidates he campaigned for.
                       </div>
                     </VerticalTimelineElement>
+
                     <VerticalTimelineElement
                       className="vertical-timeline-element--work "
                       contentStyle={{
@@ -222,7 +260,7 @@ const MediumScreen = ({ addStory }) => {
                         marginRight: "10px",
                       }}
                       contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
+                      date="2019 - present"
                       iconStyle={{
                         background: "#0C0474",
                         color: "#ffffff",
@@ -230,38 +268,19 @@ const MediumScreen = ({ addStory }) => {
                       icon={<FaRegLifeRing />}
                     >
                       <h3 className="vertical-timeline-element-title white">
-                        President
+                        PRESIDENTIAL CANDIDATE
                       </h3>
                       <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
+                        Uganda
                       </h4>
                       <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
-                      </div>
-                    </VerticalTimelineElement>
-                    <VerticalTimelineElement
-                      className="vertical-timeline-element--work "
-                      contentStyle={{
-                        background: "#0C047400",
-                        color: "#ffffff",
-                        marginRight: "10px",
-                      }}
-                      contentArrowStyle={{ borderRight: "7px solid  #ff0000" }}
-                      date="2011 - present"
-                      iconStyle={{
-                        background: "#0C0474",
-                        color: "#ffffff",
-                      }}
-                      icon={<FaRegLifeRing />}
-                    >
-                      <h3 className="vertical-timeline-element-title white">
-                        President
-                      </h3>
-                      <h4 className="vertical-timeline-element-subtitle ehite">
-                        Kampala, UG
-                      </h4>
-                      <div className="white " style={{ fontSize: "14px" }}>
-                        about Kyagulanyi....
+                        On 24 July 2019, Kyagulanyi formally announced his bid
+                        to run for president in the 2021 general election. On 22
+                        July 2020, he announced that he had joined the National
+                        Unity Platform party, becoming elected its president and
+                        presidential flag-bearer in the upcoming February 2021
+                        general election. On 6 November 2020, he launched his
+                        campaign manifesto in Mbarara.
                       </div>
                     </VerticalTimelineElement>
                     <VerticalTimelineElement

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import vote from "../../lotties/vote.png";
 import {  GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
-import { MdMyLocation } from "react-icons/md";
+import { MdMyLocation,MdLiveTv } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { IoMdCart } from "react-icons/io";
 import { IconContext } from "react-icons";
@@ -221,6 +221,18 @@ const SmallScreen = () => {
             </div>
             <div className="w-25 flex    justify-end">
               <Space size="large">
+                 <div>
+                       <Link to="live">
+                         <IconContext.Provider
+                           value={{
+                             color: "black",
+                             size: "20px",
+                           }}
+                         >
+                             <MdLiveTv />
+                         </IconContext.Provider>
+                       </Link>
+                     </div>
                 <div>
                   <Badge showZero={true} offset={[4, 3]} count={0}>
                     <div className=" mt1 items-center flex justify-center">

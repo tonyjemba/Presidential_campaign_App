@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
 import Media from 'react-media';
 import { smaller } from '../universal/ScreenSize';
-
+import { Helmet } from "react-helmet";
 const { Content } = Layout
 const { Title } = Typography
 
@@ -28,10 +28,14 @@ const News = ({ news }) => {
           matches.smaller ? (
             <div className="w-100 flex justify-center">
               <div className="w-90">
-                <Layout style={{ backgroundColor: '#ffffff' }}>
-                  <Content style={{ backgroundColor: '#ffffff' }}>
+                <Layout style={{ backgroundColor: "#ffffff" }}>
+                  <Content style={{ backgroundColor: "#ffffff" }}>
                     <div className="mt4">
-                      <Link to="/news" className="pointer w-30" style={{fontSize:"17px"}}>
+                      <Link
+                        to="/news"
+                        className="pointer w-30"
+                        style={{ fontSize: "17px" }}
+                      >
                         Back To News
                       </Link>
                     </div>
@@ -42,46 +46,57 @@ const News = ({ news }) => {
                             src={theNews.photoUrl}
                             alt="News_Photo"
                             style={{
-                              objectFit: 'cover',
-                              objectPosition: 'center',
-                              height: '35vh',
-                              width: '100%',
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              height: "35vh",
+                              width: "100%",
                             }}
                           />
                         </div>
                       </div>
+                      <Helmet>
+                        <title>{theNews.Title}</title>
+                        <meta
+                          name="bobi wine |Latest News"
+                          content={`${theNews.Detail}`}
+                        />
+                      </Helmet>
                       <div className="mt4">
-                        <Title style={{ fontWeight: 'bold' }} level={3}>
+                        <Title style={{ fontWeight: "bold" }} level={3}>
                           {theNews.Title}
                         </Title>
                       </div>
                       <div
                         className="flex flex-row"
-                        style={{ cursor: 'default' }}
+                        style={{ cursor: "default" }}
                       >
-                        <div className="fw5 mr6" style={{ fontSize: '17px' }}>
+                        <div className="fw5 mr6" style={{ fontSize: "17px" }}>
                           {moment(theNews.Date.toDate()).calendar()}
                         </div>
-                        <div style={{ fontSize: '17px' }} className="fw5">
+                        <div style={{ fontSize: "17px" }} className="fw5">
                           {theNews.Location}
                         </div>
                       </div>
                       <div
                         className="mt4"
-                        style={{ fontSize: '17px', lineHeight: '2em' }}
+                        style={{ fontSize: "17px", lineHeight: "2em" }}
                       >
                         {theNews.Detail}
                       </div>
-                      <div style={{ fontSize: '17px' }} className="fw5 mt4 ">
-                          Author: {theNews.Author}
+                      <div style={{ fontSize: "17px" }} className="fw5 mt4 ">
+                        Author: {theNews.Author}
                       </div>
                       <div className="w-100 flex justify-end">
-                           <div className="mb5">
-                      <Link to="/news" className="pointer w-30" style={{fontSize:"17px"}}>
-                        Back To News
-                      </Link>
-                    </div>
+                        <div className="mb5">
+                          <Link
+                            to="/news"
+                            className="pointer w-30"
+                            style={{ fontSize: "17px" }}
+                          >
+                            Back To News
+                          </Link>
                         </div>
+                      </div>
                     </div>
                   </Content>
                 </Layout>
@@ -90,10 +105,14 @@ const News = ({ news }) => {
           ) : (
             <div className="w-100 flex justify-center">
               <div className="w-80">
-                <Layout style={{ backgroundColor: '#ffffff' }}>
-                  <Content style={{ backgroundColor: '#ffffff' }}>
+                <Layout style={{ backgroundColor: "#ffffff" }}>
+                  <Content style={{ backgroundColor: "#ffffff" }}>
                     <div className="mt4">
-                      <Link to="/news" className="pointer w-25" style={{fontSize:"17px"}}>
+                      <Link
+                        to="/news"
+                        className="pointer w-25"
+                        style={{ fontSize: "17px" }}
+                      >
                         Back To News
                       </Link>
                     </div>
@@ -104,44 +123,55 @@ const News = ({ news }) => {
                             src={theNews.photoUrl}
                             alt="Robert 2021"
                             style={{
-                              objectFit: 'cover',
-                              objectPosition: 'center',
-                              height: '70vh',
-                              width: '100%',
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              height: "70vh",
+                              width: "100%",
                             }}
                           />
                         </div>
                       </div>
+                      <Helmet>
+                        <title>{theNews.Title}</title>
+                        <meta
+                          name="bobi wine |Latest News"
+                          content={`${theNews.Detail}`}
+                        />
+                      </Helmet>
                       <div className="mt4">
                         <Title level={4}>{theNews.Title}</Title>
                       </div>
                       <div
                         className="flex flex-row"
-                        style={{ cursor: 'default' }}
+                        style={{ cursor: "default" }}
                       >
-                        <div className="fw5 mr6" style={{ fontSize: '17px' }}>
+                        <div className="fw5 mr6" style={{ fontSize: "17px" }}>
                           {moment(theNews.Date.toDate()).calendar()}
                         </div>
-                        <div style={{ fontSize: '17px' }} className="fw5">
+                        <div style={{ fontSize: "17px" }} className="fw5">
                           {theNews.Location}
                         </div>
                       </div>
                       <div
                         className="mt4"
-                        style={{ fontSize: '17px', lineHeight: '2em' }}
+                        style={{ fontSize: "17px", lineHeight: "2em" }}
                       >
                         {theNews.Detail}
+                      </div>
+                      <div style={{ fontSize: "17px" }} className="fw5 mt4 ">
+                        Author: {theNews.Author}
+                      </div>
+                      <div className="w-100 flex justify-end">
+                        <div className="mb5">
+                          <Link
+                            to="/news"
+                            className="pointer w-25"
+                            style={{ fontSize: "17px" }}
+                          >
+                            Back To News
+                          </Link>
                         </div>
-                         <div style={{ fontSize: '17px' }} className="fw5 mt4 ">
-                          Author: {theNews.Author}
-                        </div>
-                        <div className="w-100 flex justify-end">
-                           <div className="mb5">
-                      <Link to="/news" className="pointer w-25" style={{fontSize:"17px"}}>
-                        Back To News
-                      </Link>
-                    </div>
-                        </div>
+                      </div>
                     </div>
                   </Content>
                 </Layout>
@@ -151,7 +181,7 @@ const News = ({ news }) => {
         }
       </Media>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = (state) => {

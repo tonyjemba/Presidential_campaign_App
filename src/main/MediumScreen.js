@@ -16,6 +16,8 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { BsFillClockFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
+import { Helmet } from "react-helmet";
+
 
 const { Content, Footer} = Layout;
 const { Paragraph, Title } = Typography;
@@ -319,6 +321,15 @@ class MediumScreen extends React.Component {
           <Layout className="top ">
             <Content className="bg-white">
               <div className="w-100 flex flex-column justify-center items-center">
+                <Helmet>
+                  <title>
+                    Kyagulanyi Ssentamu Robert for President| Campaign Website
+                  </title>
+                  <meta
+                    name="bobi wine"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Robert Kyagulanyi (Bobi Wine) and Ugandans at Large."
+                  />
+                </Helmet>
                 <div
                   className="w-100 flex justify-around items-center"
                   style={{ backgroundColor: "#0C0474" }}
@@ -357,10 +368,15 @@ class MediumScreen extends React.Component {
                   </div>
                   <div className="w-40 mt4 mb4 mr2">
                     <div className=" h-100 flex flex-column items-center justify-center">
-                      <div
-                        className=" white mb3"
-                      >
-                        {currentUser ? null : <Title level={1} style={{color:"#ffffff",fontWeight:"lighter"}}>Sign in to Volunteer.</Title>}
+                      <div className=" white mb3">
+                        {currentUser ? null : (
+                          <Title
+                            level={1}
+                            style={{ color: "#ffffff", fontWeight: "lighter" }}
+                          >
+                            Sign in to Volunteer.
+                          </Title>
+                        )}
                         {currentUser ? (
                           <div className="w-100 tc">
                             <Title

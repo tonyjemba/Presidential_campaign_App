@@ -63,6 +63,23 @@ export const addNewsVideoHeroImage = (image) => {
       })
   }
 }
+
+export const addLiveVideoHeroImage = (image) => {
+  return (dispatch, getstate, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+
+    firestore
+      .collection("images")
+      .doc("ZLiveVideo")
+      .set({ ...image })
+      .then(() => {
+        dispatch({ type: "LIVE_HEROIMAGE" });
+      })
+      .catch((error) => {
+        dispatch({ type: "LIVE_HEROIMAGE_ERROR", payload: error });
+      });
+  };
+};
 export const addStory = (story) => {
   return (dispatch, getstate, { getFirebase }) => {
     const firestore = getFirebase().firestore();

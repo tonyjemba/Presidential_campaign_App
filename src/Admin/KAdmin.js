@@ -9,6 +9,7 @@ import AddEvent from "./AddEvent";
 import Others from "./Other";
 import AddNews from "./AddNews";
 import NewsVideo from "./NewsVideo";
+import LiveVideo from "./LiveVideo";
 import Home from "./Home";
 import Videos from "./Videos";
 import Messages from "./Messages";
@@ -80,19 +81,22 @@ const KAdmin = () => {
                       <TabPane tab="NewsVideo" key="4">
                         <NewsVideo />
                       </TabPane>
-                      <TabPane tab="eventHero" key="5">
+                      <TabPane tab="LiveVideo" key="5">
+                        <LiveVideo />
+                      </TabPane>
+                      <TabPane tab="eventHero" key="6">
                         <Others />
                       </TabPane>
-                      <TabPane tab="Videos" key="6">
+                      <TabPane tab="Videos" key="7">
                         <Videos />
                       </TabPane>
-                      <TabPane tab="Messages" key="7">
+                      <TabPane tab="Messages" key="8">
                         <Messages />
                       </TabPane>
-                      <TabPane tab="Stories" key="8">
+                      <TabPane tab="Stories" key="9">
                         <Stories />
                       </TabPane>
-                      <TabPane tab="Involved" key="9">
+                      <TabPane tab="Involved" key="10">
                         <Involved />
                       </TabPane>
                     </Tabs>

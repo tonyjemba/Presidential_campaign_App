@@ -9,7 +9,8 @@ import {
 import { DownOutlined } from "@ant-design/icons";
 import {CgCalendarToday,CgViewMonth} from "react-icons/cg";
 import {ImCalendar} from "react-icons/im";
-import { Input, Button ,Spin} from "antd";
+import { Input, Button, Spin } from "antd";
+import { Helmet } from "react-helmet";
 import "./css/events.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -21,13 +22,18 @@ const { Title, Paragraph } = Typography;
 const Template = ({ title,date,location,detail,id }) => {
   return (
     <div>
+      <Helmet>
+        <title>Kyagulanyi Ssentamu Robert for President| Events</title>
+        <meta
+          name="bobi wine |Events"
+          content="kyagulanyi for president 2021. Events During the Struggle (People Power, Our Power)."
+        />
+      </Helmet>
       <Title level={4} style={{ cursor: "default", color: "#ff0000" }}>
         {title}
       </Title>
       <div className="flex flex-row" style={{ cursor: "default" }}>
-        <div
-          className="fw7 mr6"
-          style={{ color: "#000080", fontSize: "15px" }}>
+        <div className="fw7 mr6" style={{ color: "#000080", fontSize: "15px" }}>
           {date}
         </div>
         <div style={{ color: "#000080", fontSize: "15px" }} className="fw7">
@@ -40,15 +46,19 @@ const Template = ({ title,date,location,detail,id }) => {
           color: "black",
           textAlign: "justify",
           textJustify: "inter-word",
-        }}>
+        }}
+      >
         <Paragraph
-          ellipsis={{ rows: 3, expandable: false, }}
-          style={{ fontSize: "16px" }}>
+          ellipsis={{ rows: 3, expandable: false }}
+          style={{ fontSize: "16px" }}
+        >
           {detail}
         </Paragraph>
       </div>
       <div className="w-100 flex justify-end">
-        <div ><Link to={"/event/" + id}>Show More</Link></div>
+        <div>
+          <Link to={"/event/" + id}>Show More</Link>
+        </div>
       </div>
     </div>
   );

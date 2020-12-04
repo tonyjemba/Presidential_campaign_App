@@ -15,19 +15,28 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
+import { Helmet} from "react-helmet";
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
 const Template = ({ title,date,location,detail,id }) => {
   return (
     <div>
+      <Helmet>
+        <title>Kyagulanyi Ssentamu Robert for President| Events</title>
+        <meta
+          name="bobi wine |Events"
+          content="kyagulanyi for president 2021. Events During the Struggle (People Power, Our Power)."
+        />
+      </Helmet>
       <Title level={4} style={{ cursor: "default", color: "#ff0000" }}>
         {title}
       </Title>
       <div className="flex flex-row" style={{ cursor: "default" }}>
         <div
           className="fw7 mr6"
-          style={{ color: "#000080", fontSize: "1.5vw" }}>
+          style={{ color: "#000080", fontSize: "1.5vw" }}
+        >
           {date}
         </div>
         <div style={{ color: "#000080", fontSize: "1.5vw" }} className="fw7">
@@ -40,15 +49,19 @@ const Template = ({ title,date,location,detail,id }) => {
           color: "black",
           textAlign: "justify",
           textJustify: "inter-word",
-        }}>
+        }}
+      >
         <Paragraph
-          ellipsis={{ rows: 3, expandable: false, }}
-          style={{ fontSize: "16px" }}>
+          ellipsis={{ rows: 3, expandable: false }}
+          style={{ fontSize: "16px" }}
+        >
           {detail}
         </Paragraph>
       </div>
       <div className="w-100 flex justify-end">
-        <div ><Link to={"/event/" + id}>Show More</Link></div>
+        <div>
+          <Link to={"/event/" + id}>Show More</Link>
+        </div>
       </div>
     </div>
   );

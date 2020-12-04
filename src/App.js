@@ -1,21 +1,9 @@
 import React from "react";
-// import Main from "./main/main";
 import "./App.less";
 import Loadable from "react-loadable";
 import { BackTop, Result,Button } from "antd";
 import HeaderComponent from "./universal/HeaderComponent/HeaderComponent";
 import FooterComponent from "./universal/FooterComponent/FooterComponent";
-// import EventsComponent from "./Events/EventsComponent";
-// import AboutComponent from "./About/AboutComponent";
-// import VideosComponent from "./Videos/VideosComponent";
-// import NewsComponent from "./NewsComponent/NewsComponent";
-// import ContactComponent from "./Contact/ContactComponent";
-// import Getinvolved from "./universal/Getinvolved/Getinvolved";
-// import Terms from "./universal/Terms/Terms";
-// import VolunteerForm from "./universal/VolunteerForm/VolunteerForm";
-// import KAdmin from "./Admin/KAdmin";
-// import Event from "./Events/Event";
-// import News from "./NewsComponent/News";
 import {Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Spin } from "antd";
@@ -108,10 +96,15 @@ const AsyncNew = Loadable({
   loading: Loader,
 });
 
+const Live = Loadable({
+  loader: () => import("./universal/Live/Live"),
+  loading: Loader
+});
 const NotFoundPage = Loadable({
   loader: () => import("./NotFoundPage"),
   loading: Loader,
 });
+
 function App() {
 
 
@@ -158,6 +151,9 @@ function App() {
 
               <Route path="/KAdmin_Panel">
                 <AsyncAdmin />
+              </Route>
+              <Route path="/live">
+                <Live/>
               </Route>
               <Route path="*" component={NotFoundPage} />
             </Switch>

@@ -9,6 +9,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
+import { Helmet} from "react-helmet";
 
 const { Content, Sider } = Layout;
 const { Title } = Typography;
@@ -51,6 +52,15 @@ const LargeScreen = ({ addMessage }) => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          Kyagulanyi Ssentamu Robert for President| Contact Us
+        </title>
+        <meta
+          name="bobi wine |Contact Us"
+          content="kyagulanyi for president 2021. Talk to Kyagulanyi today."
+        />
+      </Helmet>
       <div
         className="w-100 flex justify-center"
         style={{ backgroundColor: "#f9f9f9" }}

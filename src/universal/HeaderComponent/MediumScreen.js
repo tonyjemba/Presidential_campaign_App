@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./css/headercomponent.css";
 import { Space, Badge } from "antd";
 import Sticky from "react-sticky-el";
-import {  MdEmail } from "react-icons/md";
+import { MdEmail, MdLiveTv } from "react-icons/md";
 import { Link} from "react-router-dom";
 import { GrMapLocation, GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
@@ -189,6 +189,18 @@ const MediumScreen = () =>{
                  </div>
                  <div className="w-25 flex    justify-end">
                    <Space size="large">
+                      <div>
+                       <Link to="live">
+                         <IconContext.Provider
+                           value={{
+                             color: "black",
+                             size: "20px",
+                           }}
+                         >
+                             <MdLiveTv />
+                         </IconContext.Provider>
+                       </Link>
+                     </div>
                      <div>
                        <Badge showZero={true} offset={[4, 3]} count={0}>
                          <div className=" mt1 items-center flex justify-center">

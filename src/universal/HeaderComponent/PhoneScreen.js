@@ -5,9 +5,8 @@ import {Link} from "react-router-dom";
 import vote from "../../lotties/vote.png";
 import {  GrFacebook, GrTwitter } from "react-icons/gr";
 import { RiInstagramFill } from "react-icons/ri";
-import { MdMyLocation } from "react-icons/md";
+import { MdMyLocation, MdLiveTv } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
-import { IoMdCart } from "react-icons/io";
 import { IconContext } from "react-icons";
 
 const PhoneScreen = () => {
@@ -222,27 +221,19 @@ const PhoneScreen = () => {
             </div>
             <div className="w-25 flex    justify-end">
               <Space size="large">
-                <div>
-                  <Badge showZero={true} offset={[4, 3]} count={0}>
-                    <div className=" mt1 items-center flex justify-center">
-                      <IconContext.Provider
-                        value={{
-                          color: "#0C0474",
-                          size: "19px",
-                        }}
-                      >
-                        <div className="pointer  ">
-                          <a
-                            target="_blank"
-                            href="https://kyagulanyi2021stores.bigcartel.com/"
-                          >
-                            <IoMdCart />
-                          </a>
-                        </div>
-                      </IconContext.Provider>
-                    </div>
-                  </Badge>
-                </div>
+                 <div>
+                       <Link to="live">
+                         <IconContext.Provider
+                           value={{
+                             color: "black",
+                             size: "20px",
+                           }}
+                         >
+                             <MdLiveTv />
+                         </IconContext.Provider>
+                       </Link>
+                     </div>
+                
                 <div className="tosection hover-bg-dark-red pointer pa2 pl3 pr3 Hbtn">
                   <a target="_blank" href="https://peoplepower.org.ug/donate/">
                     <div className="pointer fw7" style={{ color: "#311B92" }}>

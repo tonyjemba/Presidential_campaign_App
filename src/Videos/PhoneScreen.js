@@ -16,7 +16,8 @@ import {
 } from 'antd'
 import { addVideo } from '../Redux/video/Actions'
 import firebase from '../base'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 import 'video-react/dist/video-react.css'
 import { connect } from 'react-redux'
 import { MdLocationOn } from 'react-icons/md'
@@ -191,6 +192,13 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
+            <Helmet>
+        <title>Kyagulanyi Ssentamu Robert bobi wine: videos </title>
+        <meta
+          name="bobi wine |Latest videos"
+          content="upload and watch campaign videos, Police brutality in Uganda, Uganda Election Scenes"
+        />
+      </Helmet>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title

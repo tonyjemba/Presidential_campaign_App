@@ -17,7 +17,8 @@ import {
 import { addVideo } from '../Redux/video/Actions'
 import firebase from '../base'
 import { Link } from 'react-router-dom'
-import 'video-react/dist/video-react.css'
+import 'video-react/dist/video-react.css';
+import { Helmet} from "react-helmet";
 import { connect } from 'react-redux'
 import { MdLocationOn } from 'react-icons/md'
 import {
@@ -183,6 +184,13 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
+          <Helmet>
+            <title>Kyagulanyi Ssentamu Robert bobi wine: videos </title>
+            <meta
+              name="bobi wine |Latest videos"
+              content="upload and watch campaign videos, Police brutality in Uganda, Uganda Election Scenes"
+            />
+          </Helmet>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title

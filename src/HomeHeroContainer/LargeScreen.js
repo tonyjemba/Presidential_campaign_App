@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./css/homehero.css";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
+import { firestoreConnect,isLoaded } from "react-redux-firebase";
 import { Typography } from "antd";
 
 
@@ -26,7 +26,7 @@ const LargeScreen = ({HomeContent}) => {
       <section className="">
         <div className="">
          
-            <img src={image} alt={text} />
+            {isLoaded(image)?<img src={image} alt={text} />:<div className="w-100 vh-50" style={{backgroundColor:"#ffffff"}}><div style={{color:"#ffffff"}}>Kyagulanyi4President</div></div>}
        
         </div>
         <div className="w-100 flex justify-center cont">

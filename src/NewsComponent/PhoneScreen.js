@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 import './css/news.css'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
-
+import { Helmet } from "react-helmet";
 const { Content, Sider } = Layout
 const { Option } = Select
 const { Paragraph } = Typography
@@ -112,17 +112,24 @@ const PhoneScreen = () => {
   const youtubeID = hero && hero[1].youtubeID
 
   return (
-    <Layout style={{ backgroundColor: '#ffffff' }}>
+    <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <Divider style={{ margin: 0 }} />
         <div className="flex justify-center mt4">
+          <Helmet>
+            <title>Kyagulanyi Ssentamu Robert for President| Latest News</title>
+            <meta
+              name="bobi wine |Latest News"
+              content="kyagulanyi for president 2021. Latest News about Kyagulanyi Ssentamu Robert, National Unity Platform Uganda (bobi wine) (People Power, Our Power)."
+            />
+          </Helmet>
           <div
             className="w-90 "
             style={{
-              height: '40vh',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              backgroundColor: '#E5E5E5',
+              height: "40vh",
+              objectFit: "cover",
+              objectPosition: "center",
+              backgroundColor: "#E5E5E5",
             }}
           >
             <iframe
@@ -140,7 +147,7 @@ const PhoneScreen = () => {
             ></iframe>
           </div>
         </div>
-        <div className="  mt5" style={{ width: '95%' }}>
+        <div className="  mt5" style={{ width: "95%" }}>
           <div className="w-100 ">
             <Divider orientation="right">LATEST POSTS</Divider>
           </div>
@@ -149,24 +156,44 @@ const PhoneScreen = () => {
         <div className="w-100 flex justify-center mt3">
           <div className="w-90 ">
             <Layout>
-              <Content style={{ backgroundColor: '#ffffff' }}>
-                <div className="" style={{ width: '100%' }}>
-                  {
-                  !isLoaded(latest)?(<div className="w-100 pt5 pb5 flex justify-center items-center"><div><Spin indicator={antIcon} /></div></div>): isEmpty(latest)?(<div className="w-100 pt5 pb5 flex justify-center items-center"><div><Spin indicator={antIcon} /></div></div>):(
+              <Content style={{ backgroundColor: "#ffffff" }}>
+                <div className="" style={{ width: "100%" }}>
+                  {!isLoaded(latest) ? (
+                    <div className="w-100 pt5 pb5 flex justify-center items-center">
+                      <div>
+                        <Spin indicator={antIcon} />
+                      </div>
+                    </div>
+                  ) : isEmpty(latest) ? (
+                    <div className="w-100 pt5 pb5 flex justify-center items-center">
+                      <div>
+                        <Spin indicator={antIcon} />
+                      </div>
+                    </div>
+                  ) : (
                     <div className="" style={{ width: "98%" }}>
-                  <Row gutter={[16, 34]}>
-                    {latest && latest.map((news) =>  <NewsTemplate  key={news.id} id={news.id} date={news.Date} span={24} title={news.Title} photo={news.photoUrl}/>)}
-                  </Row>
-                </div>
-                  )
-                }
+                      <Row gutter={[16, 34]}>
+                        {latest &&
+                          latest.map((news) => (
+                            <NewsTemplate
+                              key={news.id}
+                              id={news.id}
+                              date={news.Date}
+                              span={24}
+                              title={news.Title}
+                              photo={news.photoUrl}
+                            />
+                          ))}
+                      </Row>
+                    </div>
+                  )}
                 </div>
                 <div className="w-100 ">
                   <Divider orientation="left">NEWS</Divider>
                 </div>
                 <div theme="light" width="32%" className="pl2 mb4">
                   <div className="w-100 flex flex-column justify-between">
-                    <div className="fw7" style={{ color: '#0C0474' }}>
+                    <div className="fw7" style={{ color: "#0C0474" }}>
                       ARCHIVES
                     </div>
                     <div>
@@ -181,43 +208,49 @@ const PhoneScreen = () => {
                     </div>
                   </div>
                   <div className="mt4">
-                  {!isLoaded(rest) ? (<div className="mb4">
-                    <Skeleton active />
-                    <Divider />
-                    <Skeleton active />
-                    <Divider />
-                      <Skeleton active />
-                       <Divider />
-                      <Skeleton active />
-                      <Divider />
-                    <Skeleton active />
-  
-                  </div>): isEmpty(rest)?(<div className="mb4">
-                    <Skeleton active />
-                    <Divider />
-                    <Skeleton active />
-                    <Divider />
+                    {!isLoaded(rest) ? (
+                      <div className="mb4">
                         <Skeleton active />
                         <Divider />
-                      <Skeleton active />
-                      <Divider />
-                    <Skeleton active />
-  
-                  </div>):(
-                    <List
-                    pagination={{
-                      showSizeChanger: true,
-                      pageSize: 6,
-                      pageSizeOptions: ["10", "30", "100"],
-                    }}
-                    dataSource={rest}
-                    renderItem={(val) => (
-                      <List.Item>
-                        <NewsShortTemplate title={val.Title} id={val.id} detail={val.Detail}/>
-                      </List.Item>
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                      </div>
+                    ) : isEmpty(rest) ? (
+                      <div className="mb4">
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                        <Divider />
+                        <Skeleton active />
+                      </div>
+                    ) : (
+                      <List
+                        pagination={{
+                          showSizeChanger: true,
+                          pageSize: 6,
+                          pageSizeOptions: ["10", "30", "100"],
+                        }}
+                        dataSource={rest}
+                        renderItem={(val) => (
+                          <List.Item>
+                            <NewsShortTemplate
+                              title={val.Title}
+                              id={val.id}
+                              detail={val.Detail}
+                            />
+                          </List.Item>
+                        )}
+                      />
                     )}
-                  />
-                  )}
                   </div>
                 </div>
               </Content>
@@ -226,7 +259,7 @@ const PhoneScreen = () => {
         </div>
       </Content>
     </Layout>
-  )
+  );
 }
 
 export default PhoneScreen

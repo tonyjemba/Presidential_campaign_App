@@ -17,6 +17,8 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { BsFillClockFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
+import { Helmet } from "react-helmet";
+
 
 const { Content} = Layout;
 const { Paragraph, Title } = Typography;
@@ -106,7 +108,7 @@ class PhoneScreen extends React.Component {
                </Link>
                <div
                  className="fw4 pl2"
-                 style={{ fontSize: `${fontSize}`, cursor: "default" }}
+                 style={{ fontSize: "15px",fontWeight:"lighter", cursor: "default" }}
                >
                  {" "}
                  Author: {author}
@@ -325,6 +327,15 @@ class PhoneScreen extends React.Component {
           <Layout className="top ">
             <Content className="bg-white">
               <div className="w-100 flex flex-column justify-center items-center">
+                <Helmet>
+                  <title>
+                    Kyagulanyi Ssentamu Robert for President| Campaign Website
+                  </title>
+                  <meta
+                    name="bobi wine"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Robert Kyagulanyi (Bobi Wine) and Ugandans at Large."
+                  />
+                </Helmet>
                 <div className="w-100 " style={{ backgroundColor: "#0C0474" }}>
                   <div className="w-100 ">
                     <div className="w-100 mt3  flex flex-column justify-between">
@@ -337,9 +348,11 @@ class PhoneScreen extends React.Component {
                       <div className="w-100  h-100 ">
                         <div
                           className=" w-100 tc white mb1 mt3"
-                          style={{ fontSize: "16px",fontWeight:"lighter" }}
+                          style={{ fontSize: "16px", fontWeight: "lighter" }}
                         >
-                          {currentUser ? null : <div>Sign in to Volunteer.</div>}
+                          {currentUser ? null : (
+                            <div>Sign in to Volunteer.</div>
+                          )}
                         </div>
                         <div className="w-100 flex  items-center justify-center">
                           <div className=" w-90">

@@ -29,6 +29,7 @@ import {
   ControlBar,
 } from "video-react";
 import moment from 'moment';
+import { Helmet } from "react-helmet";
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 const { Content } = Layout;
@@ -190,6 +191,13 @@ const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
+           <Helmet>
+        <title>Kyagulanyi Ssentamu Robert bobi wine: videos </title>
+        <meta
+          name="bobi wine |Latest videos"
+          content="upload and watch campaign videos, Police brutality in Uganda, Uganda Election Scenes"
+        />
+      </Helmet>
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title
