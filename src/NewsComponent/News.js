@@ -5,7 +5,6 @@ import { useParams, Link } from 'react-router-dom';
 import moment from 'moment';
 import Media from 'react-media';
 import { smaller } from '../universal/ScreenSize';
-import { Helmet } from "react-helmet";
 const { Content } = Layout
 const { Title } = Typography
 
@@ -41,7 +40,7 @@ const News = ({ news }) => {
                     </div>
                     <div className="mt4">
                       <div className="w-100 flex justify-center">
-                        <div className="w-100 bg-pink">
+                        <div className="w-100">
                           <img
                             src={theNews.photoUrl}
                             alt="News_Photo"
@@ -54,13 +53,7 @@ const News = ({ news }) => {
                           />
                         </div>
                       </div>
-                      <Helmet>
-                        <title>{theNews.Title}</title>
-                        <meta
-                          name="bobi wine |Latest News"
-                          content={`${theNews.Detail}`}
-                        />
-                      </Helmet>
+                      
                       <div className="mt4">
                         <Title style={{ fontWeight: "bold" }} level={3}>
                           {theNews.Title}
@@ -82,6 +75,20 @@ const News = ({ news }) => {
                         style={{ fontSize: "17px", lineHeight: "2em" }}
                       >
                         {theNews.Detail}
+                      </div>
+                      <div className="w-100 mt4 mb4 flex justify-center">
+                        <div className="w-100 ">
+                          <img
+                            src={theNews.photoUrl1}
+                            alt="kyagulanyi2021"
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              height: "35vh",
+                              width: "100%",
+                            }}
+                          />
+                        </div>
                       </div>
                       <div style={{ fontSize: "17px" }} className="fw5 mt4 ">
                         Author: {theNews.Author}
@@ -118,7 +125,7 @@ const News = ({ news }) => {
                     </div>
                     <div className="mt4">
                       <div className="w-100 flex justify-center">
-                        <div className="w-80 bg-pink">
+                        <div className="w-80 ">
                           <img
                             src={theNews.photoUrl}
                             alt="Robert 2021"
@@ -131,13 +138,7 @@ const News = ({ news }) => {
                           />
                         </div>
                       </div>
-                      <Helmet>
-                        <title>{theNews.Title}</title>
-                        <meta
-                          name="bobi wine |Latest News"
-                          content={`${theNews.Detail}`}
-                        />
-                      </Helmet>
+                      
                       <div className="mt4">
                         <Title level={4}>{theNews.Title}</Title>
                       </div>
@@ -158,9 +159,24 @@ const News = ({ news }) => {
                       >
                         {theNews.Detail}
                       </div>
+                      <div className="w-100 mt4 mb4 flex justify-center">
+                        <div className="w-80 ">
+                          <img
+                            src={theNews.photoUrl1}
+                            alt="Kyagulanyi2021"
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: "center",
+                              height: "70vh",
+                              width: "100%",
+                            }}
+                          />
+                        </div>
+                      </div>
                       <div style={{ fontSize: "17px" }} className="fw5 mt4 ">
                         Author: {theNews.Author}
                       </div>
+
                       <div className="w-100 flex justify-end">
                         <div className="mb5">
                           <Link

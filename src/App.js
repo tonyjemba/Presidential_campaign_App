@@ -1,13 +1,16 @@
 import React from "react";
 import "./App.less";
+import ScrollToTop from "./ScrollToTop";
 import Loadable from "react-loadable";
 import { BackTop, Result,Button } from "antd";
 import HeaderComponent from "./universal/HeaderComponent/HeaderComponent";
 import FooterComponent from "./universal/FooterComponent/FooterComponent";
-import {Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import Main from "./main/main";
+import { Helmet } from "react-helmet";
 
 
 const domain = "dev-0s5nlpcu.us.auth0.com";
@@ -39,10 +42,7 @@ const Loader = ({ pastDelay, error }) => {
 };
 
 
-const AsyncMain = Loadable({
-  loader: () => import("./main/main"),
-  loading: Loader,
-});
+
 const AsyncEvents = Loadable({
   loader: () => import("./Events/EventsComponent"),
   loading: Loader,
@@ -107,62 +107,106 @@ const NotFoundPage = Loadable({
 
 function App() {
 
-
   return (
-    <Router>
-      <Auth0Provider
-        domain={domain}
-        clientId={clientId}
-        redirectUri={window.location.origin}
-      >
-        <div>
-          <HeaderComponent />
-          <div>
-            <Switch>
-              <Route path="/" exact>
-                <AsyncMain />
-              </Route>
-              <Route path="/events">
-                <AsyncEvents />
-              </Route>
-              <Route path="/news">
-                <AsyncNews />
-              </Route>
-              <Route path="/videos">
-                <AsyncVideos />
-              </Route>
-              <Route path="/about_Kyagulanyi">
-                <AsyncAbout />
-              </Route>
-              <Route path="/contact">
-                <AsyncContact />
-              </Route>
-              <Route path="/volunteer">
-                <AsyncVolunteer />
-              </Route>
-              <Route path="/getInvolved">
-                <AsyncInvolved />
-              </Route>
-              <Route path="/privacyPoliy_Terms">
-                <AsyncTerms />
-              </Route>
-              <Route path="/event/:id" children={<AsyncEvent />} />
-              <Route path="/thenews/:id" children={<AsyncNew />} />
+    <div>
+      <Helmet>
+        <title>
+          Vote Kyagulanyi Ssentamu Robert for President | A New Uganda.
+        </title>
+        <meta
+          name="description"
+          content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+        />
+        <meta
+          name="keywords"
+          content="bobiwine, kyagulanyi, Ssentamu, Robert, NationalUnityPlatform,NUP,uganda,weareremovingadictator,people,power, campaigns, president, website, bobi, wine, kyagulanyi2021"
+        />
+        <meta
+          name="robots"
+          content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+        />
+        <meta
+          property="og:description"
+          content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+        />
+        <meta property="og:url" content="https://kyagulanyi2021.com" />
+        <meta
+          property="og:site_name"
+          content="kyagulanyi2021 Campaign Website"
+        />
+        <meta
+          name="twitter:description"
+          content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+        />
+        <meta
+          name="twitter:title"
+          content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+        />
+        <link rel="canonical" href="https://kyagulanyi2021.com/" />
+      </Helmet>
+      <Router>
+        <ScrollToTop>
+          <Auth0Provider
+            domain={domain}
+            clientId={clientId}
+            redirectUri={window.location.origin}
+          >
+            <div>
+              <HeaderComponent />
+              <div>
+                <Switch>
+                  <Route path="/" exact>
+                    <Main />
+                  </Route>
+                  <Route path="/events">
+                    <AsyncEvents />
+                  </Route>
+                  <Route path="/news">
+                    <AsyncNews />
+                  </Route>
+                  <Route path="/videos">
+                    <AsyncVideos />
+                  </Route>
+                  <Route path="/about">
+                    <AsyncAbout />
+                  </Route>
+                  <Route path="/contact">
+                    <AsyncContact />
+                  </Route>
+                  <Route path="/volunteer">
+                    <AsyncVolunteer />
+                  </Route>
+                  <Route path="/getInvolved">
+                    <AsyncInvolved />
+                  </Route>
+                  <Route path="/privacyPoliy_Terms">
+                    <AsyncTerms />
+                  </Route>
+                  <Route path="/event/:id" children={<AsyncEvent />} />
+                  <Route path="/thenews/:id" children={<AsyncNew />} />
 
-              <Route path="/KAdmin_Panel">
-                <AsyncAdmin />
-              </Route>
-              <Route path="/live">
-                <Live/>
-              </Route>
-              <Route path="*" component={NotFoundPage} />
-            </Switch>
-          </div>
-          <BackTop />
-          <FooterComponent />
-        </div>
-      </Auth0Provider>
-    </Router>
+                  <Route path="/KAdmin_Panel">
+                    <AsyncAdmin />
+                  </Route>
+                  <Route path="/live">
+                    <Live />
+                  </Route>
+                  <Route path="*" component={NotFoundPage} />
+                </Switch>
+              </div>
+              <BackTop />
+              <FooterComponent />
+            </div>
+          </Auth0Provider>
+        </ScrollToTop>
+      </Router>
+    </div>
   );
 }
 

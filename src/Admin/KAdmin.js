@@ -27,7 +27,6 @@ const KAdmin = () => {
   const { logout } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const { isAuthenticated } = useAuth0();
-  console.log(isAuthenticated);
   return (
     <div>
       {isAuthenticated ? (

@@ -3,67 +3,40 @@ import {
   Layout,
   Dropdown,
   Menu,
-  Typography,
+  Skeleton,
   List,
+  Input,
+  Button,
+  Spin,
 } from "antd";
+import LoadableVisibility from "react-loadable-visibility/react-loadable";
 import { DownOutlined } from "@ant-design/icons";
 import {FaSearch} from "react-icons/fa";
 import {IconContext} from "react-icons";
 import {CgCalendarToday,CgViewMonth} from "react-icons/cg";
 import {ImCalendar} from "react-icons/im";
-import { Input, Button ,Spin} from "antd";
 import "./css/events.css";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase';
-import { Helmet} from "react-helmet";
 const { Content } = Layout;
-const { Title, Paragraph } = Typography;
-const Template = ({ title,date,location,detail,id }) => {
-  return (
-    <div>
-      <Helmet>
-        <title>Kyagulanyi Ssentamu Robert for President| Events</title>
-        <meta
-          name="bobi wine |Events"
-          content="kyagulanyi for president 2021. Events During the Struggle (People Power, Our Power)."
-        />
-      </Helmet>
-      <Title level={4} style={{ cursor: "default", color: "#ff0000" }}>
-        {title}
-      </Title>
-      <div className="flex flex-row" style={{ cursor: "default" }}>
-        <div className="fw7 mr6" style={{ color: "#000080", fontSize: "15px" }}>
-          {date}
-        </div>
-        <div style={{ color: "#000080", fontSize: "15px" }} className="fw7">
-          {location}
-        </div>
+const Loader = ({ pastDelay, error }) => {
+  if (error) {
+    return <div>error occurred while loading event</div>;
+  } else if (pastDelay) {
+    return (
+      <div className="w-100">
+        <Skeleton active />
       </div>
-      <div
-        className="mt3"
-        style={{
-          color: "black",
-          textAlign: "justify",
-          textJustify: "inter-word",
-        }}
-      >
-        <Paragraph
-          ellipsis={{ rows: 3, expandable: false }}
-          style={{ fontSize: "16px" }}
-        >
-          {detail}
-        </Paragraph>
-      </div>
-      <div className="w-100 flex justify-end">
-        <div>
-          <Link to={"/event/" + id}>Show More</Link>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 };
+const LoadableComponent = LoadableVisibility({
+  loader: () => import("./TemplatePhone"),
+  loading: Loader,
+});
 
 
 const PhoneScreen = () => {
@@ -102,10 +75,13 @@ const PhoneScreen = () => {
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100">
+          
+
           <div className="w-100 relative">
             <div
               className="w-100 flex justify-center absolute"
-              style={{ top: "22%" }}>
+              style={{ top: "22%" }}
+            >
               <div className="w-90">
                 <div
                   className="fw7 "
@@ -114,7 +90,8 @@ const PhoneScreen = () => {
                     color: "#ffffff",
                     backgroundColor: " rgba(0, 0, 128, 0.082)",
                     fontSize: "8.5vw",
-                  }}>
+                  }}
+                >
                   Events During <br /> the Struggle
                 </div>
               </div>
@@ -135,7 +112,8 @@ const PhoneScreen = () => {
             <div className="w-90">
               <div
                 className="w-100 flex flex-row justify-between mb5 pl3 pr3 pt1 pb2"
-                style={{ backgroundColor: "#fbfbfb" }}>
+                style={{ backgroundColor: "#fbfbfb" }}
+              >
                 <div className="flex flex-column w-70">
                   <div className="fw7 black" style={{ fontSize: "15px" }}>
                     Search
@@ -146,15 +124,16 @@ const PhoneScreen = () => {
                     </div>
                     <Button type="primary">
                       <div className="white ">
-                      <IconContext.Provider
-                    value={{
-                      color: "white",
-                      size: "17px",
-                    }}>
-                    <div className="pointer  mt1">
-                      <FaSearch />
-                    </div>
-                  </IconContext.Provider>
+                        <IconContext.Provider
+                          value={{
+                            color: "white",
+                            size: "17px",
+                          }}
+                        >
+                          <div className="pointer  mt1">
+                            <FaSearch />
+                          </div>
+                        </IconContext.Provider>
                       </div>
                     </Button>
                   </div>
@@ -180,19 +159,34 @@ const PhoneScreen = () => {
               </div>
 
               <div className="mb5">
-                {!isLoaded(events)?<div className="w-100 pt5 pb5 flex justify-center items-center"><div><Spin size="large"/></div></div>:<List
-                  pagination={{
-                    showSizeChanger: true,
-                    pageSize: 8,
-                    pageSizeOptions: ["10", "30", "100"],
-                  }}
-                  dataSource={search?filteredArray:events}
-                  renderItem={(val) => (
-                    <List.Item>
-                      <Template  key={val.id} id={val.id} date={moment(val.Date.toDate()).calendar()} title={val.Title}  location={val.Location} detail={val.Detail}/>
-                    </List.Item>
-                  )}
-                />}
+                {!isLoaded(events) ? (
+                  <div className="w-100 pt5 pb5 flex justify-center items-center">
+                    <div>
+                      <Spin size="large" />
+                    </div>
+                  </div>
+                ) : (
+                  <List
+                    pagination={{
+                      showSizeChanger: true,
+                      pageSize: 8,
+                      pageSizeOptions: ["10", "30", "100"],
+                    }}
+                    dataSource={search ? filteredArray : events}
+                    renderItem={(val) => (
+                      <List.Item>
+                        <LoadableComponent
+                          key={val.id}
+                          id={val.id}
+                          date={moment(val.Date.toDate()).calendar()}
+                          title={val.Title}
+                          location={val.Location}
+                          detail={val.Detail}
+                        />
+                      </List.Item>
+                    )}
+                  />
+                )}
               </div>
             </div>
           </div>

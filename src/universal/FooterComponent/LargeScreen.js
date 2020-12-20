@@ -55,24 +55,34 @@ const LargeScreen = ({currentUser}) => {
               <div id="getInvolved" className="w-33 mt5">
                 {currentUser ? (
                   <div className="w-100 tc">
-                    <Title level={4} style={{fontWeight:"lighter",color:"#ffffff"}}>Welcome back {currentUser.name}!</Title>
-                    <Title level={4} style={{fontWeight:"lighter",color:"#ffffff"}}>Thank You For Supporting Kyagulanyi.</Title>
+                    <Title
+                      level={4}
+                      style={{ fontWeight: "lighter", color: "#ffffff" }}
+                    >
+                      Welcome back {currentUser.name}!
+                    </Title>
+                    <Title
+                      level={4}
+                      style={{ fontWeight: "lighter", color: "#ffffff" }}
+                    >
+                      Thank You For Supporting Kyagulanyi.
+                    </Title>
                   </div>
                 ) : (
-                    <div>
-                      <Link to="/volunteer">
-                        <div className="w-100 flex justify-center">
-                          <div
-                            className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
-                            style={{
-                              backgroundColor: "#FF0000",
-                              fontSize: "16px",
-                            }}
-                          >
-                            Sign in
-                          </div>
+                  <div>
+                    <Link to="/volunteer">
+                      <div className="w-100 flex justify-center">
+                        <div
+                          className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                          style={{
+                            backgroundColor: "#FF0000",
+                            fontSize: "16px",
+                          }}
+                        >
+                          Sign in
                         </div>
-                      </Link>
+                      </div>
+                    </Link>
                   </div>
                 )}
               </div>
@@ -159,6 +169,7 @@ const LargeScreen = ({currentUser}) => {
                             </div>
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://peoplepower.org.ug/donate/"
                             >
                               <div
@@ -184,6 +195,7 @@ const LargeScreen = ({currentUser}) => {
                             </div>
                             <a
                               target="_target"
+                              rel="noopener noreferrer"
                               href="https://kyagulanyi2021stores.bigcartel.com/"
                             >
                               <div
@@ -284,7 +296,7 @@ const LargeScreen = ({currentUser}) => {
                               </div>
                             </div>
                           </Link>
-                          <Link to="/about_Kyagulanyi">
+                          <Link to="/about">
                             <div className="flex flex-row mt3">
                               <div>
                                 <IconContext.Provider
@@ -325,6 +337,7 @@ const LargeScreen = ({currentUser}) => {
                             >
                               <a
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 href="https://peoplepower.org.ug/faqs/"
                               >
                                 FAQ
@@ -367,25 +380,38 @@ const LargeScreen = ({currentUser}) => {
               </div>
               <div className=" w-100 flex btm justify-center items-center">
                 <div className="w-90 flex flex-row justify-between white">
-                  <div
-                    className="fw5 h-100 flex items-center pt3"
-                    style={{ fontSize: "1.1vw" }}
-                  >
-                    copyright
-                    <span className="red mt1">
-                      <IconContext.Provider
-                        value={{
-                          color: "white",
-                          size: "17px",
-                        }}
-                      >
-                        <span className="pointer mt1 ml1 mr1">
-                          <FaRegCopyright />
-                        </span>
-                      </IconContext.Provider>
-                    </span>
-                    2020-2021. All Rights Reserved. 
-                    
+                  <div className="flex flex-column">
+                    <div
+                      className="fw5 h-100 flex items-center pt3"
+                      style={{ fontSize: "1.1vw" }}
+                    >
+                      copyright
+                      <span className="red mt1">
+                        <IconContext.Provider
+                          value={{
+                            color: "white",
+                            size: "17px",
+                          }}
+                        >
+                          <span className="pointer mt1 ml1 mr1">
+                            <FaRegCopyright />
+                          </span>
+                        </IconContext.Provider>
+                      </span>
+                      2020-2021. All Rights Reserved.
+                    </div>
+                    <div className="mt1 mb2">
+                      Coded by{" "}
+                      <span className="pointer  ">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.twitter.com/jemytt"
+                        >
+                          @jemytt
+                        </a>
+                      </span>
+                    </div>
                   </div>
                   <div className="flex flex-row">
                     <Space size="large">
@@ -400,6 +426,7 @@ const LargeScreen = ({currentUser}) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.facebook.com/www.bobiwine.ug/"
                             >
                               <GrFacebook />
@@ -418,6 +445,7 @@ const LargeScreen = ({currentUser}) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.twitter.com/HEBobiwine"
                             >
                               <GrTwitter />
@@ -436,6 +464,7 @@ const LargeScreen = ({currentUser}) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.instagram.com/bobiwine"
                             >
                               <RiInstagramFill />

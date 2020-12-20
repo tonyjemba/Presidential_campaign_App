@@ -1,13 +1,15 @@
 import React from "react";
 import { Layout, Carousel } from "antd";
 import "./css/main.css";
-import { Collapse, Typography, Row ,Col,Button} from "antd";
+import { Collapse, Typography, Row ,Button} from "antd";
 import { DownloadOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
 import { CaretRightOutlined, CaretLeftOutlined } from "@ant-design/icons";
+import NewsCard from "./NewsCard";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
+
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 import { GrTwitter } from "react-icons/gr";
 import moment from "moment";
@@ -162,55 +164,8 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
     </div>
   );
      };
-     const NewsCard = ({ span,id,date, fontSize,image,title,author }) => {
-       return (
-         <Col className="gutter-row" span={span}>
-           <div style={{ background: "#fbfbfb" }}>
-             <Link to={"/thenews/" + id}>
-               <div
-                 className="w-100 pointer"
-                 style={{ height: "35vh", background: "#fbfbfb" }}
-               >
-                 <img
-                   src={image}
-                   alt="news"
-                   style={{
-                     objectFit: "cover",
-                     objectPosition: "center",
-                     height: "100%",
-                     width: "100%",
-                   }}
-                 />
-               </div>
-             </Link>
-             <div className="w-100 mt2 mb2  fw5">
-               <Link to={"/thenews/" + id}>
-                 <div
-                   style={{ color: "#ff0000", fontSize: `${fontSize}` }}
-                   className="pointer pl2"
-                 >
-                   {date}
-                 </div>
-            </Link>
-             </div>
-             <Link to={"/thenews/" + id}>
-               <div className="fw7 pl2">
-                 <Paragraph
-                   ellipsis={{ rows: 2, expandable: false }}
-                   style={{ color: "black", fontSize: `${fontSize}` }}
-                 >
-                   {title}
-                 </Paragraph>
-               </div>
-             </Link>
-             <div className="fw4 pl2" style={{ fontSize: `${fontSize}`,cursor:"default" }}>
-               {" "}
-               Author: {author}
-             </div>
-           </div>
-         </Col>
-       );
-     };
+ 
+     
      const Panels= ({imageUrl}) => {
        return (
          <div className="w-100 mt6 flex justify-center items-center">
@@ -341,13 +296,50 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
           <Layout className="top ">
             <Content className="bg-white">
               <div className="w-100 flex flex-column justify-center items-center">
-                          <Helmet>
-            <title>Kyagulanyi Ssentamu Robert for President| Campaign Website</title>
-            <meta
-              name="bobi wine"
-              content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Robert Kyagulanyi (Bobi Wine) and Ugandans at Large."
-            />
-          </Helmet>
+                <Helmet>
+                  <title>
+                    Vote Kyagulanyi Ssentamu Robert for President | A New Uganda.
+                  </title>
+                  <meta
+                    name="description"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of  Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people"
+                  />
+                  <meta
+                    name="keywords"
+                    content="bobiwine, kyagulanyi, Ssentamu, Robert, NationalUnityPlatform,NUP,people,power,uganda, campaigns, president, website, bobi, wine, kyagulanyi2021,weareremovingadictator"
+                  />
+                  <meta
+                    name="robots"
+                    content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+                  />
+                  <meta property="og:locale" content="en_US" />
+                  <meta property="og:type" content="website" />
+                  <meta
+                    property="og:title"
+                    content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+                  />
+                  <meta
+                    property="og:description"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+                  />
+                  <meta
+                    property="og:url"
+                    content="https://kyagulanyi2021.com"
+                  />
+                  <meta
+                    property="og:site_name"
+                    content="kyagulanyi2021 Campaign Website"
+                  />
+                  <meta
+                    name="twitter:description"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+                  />
+                  <meta
+                    name="twitter:title"
+                    content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+                  />
+                  <link rel="canonical" href="https://kyagulanyi2021.com" />
+                </Helmet>
                 <div
                   className="w-100 flex justify-around items-center"
                   style={{ backgroundColor: "#0C0474" }}
@@ -390,7 +382,7 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
                         className="fw7 white mb3"
                         style={{ fontSize: "1.8vw" }}
                       >
-                        {currentUser?null:"Sign in to Volunteer."}
+                        {currentUser ? null : "Sign in to Volunteer."}
                         {currentUser ? (
                           <div className="w-100 tc">
                             <Title
@@ -409,25 +401,26 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
                                 color: "#ffffff",
                               }}
                             >
-                              Thank You For Supporting Kyagulanyi.
+                              Thank You For Supporting Kyagulanyi #People Power.
                             </Title>
                           </div>
                         ) : (
-                            <div>
-                              <Link to="/volunteer">
-                        <div className="w-100 flex justify-center">
-                          <div
-                            className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
-                            style={{
-                              backgroundColor: "#FF0000",
-                              fontSize: "16px",
-                            }}
-                          >
-                            Sign in
+                          <div>
+                            <Link to="/volunteer">
+                              <div className="w-100 flex justify-center">
+                                <div
+                                  className="w-50 Hbtn pointer tc mb4 white fw7 pt2 pb2 pl2 pr2 hover-bg-dark-red"
+                                  style={{
+                                    backgroundColor: "#FF0000",
+                                    fontSize: "16px",
+                                  }}
+                                >
+                                  Sign in
+                                </div>
+                              </div>
+                            </Link>
                           </div>
-                        </div>
-                      </Link></div>
-                              )}
+                        )}
                       </div>
                     </div>
                   </div>
@@ -608,6 +601,7 @@ const Tmp = ({id, day, month, time, image, title, location, detail }) => {
               <div className=" flex  justify-center   items-center ">
                 <a
                   target="_blank"
+                  rel="noopener noreferrer"
                   href="https://kyagulanyi2021stores.bigcartel.com/"
                 >
                   <div

@@ -175,6 +175,7 @@ const SmallScreen = ({ currentUser }) => {
                             </div>
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://peoplepower.org.ug/donate/"
                             >
                               <div
@@ -202,6 +203,7 @@ const SmallScreen = ({ currentUser }) => {
 
                               <a
                                 target="_target"
+                                rel="noopener noreferrer"
                                 href="https://kyagulanyi2021stores.bigcartel.com/"
                               >
                                 <div
@@ -303,7 +305,7 @@ const SmallScreen = ({ currentUser }) => {
                               </div>
                             </div>
                           </Link>
-                          <Link to="/about_Kyagulanyi">
+                          <Link to="/about">
                             <div className="flex flex-row mt3">
                               <div>
                                 <IconContext.Provider
@@ -344,6 +346,7 @@ const SmallScreen = ({ currentUser }) => {
                             >
                               <a
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 href="https://peoplepower.org.ug/faqs/"
                               >
                                 FAQ
@@ -380,24 +383,38 @@ const SmallScreen = ({ currentUser }) => {
               </div>
               <div className=" w-100 flex btm justify-center items-center">
                 <div className="w-90 flex flex-row justify-between white">
-                  <div
-                    className="fw5 h-100 flex items-center  "
-                    style={{ fontSize: "9px", marginTop: "6%" }}
-                  >
-                    copyright
-                    <span className="red mt1">
-                      <IconContext.Provider
-                        value={{
-                          color: "white",
-                          size: "10px",
-                        }}
-                      >
-                        <span className="pointer mt1 ml1 mr1">
-                          <FaRegCopyright />
-                        </span>
-                      </IconContext.Provider>
-                    </span>
-                    2020-2021. All Rights Reserved.
+                  <div className="flex flex-column">
+                    <div
+                      className=" h-100 flex items-center pt3"
+                      style={{ fontSize: "13px" }}
+                    >
+                      copyright
+                      <span className="red mt1">
+                        <IconContext.Provider
+                          value={{
+                            color: "white",
+                            size: "17px",
+                          }}
+                        >
+                          <span className="pointer mt1 ml1 mr1">
+                            <FaRegCopyright />
+                          </span>
+                        </IconContext.Provider>
+                      </span>
+                      2020-2021. All Rights Reserved.
+                    </div>
+                    <div className="mt1 mb2">
+                      Coded by{" "}
+                      <span className="pointer  ">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.twitter.com/jemytt"
+                        >
+                          @jemytt
+                        </a>
+                      </span>
+                    </div>
                   </div>
                   <div className="flex flex-row">
                     <Space size="middle">
@@ -412,6 +429,7 @@ const SmallScreen = ({ currentUser }) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.facebook.com/www.bobiwine.ug/"
                             >
                               <GrFacebook />
@@ -430,6 +448,7 @@ const SmallScreen = ({ currentUser }) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.twitter.com/HEBobiwine"
                             >
                               <GrTwitter />
@@ -448,6 +467,7 @@ const SmallScreen = ({ currentUser }) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.instagram.com/bobiwine"
                             >
                               <RiInstagramFill />

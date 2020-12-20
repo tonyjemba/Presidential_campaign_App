@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { useParams,Link} from "react-router-dom";
 import moment from "moment";
 import Media from 'react-media';
-import { Helmet } from "react-helmet";
 import { smaller } from '../universal/ScreenSize';
 
 const { Content } = Layout;
@@ -30,13 +29,7 @@ const { Title } = Typography;
         {(matches) =>
           matches.smaller ? (
             <div>
-              <Helmet>
-                <title>{event.Title}</title>
-                <meta
-                  name="bobi wine |Latest News"
-                  content={`${event.Detail}`}
-                />
-              </Helmet>
+              
               <div className="w-100 flex justify-center">
                 <div className="w-90 mb4 mt4">
                   <Layout style={{ backgroundColor: "#ffffff" }}>
@@ -49,7 +42,7 @@ const { Title } = Typography;
                       </div>
                       <div className="mt4">
                         <div className="w-100 flex justify-center">
-                          <div className="w-85 bg-pink">
+                          <div className="w-85 ">
                             <img
                               src={event.photoUrl}
                               alt="event"
@@ -90,6 +83,50 @@ const { Title } = Typography;
                         >
                           {event.Detail}
                         </div>
+                        <div className="mt5">
+                          <div className="w-100 flex mt4 justify-center">
+                            <div className="w-85 ">
+                              <img
+                                src={event.photoUrl1}
+                                alt="event"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                  height: "100%",
+                                  width: "100%",
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <div className="w-100 flex mt4 justify-center">
+                            <div className="w-85 ">
+                              <img
+                                src={event.photoUrl2}
+                                alt="event"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                  height: "100%",
+                                  width: "100%",
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <div className="w-100 flex mt4 justify-center">
+                            <div className="w-85 ">
+                              <img
+                                src={event.photoUrl3}
+                                alt="event"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                  height: "100%",
+                                  width: "100%",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div className="mt4 mb5">
                         <Link className="pointer w-30" to="/events">
@@ -104,13 +141,7 @@ const { Title } = Typography;
             </div>
           ) : (
             <div>
-              <Helmet>
-                <title>{event.Title}</title>
-                <meta
-                  name="bobi wine |Latest News"
-                  content={`${event.Detail}`}
-                />
-              </Helmet>
+              
               <div className="w-100 flex justify-center">
                 <div className="w-90 mb4 mt4">
                   <Layout style={{ backgroundColor: "#ffffff" }}>
@@ -123,7 +154,7 @@ const { Title } = Typography;
                       </div>
                       <div className="mt4">
                         <div className="w-100 flex justify-center">
-                          <div className="w-80 bg-pink">
+                          <div className="w-80 ">
                             <img
                               src={event.photoUrl}
                               alt="event"
@@ -167,6 +198,50 @@ const { Title } = Typography;
                           }}
                         >
                           {event.Detail}
+                        </div>
+                        <div className="mt5">
+                          <div className="w-100 flex justify-center">
+                            <div className="w-85 ">
+                              <img
+                                src={event.photoUrl1}
+                                alt="event"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                  height: "100%",
+                                  width: "100%",
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <div className="w-100 mt4 flex justify-center">
+                            <div className="w-85 ">
+                              <img
+                                src={event.photoUrl2}
+                                alt="event"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                  height: "100%",
+                                  width: "100%",
+                                }}
+                              />
+                            </div>
+                          </div>
+                          <div className="w-100 mt4 flex justify-center">
+                            <div className="w-85 ">
+                              <img
+                                src={event.photoUrl3}
+                                alt="event"
+                                style={{
+                                  objectFit: "cover",
+                                  objectPosition: "center",
+                                  height: "100%",
+                                  width: "100%",
+                                }}
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <div className="mt4 mb5">

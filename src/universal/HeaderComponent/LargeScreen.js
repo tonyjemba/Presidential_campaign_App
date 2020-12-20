@@ -78,6 +78,7 @@ const LargeScreen = () =>{
                    >
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://www.facebook.com/www.bobiwine.ug/"
                      >
                        <div className="pointer  ">
@@ -95,6 +96,7 @@ const LargeScreen = () =>{
                    >
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://www.twitter.com/HEBobiwine"
                      >
                        <div className="pointer  ">
@@ -112,6 +114,7 @@ const LargeScreen = () =>{
                    >
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://www.instagram.com/bobiwine"
                      >
                        <div className="pointer  ">
@@ -150,13 +153,14 @@ const LargeScreen = () =>{
                        <NavLink to="/videos">VIDEOS</NavLink>
                      </div>
                      <div className="pointer fw7" style={{ color: "#311B92" }}>
-                       <NavLink to="/about_Kyagulanyi">ABOUT</NavLink>
+                       <NavLink to="/about">ABOUT</NavLink>
                      </div>
                      <div className="pointer fw7" style={{ color: "#311B92" }}>
                        <NavLink to="/contact">CONTACT</NavLink>
                      </div>
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://kyagulanyi2021stores.bigcartel.com/"
                      >
                        <div
@@ -178,7 +182,7 @@ const LargeScreen = () =>{
                              size: "20px",
                            }}
                          >
-                             <MdLiveTv />
+                           <MdLiveTv />
                          </IconContext.Provider>
                        </Link>
                      </div>
@@ -193,6 +197,7 @@ const LargeScreen = () =>{
                            >
                              <a
                                target="_blank"
+                               rel="noopener noreferrer"
                                href="https://kyagulanyi2021stores.bigcartel.com/"
                              >
                                <IoMdCart />
@@ -204,6 +209,7 @@ const LargeScreen = () =>{
                      <div className="tosection hover-bg-dark-red pointer pa2 pl3 pr3 Hbtn">
                        <a
                          target="_blank"
+                         rel="noopener noreferrer"
                          href="https://peoplepower.org.ug/donate/"
                        >
                          <div

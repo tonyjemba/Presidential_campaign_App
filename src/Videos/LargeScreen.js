@@ -21,19 +21,13 @@ import { Link } from 'react-router-dom';
 import 'video-react/dist/video-react.css';
 import { connect } from 'react-redux';
 import { MdLocationOn } from 'react-icons/md';
-import {
-  Player,
-  BigPlayButton,
-  LoadingSpinner,
-  ReplayControl,
-  ControlBar,
-} from "video-react";
+import LoadableVisibility from "react-loadable-visibility/react-loadable";
+import { LoadingOutlined } from "@ant-design/icons";
 import moment from 'moment';
-import { Helmet } from "react-helmet";
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 const { Content } = Layout;
-const { Title, Paragraph } = Typography;
+const { Title,} = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
 const layout = {
@@ -46,39 +40,7 @@ const mapStateToProps = (state) => {
     currentUser: state.Admin.currentUser
   }
 }
-const VideoTemplate = ({ desc, video, date, location,  }) => {
-  return (
-    <div>
-      <div className="w-100">
-        <div className="w-100 bg-red" style={{ height: "40vh" }}>
-          <Player src={video} fluid={false} height="100%" width="100%">
-            <BigPlayButton position="center" />
-            <LoadingSpinner />
-            <ControlBar autoHide={false}>
-              <ReplayControl seconds={10} order={2.2} />
-            </ControlBar>
-          </Player>
-        </div>
-        <div className="flex flex-row" style={{ cursor: "default" }}>
-          <div className="fw2 mr4" style={{ fontSize: "16px" }}>
-            {moment(date.toDate()).calendar()}
-          </div>
-          <div style={{ fontSize: "16px" }} className="fw2">
-            {location}
-          </div>
-        </div>
-        <div className="fw7">
-          <Paragraph
-            ellipsis={{ rows: 3, expandable: true }}
-            style={{ color: "black", fontSize: "16px" }}
-          >
-            {desc}
-          </Paragraph>
-        </div>
-      </div>
-    </div>
-  );
-};
+
 
 const ReachableContext = React.createContext()
 
@@ -107,6 +69,33 @@ const mapDispatchToProps = (dispatch) => {
     prevPath: (path) => dispatch(prevPath(path))
   }
 }
+const antIcon = <LoadingOutlined style={{ fontSize: 55 }} spin />;
+
+const Loader = ({ pastDelay, error }) => {
+  if (error) {
+    return (
+      <div>error occurred while loading video</div>
+    );
+  } else if (pastDelay) {
+    return (
+      <div
+        style={{ width: "100%", height: "100vh" }}
+        className="flex items-center justify-center"
+      >
+        <div>
+          <Spin indicator={antIcon} />
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
+};
+const LoadableComponent = LoadableVisibility({
+  loader: () => import("./VideoTemplate"),
+  loading: Loader,
+});
+
 const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
   const [modal, contextHolder] = Modal.useModal();
 
@@ -191,13 +180,7 @@ const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
-           <Helmet>
-        <title>Kyagulanyi Ssentamu Robert bobi wine: videos </title>
-        <meta
-          name="bobi wine |Latest videos"
-          content="upload and watch campaign videos, Police brutality in Uganda, Uganda Election Scenes"
-        />
-      </Helmet>
+          
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title
@@ -238,7 +221,11 @@ const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
                       </Title>
                       <div className="mt3" style={{ fontSize: "16px" }}>
                         Option 1:{" "}
-                        <a target="_blank" href="https://www.youcompress.com/">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.youcompress.com/"
+                        >
                           Click Here
                         </a>{" "}
                         to visit site.
@@ -247,6 +234,7 @@ const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
                         Option 2:{" "}
                         <a
                           target="_blank"
+                          rel="noopener noreferrer"
                           href="https://play.google.com/store/apps/details?id=com.outplaylab.VideoDiet2&hl=en"
                         >
                           {" "}
@@ -258,6 +246,7 @@ const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
                         Option 3:{" "}
                         <a
                           target="_blank"
+                          rel="noopener noreferrer"
                           href="https://videoconverter.wondershare.net/"
                         >
                           {" "}
@@ -417,7 +406,7 @@ const LargeScreen = ({ addVideo, currentUser,prevPath }) => {
                   }}
                   renderItem={(item) => (
                     <List.Item>
-                      <VideoTemplate
+                      <LoadableComponent
                         key={item.id}
                         video={item.videoUrl}
                         location={item.Location}

@@ -11,8 +11,6 @@ import {
   useFirestoreConnect,
   isLoaded,
   isEmpty,
-  useFirebase,
-  firebaseConnect,
 } from "react-redux-firebase";
 import { Player, BigPlayButton, LoadingSpinner } from "video-react";
 import "video-react/dist/video-react.css";

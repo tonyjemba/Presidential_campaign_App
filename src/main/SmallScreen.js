@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Carousel } from "antd";
 import "./css/main.css";
-import { Collapse, Typography, Row,Affix, Col, Button } from "antd";
+import { Collapse, Typography, Row,Affix,  Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import HomeHeroContainer from "../HomeHeroContainer/HomeHeroContainer";
@@ -9,6 +9,7 @@ import { CaretRightOutlined } from "@ant-design/icons";
 import { BsArrowRight } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
+import NewsCard from "./NewsCard";
 import { GrTwitter } from "react-icons/gr";
 import moment from "moment";
 import { FaRegFileVideo } from "react-icons/fa";
@@ -57,66 +58,10 @@ class SmallScreen extends React.Component {
          adaptiveHeight: true,
          slidesToScroll: 1,
        };
-       const NewsCard = ({
-         span,
-         id,
-         date,
-         fontSize,
-         image,
-         title,
-         author,
-       }) => {
-         return (
-           <Col  span={span}>
-             <div style={{ background: "#fbfbfb" }} className="mb4">
-               <Link to={"/thenews/" + id}>
-                 <div
-                   className="w-100 pointer"
-                   style={{ height: "35vh", background: "#fbfbfb" }}
-                 >
-                   <img
-                     src={image}
-                     alt="news"
-                     style={{
-                       objectFit: "cover",
-                       objectPosition: "center",
-                       height: "100%",
-                       width: "100%",
-                     }}
-                   />
-                 </div>
-               </Link>
-               <div className="w-100 mt2 mb2  fw5">
-                 <Link to={"/thenews/" + id}>
-                   <div
-                     style={{ color: "#ff0000", fontSize: `${fontSize}` }}
-                     className="pointer pl2"
-                   >
-                     {date}
-                   </div>
-                 </Link>
-               </div>
-               <Link to={"/thenews/" + id}>
-                 <div className="fw7 pl2">
-                   <Paragraph
-                     ellipsis={{ rows: 2, expandable: false }}
-                     style={{ color: "black", fontSize: `${fontSize}` }}
-                   >
-                     {title}
-                   </Paragraph>
-                 </div>
-               </Link>
-               <div
-                 className="fw4 pl2"
-                 style={{ fontSize: `${fontSize}`, cursor: "default" }}
-               >
-                 {" "}
-                 Author: {author}
-               </div>
-             </div>
-           </Col>
-         );
-       };
+
+
+
+ 
 
        const Tmp = ({
          id,
@@ -329,12 +274,47 @@ class SmallScreen extends React.Component {
               <div className="w-100 flex flex-column justify-center items-center">
                 <Helmet>
                   <title>
-                    Kyagulanyi Ssentamu Robert for President| Campaign Website
+                    Vote Kyagulanyi Ssentamu Robert for President | A New Uganda.
                   </title>
                   <meta
-                    name="bobi wine"
-                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Robert Kyagulanyi (Bobi Wine) and Ugandans at Large."
+                    name="description"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of  Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people"
                   />
+                  <meta
+                    name="keywords"
+                    content="bobiwine, kyagulanyi, Ssentamu, Robert, NationalUnityPlatform,NUP,people,power,uganda, campaigns, president, website, bobi, wine, kyagulanyi2021,weareremovingadictator"
+                  />
+                  <meta
+                    name="robots"
+                    content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+                  />
+                  <meta property="og:locale" content="en_US" />
+                  <meta property="og:type" content="website" />
+                  <meta
+                    property="og:title"
+                    content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+                  />
+                  <meta
+                    property="og:description"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+                  />
+                  <meta
+                    property="og:url"
+                    content="https://kyagulanyi2021.com"
+                  />
+                  <meta
+                    property="og:site_name"
+                    content="kyagulanyi2021 Campaign Website"
+                  />
+                  <meta
+                    name="twitter:description"
+                    content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
+                  />
+                  <meta
+                    name="twitter:title"
+                    content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+                  />
+                  <link rel="canonical" href="https://kyagulanyi2021.com" />
                 </Helmet>
                 <div className="w-100 " style={{ backgroundColor: "#0C0474" }}>
                   <div className="w-100 ">
@@ -381,7 +361,8 @@ class SmallScreen extends React.Component {
                                     fontSize: "3.2vw",
                                   }}
                                 >
-                                  Thank You For Supporting Kyagulanyi.
+                                  Thank You For Supporting Kyagulanyi #People
+                                  Power.
                                 </div>
                               </div>
                             ) : (
@@ -590,6 +571,7 @@ class SmallScreen extends React.Component {
             <div className=" flex  justify-center   items-center ">
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href="https://kyagulanyi2021stores.bigcartel.com/"
               >
                 <div

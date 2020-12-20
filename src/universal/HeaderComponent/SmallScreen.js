@@ -73,6 +73,7 @@ const SmallScreen = () => {
                     >
                       <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="https://www.facebook.com/www.bobiwine.ug/"
                       >
                         <div className="pointer  ">
@@ -91,6 +92,7 @@ const SmallScreen = () => {
                     >
                       <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="https://www.twitter.com/HEBobiwine"
                       >
                         <div className="pointer  ">
@@ -109,6 +111,7 @@ const SmallScreen = () => {
                     >
                       <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="https://www.instagram.com/bobiwine"
                       >
                         <div className="pointer  ">
@@ -126,6 +129,7 @@ const SmallScreen = () => {
                     >
                       <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="https://www.google.com/maps/place/National+Unity+Platform+(People+Power)/@0.3448448,32.5921262,19z/data=!3m1!4b1!4m5!3m4!1s0x177dbb4af8489307:0x6f9b5c1331d29fe7!8m2!3d0.3448435!4d32.5926734"
                       >
                         <div className="pointer white  ">
@@ -176,7 +180,7 @@ const SmallScreen = () => {
                   className="pointer tc white"
                   onClick={() => setDrawer(false)}
                 >
-                  <Link to="/about_Kyagulanyi">
+                  <Link to="/about">
                     <div className="white">ABOUT</div>
                   </Link>
                 </div>
@@ -194,6 +198,7 @@ const SmallScreen = () => {
                 >
                   <a
                     target="_blank"
+                    rel="noopener noreferrer"
                     href="https://kyagulanyi2021stores.bigcartel.com/"
                     to="/store"
                   >
@@ -221,18 +226,18 @@ const SmallScreen = () => {
             </div>
             <div className="w-25 flex    justify-end">
               <Space size="large">
-                 <div>
-                       <Link to="live">
-                         <IconContext.Provider
-                           value={{
-                             color: "black",
-                             size: "20px",
-                           }}
-                         >
-                             <MdLiveTv />
-                         </IconContext.Provider>
-                       </Link>
-                     </div>
+                <div>
+                  <Link to="live">
+                    <IconContext.Provider
+                      value={{
+                        color: "black",
+                        size: "20px",
+                      }}
+                    >
+                      <MdLiveTv />
+                    </IconContext.Provider>
+                  </Link>
+                </div>
                 <div>
                   <Badge showZero={true} offset={[4, 3]} count={0}>
                     <div className=" mt1 items-center flex justify-center">
@@ -244,18 +249,23 @@ const SmallScreen = () => {
                       >
                         <div className="pointer  ">
                           <a
-                                 target="_blank"
-                                 href="https://kyagulanyi2021stores.bigcartel.com/"
-                               >
-                                 <IoMdCart />
-                               </a>
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://kyagulanyi2021stores.bigcartel.com/"
+                          >
+                            <IoMdCart />
+                          </a>
                         </div>
                       </IconContext.Provider>
                     </div>
                   </Badge>
                 </div>
                 <div className="tosection hover-bg-dark-red pointer pa2 pl3 pr3 Hbtn">
-                  <a target="_blank" href="https://peoplepower.org.ug/donate/">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://peoplepower.org.ug/donate/"
+                  >
                     <div className="pointer fw7" style={{ color: "#311B92" }}>
                       DONATE
                     </div>

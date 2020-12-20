@@ -1,9 +1,8 @@
 
 import React, { useState } from "react";
-import { Form, Input, Button, message, Progress } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { connect } from "react-redux";
 import { addHomeBlueSection } from "../Redux/Admin/Actions";
-import firebase from "../base";
 
 const layout = {
   labelCol: { span: 8 },

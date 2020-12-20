@@ -78,6 +78,7 @@ const MediumScreen = () =>{
                    >
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://www.facebook.com/www.bobiwine.ug/"
                      >
                        <div className="pointer  ">
@@ -95,6 +96,7 @@ const MediumScreen = () =>{
                    >
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://www.twitter.com/HEBobiwine"
                      >
                        <div className="pointer  ">
@@ -112,6 +114,7 @@ const MediumScreen = () =>{
                    >
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://www.instagram.com/bobiwine"
                      >
                        <div className="pointer  ">
@@ -165,7 +168,7 @@ const MediumScreen = () =>{
                        className="pointer fw7"
                        style={{ color: "#311B92", fontSize: "1.5vw" }}
                      >
-                       <Link to="/about_Kyagulanyi">ABOUT</Link>
+                       <Link to="/about">ABOUT</Link>
                      </div>
                      <div
                        className="pointer fw7"
@@ -175,6 +178,7 @@ const MediumScreen = () =>{
                      </div>
                      <a
                        target="_blank"
+                       rel="noopener noreferrer"
                        href="https://kyagulanyi2021stores.bigcartel.com/"
                      >
                        <div
@@ -189,7 +193,7 @@ const MediumScreen = () =>{
                  </div>
                  <div className="w-25 flex    justify-end">
                    <Space size="large">
-                      <div>
+                     <div>
                        <Link to="live">
                          <IconContext.Provider
                            value={{
@@ -197,7 +201,7 @@ const MediumScreen = () =>{
                              size: "20px",
                            }}
                          >
-                             <MdLiveTv />
+                           <MdLiveTv />
                          </IconContext.Provider>
                        </Link>
                      </div>
@@ -213,6 +217,7 @@ const MediumScreen = () =>{
                              <div className="pointer  ">
                                <a
                                  target="_blank"
+                                 rel="noopener noreferrer"
                                  href="https://kyagulanyi2021stores.bigcartel.com/"
                                >
                                  <IoMdCart />
@@ -225,6 +230,7 @@ const MediumScreen = () =>{
                      <div className="tosection hover-bg-dark-red pointer pa2 pl3 pr3 Hbtn">
                        <a
                          target="_blank"
+                         rel="noopener noreferrer"
                          href="https://peoplepower.org.ug/donate/"
                        >
                          <div

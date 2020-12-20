@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import firebase from "../../base";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { LoadingOutlined } from "@ant-design/icons";
-import {Helmet} from "react-helmet"
 
 const { Title } = Typography;
 const antIcon = <LoadingOutlined style={{ fontSize: 34 }} spin />;
@@ -65,13 +64,7 @@ const VolunteerForm = ({ addUser }) => {
     
     return (
       <div className="w-100 mt5 mb6 ">
-        <Helmet>
-          <title>Kyagulanyi Ssentamu Robert bobi wine: Volunteer Today </title>
-          <meta
-            name="bobi wine |Sign in"
-            content="Sign in to volunteer. Thank you for supporting Kyagulanyi's Presidential campaigns. Lets Build a New Uganda Together!. "
-          />
-        </Helmet>
+        
         <div className=" w-100 tc">
           <Title level={1} style={{ fontWeight: "bolder" }}>
             Please Sign in to Volunteer.

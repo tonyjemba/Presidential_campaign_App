@@ -14,7 +14,6 @@ import { useSelector } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { addStory } from "../Redux/Admin/Actions";
-import { Helmet } from "react-helmet";
 
 const { Content, Sider } = Layout;
 const { Title } = Typography;
@@ -52,15 +51,7 @@ const LargeScreen = ({ addStory }) => {
 
   return (
     <div>
-      <Helmet>
-        <title>
-          Kyagulanyi Ssentamu Robert for President| About
-        </title>
-        <meta
-          name="bobi wine |About"
-          content="kyagulanyi for president 2021. Kyagulanyi's Story | Biography"
-        />
-      </Helmet>
+     
       <Layout style={{ backgroundColor: "#0C0474" }}>
         <Sider theme="light" width="30%" style={{ backgroundColor: "#0C0474" }}>
           <div className="phwid">

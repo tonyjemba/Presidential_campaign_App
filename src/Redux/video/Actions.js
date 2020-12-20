@@ -1,4 +1,3 @@
-import firebase from "../../base";
 export const addVideo = (video) => {
   return (dispatch, getstate, { getFirebase }) => {
     const firestore = getFirebase().firestore();

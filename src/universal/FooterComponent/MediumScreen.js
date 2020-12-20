@@ -53,12 +53,20 @@ const MediumScreen = ({ currentUser }) => {
                 {currentUser ? (
                   <div className="w-100 tc mt4 ">
                     <div
-                      style={{ fontWeight: "lighter", color: "#ffffff" ,fontSize:"16px"}}
+                      style={{
+                        fontWeight: "lighter",
+                        color: "#ffffff",
+                        fontSize: "16px",
+                      }}
                     >
                       Welcome back {currentUser.name}!
                     </div>
                     <div
-                      style={{ fontWeight: "lighter", color: "#ffffff",fontSize:"16px" }}
+                      style={{
+                        fontWeight: "lighter",
+                        color: "#ffffff",
+                        fontSize: "16px",
+                      }}
                     >
                       Thank You For Supporting Kyagulanyi.
                     </div>
@@ -167,6 +175,7 @@ const MediumScreen = ({ currentUser }) => {
                             </div>
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://peoplepower.org.ug/donate/"
                             >
                               <div
@@ -193,6 +202,7 @@ const MediumScreen = ({ currentUser }) => {
                               </div>
                               <a
                                 target="_target"
+                                rel="noopener noreferrer"
                                 href="https://kyagulanyi2021stores.bigcartel.com/"
                               >
                                 <div
@@ -294,7 +304,7 @@ const MediumScreen = ({ currentUser }) => {
                               </div>
                             </div>
                           </Link>
-                          <Link to="/about_Kyagulanyi">
+                          <Link to="/about">
                             <div className="flex flex-row mt3">
                               <div>
                                 <IconContext.Provider
@@ -335,6 +345,7 @@ const MediumScreen = ({ currentUser }) => {
                             >
                               <a
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 href="https://peoplepower.org.ug/faqs/"
                               >
                                 FAQ
@@ -373,7 +384,6 @@ const MediumScreen = ({ currentUser }) => {
                 <div className="w-90 flex flex-row justify-between white">
                   <div
                     className="fw5 h-100 flex items-center pt3"
-                    style={{ fontSize: "1.1vw" }}
                   >
                     copyright
                     <span className="red mt1">
@@ -388,7 +398,19 @@ const MediumScreen = ({ currentUser }) => {
                         </span>
                       </IconContext.Provider>
                     </span>
-                    2020-2021. All Rights Reserved. 
+                    2020-2021. All Rights Reserved.
+                  </div>
+                  <div className="mt3">
+                    Coded by{" "}
+                    <span className="pointer  ">
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="https://www.twitter.com/jemytt"
+                      >
+                        @jemytt
+                      </a>
+                    </span>
                   </div>
                   <div className="flex flex-row">
                     <Space size="large">
@@ -403,6 +425,7 @@ const MediumScreen = ({ currentUser }) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.facebook.com/www.bobiwine.ug/"
                             >
                               <GrFacebook />
@@ -421,6 +444,7 @@ const MediumScreen = ({ currentUser }) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.twitter.com/HEBobiwine"
                             >
                               <GrTwitter />
@@ -439,6 +463,7 @@ const MediumScreen = ({ currentUser }) => {
                           <div className="pointer  ">
                             <a
                               target="_blank"
+                              rel="noopener noreferrer"
                               href="https://www.instagram.com/bobiwine"
                             >
                               <RiInstagramFill />

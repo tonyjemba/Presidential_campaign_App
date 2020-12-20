@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React from "react";
 import { Layout, Divider, Row, Col, Select, Typography, List,Spin,Skeleton} from "antd";
 import { LoadingOutlined } from '@ant-design/icons';
 import moment from "moment";
@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import "./css/news.css";
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect, isLoaded,isEmpty  } from 'react-redux-firebase';
-import { Helmet} from "react-helmet";
 const { Content, Sider } = Layout;
 const { Option } = Select;
 const { Paragraph } = Typography;
@@ -81,13 +80,7 @@ const SmallScreen = () => {
       <Content>
         <Divider style={{ margin: 0 }} />
         <div className="flex justify-center mt4">
-          <Helmet>
-            <title>Kyagulanyi Ssentamu Robert for President| Latest News</title>
-            <meta
-              name="bobi wine |Latest News"
-              content="kyagulanyi for president 2021. Latest News about Kyagulanyi Ssentamu Robert, National Unity Platform Uganda (bobi wine) (People Power, Our Power)."
-            />
-          </Helmet>
+         
           <div
             className="w-90 "
             style={{

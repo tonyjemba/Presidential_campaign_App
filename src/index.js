@@ -7,14 +7,17 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./Redux/rootReducer";
 import thunk from "redux-thunk";
-import { Provider ,useSelector} from 'react-redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import { getFirebase, ReactReduxFirebaseProvider,isLoaded } from "react-redux-firebase";
+import { Provider } from 'react-redux';
+// import {composeWithDevTools} from 'redux-devtools-extension';
+import { getFirebase, ReactReduxFirebaseProvider } from "react-redux-firebase";
 import firebase from "./base";
 import {createFirestoreInstance} from "redux-firestore"
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument({ getFirebase }))));
-
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk.withExtraArgument({ getFirebase }))));
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk.withExtraArgument({ getFirebase }))
+);
 const rrfProps = {
   firebase,
   config: {},

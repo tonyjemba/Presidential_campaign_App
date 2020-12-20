@@ -17,18 +17,12 @@ import {
 import { addVideo } from '../Redux/video/Actions'
 import firebase from '../base'
 import { Link } from 'react-router-dom';
-import { Helmet } from "react-helmet";
 import 'video-react/dist/video-react.css'
 import { connect } from 'react-redux'
 import { MdLocationOn } from 'react-icons/md'
 import { prevPath } from "../Redux/Admin/Actions";
-import {
-  Player,
-  BigPlayButton,
-  LoadingSpinner,
-  ReplayControl,
-  ControlBar,
-} from "video-react";
+import LoadableVisibility from "react-loadable-visibility/react-loadable";
+import { LoadingOutlined } from "@ant-design/icons";
 import moment from 'moment'
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -41,39 +35,30 @@ const layout = {
   wrapperCol: { span: 16 },
 }
 
-const VideoTemplate = ({ desc, video, date, location }) => {
-  return (
-    <div>
-      <div className="w-100">
-        <div className="w-100 bg-red" style={{ height: "40vh" }}>
-          <Player src={video} fluid={false} height="100%" width="100%">
-            <BigPlayButton position="center" />
-            <LoadingSpinner />
-            <ControlBar autoHide={false}>
-              <ReplayControl seconds={10} order={2.2} />
-            </ControlBar>
-          </Player>
-        </div>
-        <div className="flex flex-row" style={{ cursor: "default" }}>
-          <div className="fw2 mr4" style={{ fontSize: "16px" }}>
-            {moment(date.toDate()).calendar()}
-          </div>
-          <div style={{ fontSize: "16px" }} className="fw2">
-            {location}
-          </div>
-        </div>
-        <div className="fw7">
-          <Paragraph
-            ellipsis={{ rows: 3, expandable: true }}
-            style={{ color: "black", fontSize: "16px" }}
-          >
-            {desc}
-          </Paragraph>
+const antIcon = <LoadingOutlined style={{ fontSize: 35 }} spin />;
+
+const Loader = ({ pastDelay, error }) => {
+  if (error) {
+    return <div>error occurred while loading video</div>;
+  } else if (pastDelay) {
+    return (
+      <div
+        style={{ width: "100%", height: "100vh" }}
+        className="flex items-center justify-center"
+      >
+        <div>
+          <Spin indicator={antIcon} />
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  } else {
+    return null;
+  }
+};
+const LoadableComponent = LoadableVisibility({
+  loader: () => import("./VideoTemplate"),
+  loading: Loader,
+});
 
 const ReachableContext = React.createContext()
 
@@ -192,13 +177,7 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
-            <Helmet>
-        <title>Kyagulanyi Ssentamu Robert bobi wine: videos </title>
-        <meta
-          name="bobi wine |Latest videos"
-          content="upload and watch campaign videos, Police brutality in Uganda, Uganda Election Scenes"
-        />
-      </Helmet>
+         
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title
@@ -239,7 +218,11 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
                       </Title>
                       <div className="mt3" style={{ fontSize: "16px" }}>
                         Option 1:{" "}
-                        <a target="_blank" href="https://www.youcompress.com/">
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href="https://www.youcompress.com/"
+                        >
                           Click Here
                         </a>{" "}
                         to visit site.
@@ -248,6 +231,7 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
                         Option 2:{" "}
                         <a
                           target="_blank"
+                          rel="noopener noreferrer"
                           href="https://play.google.com/store/apps/details?id=com.outplaylab.VideoDiet2&hl=en"
                         >
                           {" "}
@@ -259,6 +243,7 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
                         Option 3:{" "}
                         <a
                           target="_blank"
+                          rel="noopener noreferrer"
                           href="https://videoconverter.wondershare.net/"
                         >
                           {" "}
@@ -352,11 +337,11 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
               </div>
             </div>
             <div className="w-100 tc mt4 mb4">
-              
-                <div style={{ fontSize: "15px", fontWeight: "lighter" }}>
-                  {"NOTE: If you are getting a memory error Goto settings >> Developer options >> then scroll down and uncheck the “Don’t Keep Activities” option to turn it off"}
-                </div>
-             
+              <div style={{ fontSize: "15px", fontWeight: "lighter" }}>
+                {
+                  "NOTE: If you are getting a memory error Goto settings >> Developer options >> then scroll down and uncheck the “Don’t Keep Activities” option to turn it off"
+                }
+              </div>
             </div>
             <div className="w-100 mt5">
               <div className="w-40">
@@ -424,7 +409,7 @@ const PhoneScreen = ({ addVideo, currentUser,prevPath }) => {
                   }}
                   renderItem={(item) => (
                     <List.Item>
-                      <VideoTemplate
+                      <LoadableComponent
                         key={item.id}
                         video={item.videoUrl}
                         location={item.Location}

@@ -14,7 +14,6 @@ import { connect } from "react-redux";
 import { useSelector } from "react-redux";
 import { IconContext } from "react-icons";
 import { useFirestoreConnect } from "react-redux-firebase";
-import { Helmet} from "react-helmet";
 const { Content } = Layout;
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -49,13 +48,7 @@ const PhoneScreen = ({ addStory }) => {
     <Layout style={{ backgroundColor: "#0C0474" }}>
       <Content style={{ backgroundColor: "#0C0474" }}>
         <div className="w-100 flex justify-center">
-          <Helmet>
-            <title>Kyagulanyi Ssentamu Robert for President| About</title>
-            <meta
-              name="bobi wine |About"
-              content="kyagulanyi for president 2021. Kyagulanyi's Story | Biography"
-            />
-          </Helmet>
+          
           <div className="phwid">
             <div className="" style={{ width: "100%" }}>
               <div className="relative">
