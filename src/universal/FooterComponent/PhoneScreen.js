@@ -108,6 +108,9 @@ const PhoneScreen = ({currentUser}) => {
                       <br />
                       Kyagulanyi For President.
                     </div>
+                    <div className="mt2 f5">
+                      <Link to="/UVote">Download Uvote App</Link>
+                    </div>
                     <div className="mt3 f5" style={{ fontSize: "16px" }}>
                       Email Us:{" "}
                       <span

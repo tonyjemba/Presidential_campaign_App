@@ -83,6 +83,12 @@ const AsyncVolunteer = Loadable({
   loader: () => import("./universal/VolunteerForm/VolunteerForm"),
   loading: Loader,
 });
+
+const AsyncUVote = Loadable({
+  loader: () => import("./universal/uvote/UVote"),
+  loading: Loader,
+});
+
 const AsyncAdmin = Loadable({
   loader: () => import("./Admin/KAdmin"),
   loading: Loader,
@@ -140,6 +146,7 @@ function App() {
           property="og:site_name"
           content="kyagulanyi2021 Campaign Website"
         />
+        <meta name="twitter:creator" content="@jemytt" />
         <meta
           name="twitter:description"
           content="kyagulanyi for president 2021. This website was established to support Kyagulanyi's campaigns and provide information to the public regarding the unlawful political persecution of Kyagulanyi Ssentamu Robert (Bobi Wine) and the Ugandan people."
@@ -147,6 +154,10 @@ function App() {
         <meta
           name="twitter:title"
           content="Vote Kyagulanyi Ssentamu Robert for President| Campaign Website People Power"
+        />
+        <meta
+          name="twitter:image"
+          content="https://firebasestorage.googleapis.com/v0/b/projectk21-1a365.appspot.com/o/images%2FVoteKyagulanyi.jpg?alt=media&token=44ac05fd-738d-4c28-8026-265f18e4a816"
         />
         <link rel="canonical" href="https://kyagulanyi2021.com/" />
       </Helmet>
@@ -182,6 +193,7 @@ function App() {
                   <Route path="/volunteer">
                     <AsyncVolunteer />
                   </Route>
+
                   <Route path="/getInvolved">
                     <AsyncInvolved />
                   </Route>
@@ -196,6 +208,9 @@ function App() {
                   </Route>
                   <Route path="/live">
                     <Live />
+                  </Route>
+                  <Route>
+                    <AsyncUVote path="/UVote" />
                   </Route>
                   <Route path="*" component={NotFoundPage} />
                 </Switch>

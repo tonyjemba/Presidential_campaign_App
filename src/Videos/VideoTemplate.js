@@ -11,7 +11,7 @@ import {
 import moment from "moment";
 const { Paragraph } = Typography;
 
-const VideoTemplate = ({ desc, video, date, location,  }) => {
+const VideoTemplate = ({ desc, video, date, location,type  }) => {
   return (
     <div>
       <div className="w-100">
@@ -31,6 +31,9 @@ const VideoTemplate = ({ desc, video, date, location,  }) => {
           <div style={{ fontSize: "16px" }} className="fw2">
             {location}
           </div>
+        </div>
+        <div style={{ fontSize: "16px" }} className="fw2">
+          Category: {type}
         </div>
         <div className="fw7">
           <Paragraph

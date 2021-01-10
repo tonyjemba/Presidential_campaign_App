@@ -40,6 +40,7 @@ const Videos = ({ addPublicVideo,}) => {
 const VideoTemplate = ({
   desc,
   video,
+  type,
   date,
   location,
   published,
@@ -105,7 +106,11 @@ const VideoTemplate = ({
           <div style={{ fontSize: "16px" }} className="fw2">
             {location}
           </div>
+          
         </div>
+        <div style={{ fontSize: "16px", marginLeft:0 }} className="fw2">
+            Category: {type}
+          </div>
         <div className="fw7">
           <Paragraph
             ellipsis={{ rows: 3, expandable: true }}
@@ -157,6 +162,7 @@ const VideoTemplate = ({
                           message.success("Video Published!", 3);
                         }}
                         video={item.videoUrl}
+                        type={item.type}
                         location={item.Location}
                         date={item.Date}
                         desc={item.Description}
@@ -199,6 +205,7 @@ const VideoTemplate = ({
                         published={item.published}
                         path={item.Path}
                         id={item.id}
+                        type={item.type}
                         video={item.videoUrl}
                         location={item.Location}
                         date={item.Date}

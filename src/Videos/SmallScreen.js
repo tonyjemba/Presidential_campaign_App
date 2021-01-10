@@ -22,7 +22,9 @@ import { connect } from 'react-redux'
 import { MdLocationOn } from 'react-icons/md'
 import LoadableVisibility from "react-loadable-visibility/react-loadable";
 import { LoadingOutlined } from "@ant-design/icons";
-import moment from 'moment'
+import moment from 'moment';
+import { AiFillWarning } from "react-icons/ai";
+import { IconContext } from "react-icons";
 import { prevPath } from "../Redux/Admin/Actions";
 import { useSelector } from 'react-redux'
 import { useFirestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -63,7 +65,7 @@ const LoadableComponent = LoadableVisibility({
 const ReachableContext = React.createContext()
 
 const config = {
-  title: 'Video size too Large! should be less than 50MB.',
+  title: "Video size too Large! should be less than 10MB.",
   okText: <Link to="/videos">Try Again</Link>,
   centered: true,
   content: (
@@ -73,14 +75,14 @@ const config = {
           `What Should I do then? 
 
            1. Visit https://www.youcompress.com/ to reduce video size. 
-           2. Download Video Dieter 2 app from PlayStore.
+           2. Download Video Dieter 2 app from PlayStore to compress or cut the video.
            3. Download Wondershare UniConverter Desktop App to reduce video size.
           `
         }
       </ReachableContext.Consumer>
     </>
   ),
-}
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     addVideo: (video) => dispatch(addVideo(video)),
@@ -104,18 +106,19 @@ const [published] = useState({ published: false });
   useFirestoreConnect([{ collection: 'Public_Videos', orderBy: ['Date', 'desc'] }])
   const videos = useSelector((state) => state.firestore.ordered.Public_Videos);
 const [searchInput, set_searchInput] = useState("");
-  const [search,setSearch] = useState(false);
+  const [search, setSearch] = useState(false);
+  const [select, setSelect] = useState();
   
   const doSearch = (e) => {
     set_searchInput(e.target.value);
     setSearch(true);
   }
   
-const filteredArray = videos && videos.filter(video => `${video.Description.toLowerCase()} + ${video.Location.toLowerCase()} + ${moment(video.Date.toDate()).calendar().toLowerCase()}`.includes(searchInput.toLowerCase()));
+const filteredArray = videos && videos.filter(video => `${video.Description.toLowerCase()}  + ${video.Location.toLowerCase()} + ${moment(video.Date.toDate()).calendar().toLowerCase()}`.includes(searchInput.toLowerCase()));
   
   const onFileChange = (e) => {
     const file = e.target.files[0]
-    if (file.size < 50000000) {
+    if (file.size < 10000000) {
       setvideoState(false)
       const storageRef = firebase.storage().ref()
       const fileRef = storageRef.child("videos/" + file.name);
@@ -150,7 +153,8 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
     if (values) {
       addVideo({
       ...values,
-      Date: values.Date._d,
+        Date: values.Date._d,
+      type: select,
       ...videoUrl,
       ...published,
     })
@@ -169,7 +173,6 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
     <Layout style={{ backgroundColor: "#ffffff" }}>
       <Content>
         <div className="w-100" style={{ backgroundColor: "#f9f9f9" }}>
-         
           <div className="w-100 flex justify-center">
             <div className="w-90 fw7 mt4 mb4">
               <Title
@@ -180,7 +183,17 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   cursor: "default",
                 }}
               >
-                ARCHIVES: VIDEOS
+                <IconContext.Provider
+                  value={{
+                    color: "red",
+                    size: "30px",
+                  }}
+                >
+                  <div className="pointer ">
+                    <AiFillWarning />
+                  </div>
+                </IconContext.Provider>
+                <div>Report Incident</div>
               </Title>
               <div
                 style={{
@@ -189,7 +202,17 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   cursor: "default",
                 }}
               >
-                HOW WERE ELECTIONS CONDUCTED IN YOUR AREA? UPLOAD A VIDEO{" "}
+                <Title
+                  level={1}
+                  style={{
+                    color: "#0C0474",
+                    fontWeight: "lighter",
+                    fontSize: "16px",
+                  }}
+                >
+                  NOTE: File shouldn't be greater than 10MBS. All Data will be
+                  Uploaded to the UVote App.
+                </Title>
               </div>
             </div>
           </div>
@@ -253,7 +276,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                         level={1}
                         style={{ fontWeight: "lighter", fontSize: "20px" }}
                       >
-                        Sign in as a Volunteer to proceed
+                        Sign in to Upload Evidence
                       </Title>
                     </Link>
                   )}
@@ -277,6 +300,51 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                     </div>
                   </Form.Item>
                   <Form.Item
+                    name="type"
+                    label="Select Incident Type"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <Select
+                      onChange={(val) => {
+                        setSelect(val);
+                      }}
+                      allowClear
+                    >
+                      <Option value="Other">Other</Option>
+                      <Option value="Late Opening of Polling Station">
+                        Late Opening of Polling Station
+                      </Option>
+                      <Option value="No ballots available">
+                        No ballots available
+                      </Option>
+                      <Option value="Agent did not recieve copy of DOR form">
+                        Agent did not recieve copy of DOR form
+                      </Option>
+                      <Option value="DOR envelope not properly sealed">
+                        DOR envelope not properly sealed
+                      </Option>
+                      <Option value="Ballot box not empty at start">
+                        Ballot box not empty at start
+                      </Option>
+                      <Option value="Person voted twice">
+                        Person voted twice
+                      </Option>
+                      <Option value="Person was prevented to vote">
+                        Person was prevented to vote
+                      </Option>
+                      <Option value="Intimidation by police or military">
+                        Intimidation by police or military
+                      </Option>
+                      <Option value="Agent is refused access">
+                        Agent is refused access
+                      </Option>
+                    </Select>
+                  </Form.Item>
+                  <Form.Item
                     name="Location"
                     label="Location"
                     rules={[
@@ -294,7 +362,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                   </Form.Item>
                   <Form.Item
                     name="Description"
-                    label="Short Description"
+                    label="Describe the incident"
                     rules={[
                       {
                         required: true,
@@ -303,10 +371,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                       },
                     ]}
                   >
-                    <TextArea
-                      rows={5}
-                      placeholder="What Really Took Place..."
-                    />
+                    <TextArea rows={5} placeholder="Type Here..." />
                   </Form.Item>
                   <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     {currentUser ? (
@@ -350,7 +415,7 @@ const filteredArray = videos && videos.filter(video => `${video.Description.toLo
                 </div>
                 <div className="w-100 flex flex-row">
                   <Input
-                    placeholder="Use any Keyword : Date, Location or anything"
+                    placeholder="Use any Keyword : Date, Location, category or anything"
                     size="large"
                     onChange={doSearch}
                   />

@@ -18,10 +18,9 @@ const Live = () => {
           {(matches) =>
             matches.smaller ? (
               <div className="flex items-start w-100 vh-75 mt4">
-               
                 <div
                   className="w-100 h-50 "
-                  style={{ backgroundColor: "#fbfbfb" }}
+                  style={{ backgroundColor: "black" }}
                 >
                   <ReactPlayer
                     url={url}
@@ -33,36 +32,38 @@ const Live = () => {
               </div>
             ) : matches.Large ? (
               <div className="flex items-start justify-center w-100 vh-75 mt4">
-               
                 <div
                   className=" "
                   style={{
                     height: "85%",
                     width: "60%",
-                    backgroundColor: "#fbfbfb",
+                    backgroundColor: "black",
                   }}
                 >
-                  <ReactPlayer
-                    url={url}
-                    height="100%"
-                    width="100%"
-                    controls={true}
-                  />
+                
+                    <ReactPlayer
+                      url={url}
+                      height="100%"
+                      width="100%"
+                      controls={true}
+                    />
+                  
                 </div>
               </div>
             ) : (
               <div className="flex items-start justify-center w-100 vh-75 mt4">
-               
                 <div
                   className="w-90  "
-                  style={{ height: "75%", backgroundColor: "#fbfbfb" }}
+                  style={{ height: "75%", backgroundColor: "black" }}
                 >
-                  <ReactPlayer
-                    url={url}
-                    height="100%"
-                    width="100%"
-                    controls={true}
-                  />
+                
+                    <ReactPlayer
+                      url={url}
+                      height="100%"
+                      width="100%"
+                      controls={true}
+                    />
+                  
                 </div>
               </div>
             )
