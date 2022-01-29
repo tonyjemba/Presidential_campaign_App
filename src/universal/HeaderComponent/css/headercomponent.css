@@ -1,0 +1,24 @@
+.bckgrnd{
+    background-color: white;
+position: relative;
+}
+.sticky{
+    position: relative;
+z-index: 1000;
+}
+.logo{
+    object-fit: cover;
+}
+.tosection{
+    background-color: red;
+}
+.Hbtn{
+    border: 1px solid #ff0000;
+    box-shadow: 0 3px 5px #ff00004d;
+}
+.innercontwidth{
+    width: 95%;
+}
+.betop{
+    z-index: 999
+}

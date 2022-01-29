@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /events/
+Disallow: /news/
+Disallow: /videos/
+Disallow: /about/
+Disallow: /contact/
+Disallow: /KAdmin_Panel/

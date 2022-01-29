@@ -1,0 +1,9 @@
+.nlay{
+    background-image: linear-gradient( rgba(0, 0, 128, 0),rgba(48, 48, 156, 0.6));
+}
+.newsImage{
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width:100%
+}

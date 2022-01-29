@@ -1,0 +1,62 @@
+/* large screen */
+.bg{
+    background-color: white;
+}
+.wh{
+    background-color:white;
+}
+.mc{
+    color: rgba(228, 224, 224, 0.329);
+}
+.wid{
+    width:90%
+}
+.wid2{
+    width:55%
+}
+
+.top{
+   background-color: #FFFFFF;
+
+}
+.top1{
+    background-color: #FFFFFF;
+}
+/* meduim screen*/
+/* smallscreem */
+span.ant-layout-sider-zero-width-trigger.ant-layout-sider-zero-width-trigger-left{
+background-color: #FFFFFF;
+margin-top: 20px;
+position: absolute; 
+ z-index: 200;
+}
+div.ant-collapse-header{
+    font-size: 1.4vw;
+    font-weight: bold;
+    color: black;
+    margin-top: 0;
+    padding-top: 0;
+}
+p{
+    color: black;
+    font-size: 1.2vw;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.arrow{
+    animation: pulse 5s linear infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(0, 0);
+      }
+      
+      50% {
+        transform: translate(13%, 0);
+      }
+      
+      80% {
+        transform: translate(-5%, 0);
+      }
+  }
+

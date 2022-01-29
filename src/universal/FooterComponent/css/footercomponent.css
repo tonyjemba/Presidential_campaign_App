@@ -1,0 +1,45 @@
+
+.nup{
+    width: 250px;
+    height: 250px;
+    margin-top: 25%;
+}
+.nupmd{
+    width: 150px;
+    height: 150px;
+    margin-top: 25%;
+}
+.nupsm{
+    width: 150px;
+    height: 150px;
+    margin-top: 15%;
+}
+.imgbg{
+    height:100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.tbg{
+    background-color: #0C0474;
+    color:white;
+}
+.overlay{
+    top: 0;
+    background-color:rgba(6, 19, 27,0.98);
+}
+.btm{
+ background-color: #000a13;
+
+}
+.pp{
+    height: 60px ;
+    width: 60px;
+}
+.ppp{
+    height: 50px;
+    width:50px;
+}
+.myc{
+    color: rgba(94, 103, 109, 0.98);
+}

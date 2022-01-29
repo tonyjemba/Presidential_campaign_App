@@ -1,0 +1,46 @@
+.bacground {
+  background-color: white;
+  
+}
+
+.cont{
+
+position: absolute;
+top: 2%;
+}
+.contm{
+  position: absolute;
+  top:0%;
+}
+.redbg{
+  background-color: red;
+}
+
+.image {
+  
+  object-fit: cover;
+}
+.innercontwidth{
+  width: 95%;
+}
+/*small screen*/
+.height{
+  height: 60vh;
+}
+
+.small{
+  height: 60vh;
+  width: 100%;
+  object-fit: cover;
+}
+.phone{
+  height:45vh;
+  width: 100%;
+  object-fit: cover;
+}
+.phonetop{
+  top:20%
+}
+.pos{
+  top: 20%;
+}
