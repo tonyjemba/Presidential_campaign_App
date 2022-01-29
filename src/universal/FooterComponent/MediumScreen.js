@@ -107,8 +107,8 @@ const MediumScreen = ({ currentUser }) => {
                       <br />
                       Kyagulanyi For President.
                     </div>
-                     <div className="mt3 f5" >
-                      <Link to="/UVote" >Download Uvote App</Link>
+                    <div className="mt3 f5">
+                      <Link to="/UVote">Download Uvote App</Link>
                     </div>
                     <div className="mt3 f5" style={{ fontSize: "15px" }}>
                       Email Us:{" "}
@@ -385,9 +385,7 @@ const MediumScreen = ({ currentUser }) => {
               </div>
               <div className=" w-100 flex btm justify-center items-center">
                 <div className="w-90 flex flex-row justify-between white">
-                  <div
-                    className="fw5 h-100 flex items-center pt3"
-                  >
+                  <div className="fw5 h-100 flex items-center pt3">
                     copyright
                     <span className="red mt1">
                       <IconContext.Provider
@@ -401,7 +399,7 @@ const MediumScreen = ({ currentUser }) => {
                         </span>
                       </IconContext.Provider>
                     </span>
-                    2020-2021. All Rights Reserved.
+                    2020-2022. All Rights Reserved.
                   </div>
                   <div className="mt3">
                     Coded by{" "}
@@ -409,9 +407,9 @@ const MediumScreen = ({ currentUser }) => {
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
-                        href="https://www.twitter.com/jemytt"
+                        href="https://www.twitter.com/TonyJemba"
                       >
-                        @jemytt
+                        @TonyJemba
                       </a>
                     </span>
                   </div>

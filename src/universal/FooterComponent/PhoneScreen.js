@@ -155,7 +155,7 @@ const PhoneScreen = ({currentUser}) => {
                           </span>
                         </IconContext.Provider>
                       </span>
-                      2020-2021. All Rights Reserved.
+                      2020-2022. All Rights Reserved.
                     </div>
                     <div className="mt1 mb2">
                       Coded by{" "}
@@ -163,9 +163,9 @@ const PhoneScreen = ({currentUser}) => {
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href="https://www.twitter.com/jemytt"
+                          href="https://www.twitter.com/TonyJemba"
                         >
-                          @jemytt
+                          @TonyJemba
                         </a>
                       </span>
                     </div>

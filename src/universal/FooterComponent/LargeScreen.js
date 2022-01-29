@@ -104,10 +104,10 @@ const LargeScreen = ({currentUser}) => {
                       <br />
                       Kyagulanyi For President.
                     </div>
-                    <div className="mt3 f5" >
-                      <Link to="/UVote" >Download Uvote App</Link>
+                    <div className="mt3 f5">
+                      <Link to="/UVote">Download Uvote App</Link>
                     </div>
-                    
+
                     <div className="mt3 f5" style={{ fontSize: "16px" }}>
                       Email Us:{" "}
                       <span
@@ -402,7 +402,7 @@ const LargeScreen = ({currentUser}) => {
                           </span>
                         </IconContext.Provider>
                       </span>
-                      2020-2021. All Rights Reserved.
+                      2020-2022. All Rights Reserved.
                     </div>
                     <div className="mt1 mb2">
                       Coded by{" "}
@@ -410,9 +410,9 @@ const LargeScreen = ({currentUser}) => {
                         <a
                           target="_blank"
                           rel="noopener noreferrer"
-                          href="https://www.twitter.com/jemytt"
+                          href="https://www.twitter.com/TonyJemba"
                         >
-                          @jemytt
+                          @TonyJemba
                         </a>
                       </span>
                     </div>

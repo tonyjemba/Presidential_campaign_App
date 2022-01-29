@@ -1,6 +1,8 @@
 {
   "name": "kyagulanyi2021",
   "version": "0.1.0",
+  "engines": { "node": "14.17.5",
+ "npm": "6.14.14"},
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
@@ -13,6 +15,7 @@
     "antd": "^4.5.4",
     "core-js": "3",
     "craco-less": "^1.17.0",
+    "create-app-react": "^1.0.6",
     "firebase": "^8.0.0",
     "firebaseui": "^4.7.1",
     "moment": "^2.29.1",
@@ -51,6 +54,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  
   "browserslist": {
     "production": [
       ">0.2%",
